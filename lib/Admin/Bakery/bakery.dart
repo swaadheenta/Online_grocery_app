@@ -2,7 +2,7 @@ import 'package:Online_grocery_app/Admin/Fruits/Freshvegetables.dart';
 import 'package:flutter/material.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 
-class  bakery extends StatelessWidget {
+class bakery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,6 @@ class  bakery extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             ListTile(
-            //  leading: Icon(Icons.add_circle_outline),
               title: Text("Dairy"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {
@@ -25,42 +24,36 @@ class  bakery extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              //leading: Icon(Icons.library_books_rounded),
               title: Text("Non Dairy"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.add_circle),
               title: Text("Breads & Buns"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Cookies,Rusk & Khari"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-              //leading: Icon(Icons.category),
               title: Text("Cakes & Pastries"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Icecreams & Desserts"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Bakery Snacks"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},

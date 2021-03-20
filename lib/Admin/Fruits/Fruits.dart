@@ -1,8 +1,7 @@
 import 'package:Online_grocery_app/Admin/Fruits/Freshvegetables.dart';
 import 'package:flutter/material.dart';
-import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 
-class  fnv extends StatelessWidget {
+class fnv extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +14,7 @@ class  fnv extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             ListTile(
-            //  leading: Icon(Icons.add_circle_outline),
+              //  leading: Icon(Icons.add_circle_outline),
               title: Text("Fresh Vegetables"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {
@@ -32,14 +31,14 @@ class  fnv extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.add_circle),
+              // leading: Icon(Icons.add_circle),
               title: Text("Fresh Fruits"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
+              // leading: Icon(Icons.category),
               title: Text("Exotic Fruits & veggies"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
@@ -53,14 +52,14 @@ class  fnv extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
+              // leading: Icon(Icons.category),
               title: Text("Cuts & Sprouts"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
+              // leading: Icon(Icons.category),
               title: Text("Flowers Bouquets & Bunches"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},

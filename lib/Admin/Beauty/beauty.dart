@@ -2,7 +2,7 @@ import 'package:Online_grocery_app/Admin/Fruits/Freshvegetables.dart';
 import 'package:flutter/material.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 
-class  beauty extends StatelessWidget {
+class beauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,6 @@ class  beauty extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             ListTile(
-            //  leading: Icon(Icons.add_circle_outline),
               title: Text("Makeup"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {
@@ -25,56 +24,48 @@ class  beauty extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              //leading: Icon(Icons.library_books_rounded),
               title: Text("Oral Care"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.add_circle),
               title: Text("Feminine Hygiene"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Bath & Hand Wash"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-              //leading: Icon(Icons.category),
               title: Text("Health & Medicine"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Hair Care"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Men's Grooming"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Fragrances & Deos"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
-             Divider(),
+            Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Skin Care"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},

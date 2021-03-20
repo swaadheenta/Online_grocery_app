@@ -2,7 +2,7 @@ import 'package:Online_grocery_app/Admin/Fruits/Freshvegetables.dart';
 import 'package:flutter/material.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 
-class  Instant extends StatelessWidget {
+class Instant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,6 @@ class  Instant extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             ListTile(
-            //  leading: Icon(Icons.add_circle_outline),
               title: Text("Fresh Vegetables"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {
@@ -25,42 +24,36 @@ class  Instant extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              //leading: Icon(Icons.library_books_rounded),
               title: Text("Herbs & Seasonings"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.add_circle),
               title: Text("Fresh Fruits"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Exotic Fruits & veggies"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-              //leading: Icon(Icons.category),
               title: Text("Organic Fruits & Vegetables"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Cuts & Sprouts"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Flowers Bouquets & Bunches"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},

@@ -2,7 +2,7 @@ import 'package:Online_grocery_app/Admin/Fruits/Freshvegetables.dart';
 import 'package:flutter/material.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 
-class  snacks extends StatelessWidget {
+class snacks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,6 @@ class  snacks extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             ListTile(
-            //  leading: Icon(Icons.add_circle_outline),
               title: Text("Chocolates & Candies"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {
@@ -25,33 +24,28 @@ class  snacks extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              //leading: Icon(Icons.library_books_rounded),
               title: Text("Biscuits & Cookies"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.add_circle),
               title: Text("Indian Mithai"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-             // leading: Icon(Icons.category),
               title: Text("Spreads,Sauces & Ketchup"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-              //leading: Icon(Icons.category),
               title: Text("Snacks & Namkeen"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
-           
           ],
         ),
       ),
