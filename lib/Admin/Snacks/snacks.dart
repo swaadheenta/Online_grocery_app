@@ -1,8 +1,8 @@
-import 'package:Online_grocery_app/Admin/Health/Freshvegetables.dart';
+import 'package:Online_grocery_app/Admin/Fruits/Freshvegetables.dart';
 import 'package:flutter/material.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 
-class Health extends StatelessWidget {
+class  snacks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,8 +15,8 @@ class Health extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             ListTile(
-              leading: Icon(Icons.add_circle_outline),
-              title: Text("Fresh Vegetables"),
+            //  leading: Icon(Icons.add_circle_outline),
+              title: Text("Chocolates & Candies"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {
                 Navigator.push(
@@ -25,46 +25,33 @@ class Health extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              leading: Icon(Icons.library_books_rounded),
-              title: Text("Herbs & Seasonings"),
+              //leading: Icon(Icons.library_books_rounded),
+              title: Text("Biscuits & Cookies"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-              leading: Icon(Icons.add_circle),
-              title: Text("Fresh Fruits"),
+             // leading: Icon(Icons.add_circle),
+              title: Text("Indian Mithai"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-              leading: Icon(Icons.category),
-              title: Text("Exotic Fruits & veggies"),
+             // leading: Icon(Icons.category),
+              title: Text("Spreads,Sauces & Ketchup"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
             Divider(),
             ListTile(
-              leading: Icon(Icons.category),
-              title: Text("Organic Fruits & Vegetables"),
+              //leading: Icon(Icons.category),
+              title: Text("Snacks & Namkeen"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.category),
-              title: Text("Cuts & Sprouts"),
-              trailing: Icon(Icons.arrow_right),
-              onTap: () {},
-            ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.category),
-              title: Text("Flowers Bouquets & Bunches"),
-              trailing: Icon(Icons.arrow_right),
-              onTap: () {},
-            ),
+           
           ],
         ),
       ),
