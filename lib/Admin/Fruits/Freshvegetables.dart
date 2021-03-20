@@ -110,10 +110,7 @@ class _fvState extends State<fv> {
                   ),
                   
                 ),
-                /*  FloatingActionButton(
-                  
-                  onPressed: getImage,
-                ),*/
+                
                  SizedBox(
                   height: displayHeight(context) * 0.05,
                 ),
@@ -152,7 +149,8 @@ class _fvState extends State<fv> {
   final imagePicker = ImagePicker();
 
   Future getImage() async {
-    var image = await imagePicker.getImage(source: ImageSource.gallery);
+    var image = await imagePicker.getImage(source: ImageSource.gallery,
+    imageQuality: 80);
     File img = File(image.path);
     // print(image.path);
     uploadImageToFirebase(img);
@@ -167,10 +165,12 @@ class _fvState extends State<fv> {
           FirebaseStorage().ref().child(imageLocation);
       final StorageUploadTask uploadTask = storageReference.putFile(img);
       final StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      String url = await taskSnapshot.ref.getDownloadURL();
-      print(url);
+      String url = await taskSnapshot.ref.getDownloadURL().whenComplete(() async
+      {
       print(imageLocation);
       _addimage(imageLocation);
+      });
+      
       _addimageurl(url);
     } catch (e) {
       print(e.message);
