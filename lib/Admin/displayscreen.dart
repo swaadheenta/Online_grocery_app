@@ -1,4 +1,3 @@
-
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -19,15 +18,14 @@ class _FinalscreenState extends State<Finalscreen> {
         children: [
           Positioned(
             top: displayHeight(context) * 0.1,
-            left: displayWidth(context) * 0.1,
+            left: displayWidth(context) * 0.05,
             child: Container(
-                height: displayHeight(context),
-                
-                width: displayWidth(context) * 0.8,
+                color: Colors.blue,
+                height: displayHeight(context) * 0.8,
+                width: displayWidth(context) * 0.9,
                 child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("Two")
-                      .snapshots(),
+                  stream:
+                      FirebaseFirestore.instance.collection("E").snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return new ListView.builder(
@@ -38,19 +36,27 @@ class _FinalscreenState extends State<Finalscreen> {
                             DocumentSnapshot ds = snapshot.data.docs[index];
                             return Card(
                               elevation: 10.0,
-                              child: Container(
-                                height: displayHeight(context)*0.15,
-                                child: ListTile(
-                                  title: Text(ds['field1']),
-                                  subtitle: Text(ds['field2']),
-                                  leading: Container(
-                                    height: displayHeight(context)*0.1,
-                                    width: displayWidth(context)*0.2,
-                                    child: Image.network(ds['field5'])),
-                                  
-                                ),
-                              ),
-                            );
+                              child:Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          color: Colors.yellow,
+                                          height: displayHeight(context)*0.35,
+                                          width: displayWidth(context)*0.4,
+                                          child: Image.network(ds['field5'],fit: BoxFit.fill,filterQuality: FilterQuality.high,)),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ) ,
+
+                              );
+                            
                           });
                     }
                   },

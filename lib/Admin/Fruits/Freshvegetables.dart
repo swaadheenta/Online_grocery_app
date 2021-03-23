@@ -20,6 +20,11 @@ class _fvState extends State<fv> {
   String Imgname;
   String Imgloc;
   String Categoryname;
+  String imageLocation;
+  String url;
+  File img;
+  var image;
+  PickedFile _image;
   String dropdownValue = "Please select a category";
   var imgstring;
   @override
@@ -53,7 +58,7 @@ class _fvState extends State<fv> {
                       isExpanded: true,
                       iconSize: 30.0,
                       style: TextStyle(color: Colors.blue),
-                      items: ['Potato', 'Tomato', 'Cauliflower'].map(
+                      items: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map(
                         (val) {
                           return DropdownMenuItem<String>(
                             value: val,
@@ -75,7 +80,7 @@ class _fvState extends State<fv> {
                 TextFormField(
                   controller: SubCategoryname,
                   decoration: InputDecoration(
-                    hintText: "Subcategoryname",
+                    hintText: "Enter the name of subcategory",
                   ),
                 ),
                 SizedBox(
@@ -84,7 +89,7 @@ class _fvState extends State<fv> {
                 TextFormField(
                   controller: SubCategoryquantity,
                   decoration: InputDecoration(
-                    hintText: "SubCategoryquantity",
+                    hintText: "Enter the quantity of subcateory",
                   ),
                 ),
                 SizedBox(
@@ -93,29 +98,40 @@ class _fvState extends State<fv> {
                 TextFormField(
                   controller: SubCategoryprice,
                   decoration: InputDecoration(
-                    hintText: "subcategoryprice",
+                    hintText: "Enter the price of subcategory",
                   ),
                 ),
                 SizedBox(
                   height: displayHeight(context) * 0.05,
                 ),
+               
                 ButtonTheme(
                   height: displayHeight(context) * 0.15,
-                  minWidth: displayWidth(context)*0.32,
+                  minWidth: displayWidth(context) * 0.32,
                   child: OutlineButton(
-                    
                     borderSide: BorderSide(color: Colors.grey, width: 2.5),
                     onPressed: getImage,
-                    child: Icon(Icons.add,size: 30.0),
+                    child: (_image != null)
+                        ? Image(
+                            image: AssetImage(_image.path),
+                            filterQuality: FilterQuality.high,
+                          )
+                        : Icon(Icons.add, size: 30.0), //
                   ),
-                  
                 ),
-                
-                 SizedBox(
+                Opacity(
+                  opacity: 0.0,
+                  child: Divider(),
+                ),
+                Text(
+                  "Double tap on submit button",
+                  style: TextStyle(color: Colors.red),
+                ),
+                SizedBox(
                   height: displayHeight(context) * 0.05,
                 ),
                 FlatButton(
-                  color: Colors.blue,
+                    color: Colors.blue,
                     onPressed: () {
                       Map<String, dynamic> data = {
                         "field1": SubCategoryname.text,
@@ -136,8 +152,10 @@ class _fvState extends State<fv> {
                       //  .doc(SubCategoryname.text)
                       //  .set(data);
                     },
-                    child: Text("Submit",style: TextStyle(color: Colors.white),)),
-                    
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(color: Colors.white),
+                    )),
               ],
             ),
           ),
@@ -149,9 +167,16 @@ class _fvState extends State<fv> {
   final imagePicker = ImagePicker();
 
   Future getImage() async {
-    var image = await imagePicker.getImage(source: ImageSource.gallery,
-    imageQuality: 80);
-    File img = File(image.path);
+    image = await imagePicker.getImage(
+        source: ImageSource.gallery,
+        maxHeight: 2000,
+        maxWidth: 4000,
+        imageQuality: 80);
+
+    setState(() {
+      _image = image;
+    });
+    img = File(image.path);
     // print(image.path);
     uploadImageToFirebase(img);
   }
@@ -160,24 +185,21 @@ class _fvState extends State<fv> {
     try {
       //Make random name of the image !!
       int randomnumber = Random().nextInt(100000);
-      String imageLocation = "images/image${randomnumber}.jpg";
+      imageLocation = "images/image${randomnumber}.jpg";
       final StorageReference storageReference =
           FirebaseStorage().ref().child(imageLocation);
       final StorageUploadTask uploadTask = storageReference.putFile(img);
       final StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      String url = await taskSnapshot.ref.getDownloadURL().whenComplete(() async
-      {
-      print(imageLocation);
-      _addimage(imageLocation);
+      url = await taskSnapshot.ref.getDownloadURL().whenComplete(() async {
+        print(imageLocation);
+        _addimage(imageLocation);
       });
-      
+
       _addimageurl(url);
     } catch (e) {
       print(e.message);
     }
   }
-
- 
 
   void _addimage(String imageLocation) {
     Imgname = imageLocation;
@@ -187,4 +209,3 @@ class _fvState extends State<fv> {
     Imgloc = url;
   }
 }
-
