@@ -136,6 +136,10 @@ flutter:
       fonts:
         - asset: fonts/PaytoneOne-Regular.ttf
 
+    - family: Langar
+      fonts:
+        - asset: fonts/Langar-Regular.ttf
+
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

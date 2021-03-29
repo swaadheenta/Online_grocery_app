@@ -41,7 +41,7 @@ class cleaning extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              title: Text("Mops.Brushes & Scrubs"),
+              title: Text("Mops,Brushes & Scrubs"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),

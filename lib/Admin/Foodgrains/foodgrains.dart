@@ -40,7 +40,7 @@ class foodgrains extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              title: Text("Organic Stapkes"),
+              title: Text("Organic Staples"),
               trailing: Icon(Icons.arrow_right),
               onTap: () {},
             ),

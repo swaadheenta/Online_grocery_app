@@ -13,10 +13,7 @@ import 'package:flutter/material.dart';
 class adminhome extends StatelessWidget {
   final tab = new TabBar(
     tabs: <Tab>[
-      Tab(
-        icon: Icon(Icons.home),
-        text: "Home"
-      ),
+      Tab(icon: Icon(Icons.home), text: "Home"),
       Tab(
         icon: Icon(Icons.dashboard),
         text: "Dashboard",
@@ -27,57 +24,38 @@ class adminhome extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-          child: Scaffold(   
-            
-
-           appBar: AppBar(centerTitle: true,
-
-            title: Text("Categories",
-            
-            style: TextStyle(
-              fontFamily: "Breeserif",
-              fontSize: displayWidth(context)*0.055,
-              color: Colors.white,),
-              
+      child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              "Categories",
+              style: TextStyle(
+                fontFamily: "Breeserif",
+                fontSize: displayWidth(context) * 0.055,
+                color: Colors.white,
               ),
+            ),
           ),
           body: Stack(
-            
-           // alignment: Alignment.center,
             children: [
               Positioned(
                   child: Container(
                 height: displayHeight(context),
                 width: displayWidth(context),
               )),
-             /* Positioned(
-                
-                child: Card(
-              elevation: 10.0,
-              child: tab,
-              color: Colors.blue,
-            ),
-          ),*/
-              /*Positioned(
-                  top: displayHeight(context) * 0.05,
-                  child: Text(
-                    "Categories",
-                    style: TextStyle(
-                      fontFamily: "Breeserif",
-                      fontSize: displayWidth(context) * 0.35,
-                    ),
-                  )),*/
               Positioned(
                 top: displayHeight(context) * 0.02,
                 left: displayWidth(context) * 0.02,
                 child: Container(
-                  height: displayHeight(context) * 0.77,
+                  height: displayHeight(context) * 0.8,
                   child: SingleChildScrollView(
                     child: Column(children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => health()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => health()));
                         },
                         child: Container(
                             height: displayHeight(context) * 0.12,
@@ -101,7 +79,8 @@ class adminhome extends StatelessWidget {
                                       "Health Drinks & Beverages",
                                       style: TextStyle(
                                           fontFamily: "Breeserif",
-                                          fontSize: displayWidth(context) * 0.045,
+                                          fontSize:
+                                              displayWidth(context) * 0.045,
                                           fontWeight: FontWeight.bold,
                                           letterSpacing: 0.8),
                                     )),
@@ -114,8 +93,10 @@ class adminhome extends StatelessWidget {
                       // To be changed later !!
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Instant()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Instant()));
                         },
                         child: Container(
                             height: displayHeight(context) * 0.12,
@@ -232,8 +213,10 @@ class adminhome extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => snacks()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => snacks()));
                         },
                         child: Container(
                             height: displayHeight(context) * 0.12,
@@ -268,8 +251,10 @@ class adminhome extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => bakery()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => bakery()));
                         },
                         child: Container(
                             height: displayHeight(context) * 0.12,
@@ -344,8 +329,10 @@ class adminhome extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => beauty()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => beauty()));
                         },
                         child: Container(
                             height: displayHeight(context) * 0.12,
