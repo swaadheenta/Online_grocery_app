@@ -32,6 +32,8 @@ dependencies:
   firebase_core: ^0.5.0
   image_picker: ^0.6.7+14 
   firebase_storage: ^4.0.0
+  firebase_auth: ^0.18.3
+  google_sign_in: ^4.5.6
   
 
 dev_dependencies:
@@ -139,6 +141,10 @@ flutter:
     - family: Langar
       fonts:
         - asset: fonts/Langar-Regular.ttf
+
+    - family: AbrilFatface
+      fonts:
+        - asset: fonts/AbrilFatface-Regular.ttf
 
   
   # For details regarding fonts from package dependencies,

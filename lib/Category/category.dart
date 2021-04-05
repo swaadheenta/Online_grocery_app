@@ -1,13 +1,14 @@
+import 'package:Online_grocery_app/Category/Health/Allbeverages.dart';
+import 'package:Online_grocery_app/Category/Health/coffee.dart';
+import 'package:Online_grocery_app/Category/Health/energy.dart';
+import 'package:Online_grocery_app/Category/Health/fruitjuices.dart';
+import 'package:Online_grocery_app/Category/Health/health.dart';
+import 'package:Online_grocery_app/Category/Health/tea.dart';
+import 'package:Online_grocery_app/Category/Health/water.dart';
+import 'package:Online_grocery_app/Category/basictile.dart';
+import 'package:Online_grocery_app/Category/categorylist.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
-import 'package:Online_grocery_app/Users/Category/Health/Allbeverages.dart';
-import 'package:Online_grocery_app/Users/Category/Health/coffee.dart';
-import 'package:Online_grocery_app/Users/Category/Health/energy.dart';
-import 'package:Online_grocery_app/Users/Category/Health/fruitjuices.dart';
-import 'package:Online_grocery_app/Users/Category/Health/health.dart';
-import 'package:Online_grocery_app/Users/Category/Health/tea.dart';
-import 'package:Online_grocery_app/Users/Category/Health/water.dart';
-import 'package:Online_grocery_app/Users/Category/basictile.dart';
-import 'package:Online_grocery_app/Users/Category/categorylist.dart';
+
 import 'package:flutter/material.dart';
 
 class Category extends StatefulWidget {

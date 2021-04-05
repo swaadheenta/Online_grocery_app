@@ -1,14 +1,14 @@
+import 'package:Online_grocery_app/Category/category.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
-import 'package:Online_grocery_app/Users/Category/category.dart';
-import 'package:Online_grocery_app/Users/uhome.dart';
+import 'package:Online_grocery_app/uhome.dart';
 import 'package:flutter/material.dart';
 
-class userhome extends StatefulWidget {
+class Homepage extends StatefulWidget {
   @override
-  _userhomeState createState() => _userhomeState();
+  _HomepageState createState() => _HomepageState();
 }
 
-class _userhomeState extends State<userhome> {
+class _HomepageState extends State<Homepage> {
   int _selectedindex = 0;
 
   List<Widget> pagelist = <Widget>[
