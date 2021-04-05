@@ -1,3 +1,5 @@
+import 'package:Online_grocery_app/Authentication/Login.dart';
+import 'package:Online_grocery_app/Authentication/Register.dart';
 import 'package:Online_grocery_app/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home:Homepage());
+    return MaterialApp(home:Register());
   }
 }
