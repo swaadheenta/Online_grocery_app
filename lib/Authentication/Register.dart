@@ -1,3 +1,4 @@
+import 'Login.dart';
 import 'package:Online_grocery_app/Authentication/auth.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,7 +41,7 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: displayHeight(context) * 0.08,
+                      height: displayHeight(context) * 0.1,
                       width: displayWidth(context) * 0.8,
                     ),
                     Container(
@@ -100,6 +101,23 @@ class _RegisterState extends State<Register> {
               ),
             ),
           ),
+            
+           Positioned(
+            top: displayHeight(context)*0.9,
+              child: Row(
+            children: [
+              Text("Already have an account ? "),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (Context) => LoginScreen()));
+                  },
+                  child: Text(
+                    "Login",
+                    style: TextStyle(color: Colors.blue),
+                  )),
+            ],
+          ))
         ],
       ),
     );
