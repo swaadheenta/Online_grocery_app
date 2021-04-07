@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'Login.dart';
 import 'package:Online_grocery_app/Authentication/auth.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
@@ -16,12 +18,13 @@ class _RegisterState extends State<Register> {
   final _formkey = GlobalKey<FormState>();
   String email = "";
   String password = "";
+  String username;
+  String phoneno;
   String error;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       
-       body: Stack(
+      body: Stack(
         alignment: Alignment.center,
         children: [
           Positioned(
@@ -79,6 +82,46 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     SizedBox(
+                      height: displayHeight(context) * 0.02,
+                      width: displayWidth(context) * 0.8,
+                    ),
+                    Container(
+                      width: displayWidth(context) * 0.8,
+                      child: TextFormField(
+                        validator: (val) => val.length < 6
+                            ? "Username should be atleast 6 characters long"
+                            : null,
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.verified_user_rounded), hintText: "Username"),
+                        //obscureText: true,
+                        onChanged: (val) {
+                          setState(() {
+                            username = val;
+                          });
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: displayHeight(context) * 0.02,
+                      width: displayWidth(context) * 0.8,
+                    ),
+                    Container(
+                      width: displayWidth(context) * 0.8,
+                      child: TextFormField(
+                        validator: (val) => val.length !=10
+                            ? "phoneno should be of 10 characters"
+                            : null,
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.phone), hintText: "Phoneno"),
+                        obscureText: true,
+                        onChanged: (val) {
+                          setState(() {
+                            phoneno = val;
+                          });
+                        },
+                      ),
+                    ),
+                    SizedBox(
                       height: displayHeight(context) * 0.04,
                       width: displayWidth(context) * 0.8,
                     ),
@@ -86,9 +129,9 @@ class _RegisterState extends State<Register> {
                         child: Text("Sign Up"),
                         onPressed: () async {
                           if (_formkey.currentState.validate()) {
-                            dynamic result = await _auth.registerWithEmailAndPassword(
-                                email, password);
-
+                            dynamic result = await _auth
+                                .registerWithEmailAndPassword(email, password,username,phoneno);
+                            //  FirebaseFirestore.instance.collection("Users").doc("Helo").set({"name":"Happy"});
                             if (result == null) {
                               setState(() {
                                 error = "Please enter a valid email";
@@ -101,23 +144,24 @@ class _RegisterState extends State<Register> {
               ),
             ),
           ),
-            
-           Positioned(
-            top: displayHeight(context)*0.9,
+          Positioned(
+              top: displayHeight(context) * 0.9,
               child: Row(
-            children: [
-              Text("Already have an account ? "),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (Context) => LoginScreen()));
-                  },
-                  child: Text(
-                    "Login",
-                    style: TextStyle(color: Colors.blue),
-                  )),
-            ],
-          ))
+                children: [
+                  Text("Already have an account ? "),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (Context) => LoginScreen()));
+                      },
+                      child: Text(
+                        "Login",
+                        style: TextStyle(color: Colors.blue),
+                      )),
+                ],
+              ))
         ],
       ),
     );
