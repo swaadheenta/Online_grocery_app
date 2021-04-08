@@ -16,12 +16,19 @@ class AuthService {
   }
 
   // Register using email and password !!
-  Future registerWithEmailAndPassword(String email, String password,String username,String phoneno ) async {
+  Future registerWithEmailAndPassword(
+      String email, String password, String username, String phoneno) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
-      FirebaseFirestore.instance.collection("Users").doc(user.uid.toString()).set({"name":username,"phoneno":phoneno});
+      print(user);
+      FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user.uid.toString())
+          .collection(username)
+          .doc("Details")
+          .set({"name": username, "phoneno": phoneno});
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());

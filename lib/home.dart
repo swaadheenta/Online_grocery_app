@@ -1,3 +1,4 @@
+import 'package:Online_grocery_app/Cart.dart';
 import 'package:Online_grocery_app/Category/category.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:Online_grocery_app/uhome.dart';
@@ -15,7 +16,7 @@ class _HomepageState extends State<Homepage> {
     ushome(),
     Category(),
     Text("Search"),
-    Text("Cart"),
+    Cart(),
   ];
 
   void ontap(int index) {

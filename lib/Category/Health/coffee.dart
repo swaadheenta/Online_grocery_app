@@ -1,5 +1,6 @@
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class singlecard {
@@ -69,7 +70,9 @@ class _CofState extends State<Cof> {
     Widget _showlist(BuildContext context, DocumentSnapshot doc) {
       String oldprice = doc['field2'];
       String newprice = doc['field3'];
-      var height=displayHeight(context)*0.1;
+      String productname = doc['field1'];
+      String image = doc['field5'];
+      var height = displayHeight(context) * 0.1;
       return /*Container(
         height: displayHeight(context) * 0.3,
         width: displayWidth(context) * 0.7,
@@ -110,31 +113,30 @@ class _CofState extends State<Cof> {
                     borderRadius: BorderRadius.circular(10.0),
                     //color: Colors.yellow,
                     border: Border.all(color: Colors.grey)),
-              
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom:20,left:8.0,right: 8.0 ),
-                    child: Container(
-                      height: displayHeight(context) * 0.18,
-                      width: displayWidth(context) * 0.36,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        //border: Border.all(color: Colors.black)
-                      ),
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(right: 2.0, left: 2.0, top: 20.0),
-                        child: Image.network(
-                          doc['field5'],
-                          fit: BoxFit.fill,
-                          filterQuality: FilterQuality.high,
-                        ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(bottom: 20, left: 8.0, right: 8.0),
+                  child: Container(
+                    height: displayHeight(context) * 0.18,
+                    width: displayWidth(context) * 0.36,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      //border: Border.all(color: Colors.black)
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 2.0, left: 2.0, top: 20.0),
+                      child: Image.network(
+                        doc['field5'],
+                        fit: BoxFit.fill,
+                        filterQuality: FilterQuality.high,
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-          
+          ),
           Positioned(
               left: displayWidth(context) * 0.45,
               top: displayHeight(context) * 0.04,
@@ -194,9 +196,34 @@ class _CofState extends State<Cof> {
               height: displayHeight(context) * 0.05,
               width: displayWidth(context) * 0.3,
               child: Center(
-                  child: Text(
-                "Add",
-                style: TextStyle(color: Colors.white, fontFamily: "BreeSerif"),
+                  child: GestureDetector(
+                onTap: () {
+                  //print(getdatafromfirebase());
+                  addtofirebase(productname, image, oldprice, newprice);
+                  /* String docname = FirebaseAuth.instance.currentUser.uid;
+                  print(docname);
+                  dynamic ans = await FirebaseFirestore.instance
+                      .collection("Users")
+                      .doc(docname)
+                      .get()
+                      .then((DocumentSnapshot ds) {
+                    ds.data();
+                  });
+                  print(ans);
+                  print(FirebaseFirestore.instance
+                      .collection("Users")
+                      .doc(docname)
+                      .get()
+                      .then((DocumentSnapshot ds) {
+                    ds['name'];
+                    ds['phoneno'];
+                  }));*/
+                },
+                child: Text(
+                  "Add",
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: "BreeSerif"),
+                ),
               )),
             ),
           ),
@@ -255,4 +282,29 @@ class _CofState extends State<Cof> {
           ],
         ));
   }
+}
+
+Future<void> getdatafromfirebase() async {
+  var docname = FirebaseAuth.instance.currentUser.uid;
+  DocumentSnapshot variable = await FirebaseFirestore.instance
+      .collection('Users')
+      .doc(docname.toString())
+      .get();
+  print(variable["name"]);
+}
+
+Future<void> addtofirebase(
+    String productname, String image, String oldprice, String newprice) async {
+  var docname = FirebaseAuth.instance.currentUser.uid;
+  FirebaseFirestore.instance
+      .collection("Users")
+      .doc(docname)
+      .collection("Products")
+      .doc(productname)
+      .set({
+    "Productname": productname,
+    "Image": image,
+    "Oldprice": oldprice,
+    "Newprice": newprice
+  });
 }
