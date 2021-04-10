@@ -73,13 +73,7 @@ class _CofState extends State<Cof> {
       String productname = doc['field1'];
       String image = doc['field5'];
       var height = displayHeight(context) * 0.1;
-      return /*Container(
-        height: displayHeight(context) * 0.3,
-        width: displayWidth(context) * 0.7,
-        color: Colors.blue,
-     child:*/
-          Stack(
-        // alignment: Alignment.center,
+      return Stack(
         children: [
           Positioned(
             child: Padding(
@@ -198,26 +192,7 @@ class _CofState extends State<Cof> {
               child: Center(
                   child: GestureDetector(
                 onTap: () {
-                  //print(getdatafromfirebase());
-                  addtofirebase(productname, image, oldprice, newprice);
-                  /* String docname = FirebaseAuth.instance.currentUser.uid;
-                  print(docname);
-                  dynamic ans = await FirebaseFirestore.instance
-                      .collection("Users")
-                      .doc(docname)
-                      .get()
-                      .then((DocumentSnapshot ds) {
-                    ds.data();
-                  });
-                  print(ans);
-                  print(FirebaseFirestore.instance
-                      .collection("Users")
-                      .doc(docname)
-                      .get()
-                      .then((DocumentSnapshot ds) {
-                    ds['name'];
-                    ds['phoneno'];
-                  }));*/
+                  addtofirebase(productname, image, oldprice, newprice,0);
                 },
                 child: Text(
                   "Add",
@@ -293,8 +268,9 @@ Future<void> getdatafromfirebase() async {
   print(variable["name"]);
 }
 
-Future<void> addtofirebase(
-    String productname, String image, String oldprice, String newprice) async {
+Future<void> addtofirebase(String productname, String image, String oldprice,
+    String newprice, int itemcount) async {
+  
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -305,6 +281,7 @@ Future<void> addtofirebase(
     "Productname": productname,
     "Image": image,
     "Oldprice": oldprice,
-    "Newprice": newprice
+    "Newprice": newprice,
+    "Itemcount": itemcount,
   });
 }

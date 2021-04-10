@@ -26,8 +26,8 @@ class AuthService {
       FirebaseFirestore.instance
           .collection("Users")
           .doc(user.uid.toString())
-          .collection(username)
-          .doc("Details")
+          .collection("Details")
+          .doc(username)
           .set({"name": username, "phoneno": phoneno});
       return _userFromFirebaseUser(user);
     } catch (e) {

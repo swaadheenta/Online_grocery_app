@@ -20,6 +20,7 @@ class _RegisterState extends State<Register> {
   String password = "";
   String username;
   String phoneno;
+  
   String error;
   @override
   Widget build(BuildContext context) {
