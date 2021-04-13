@@ -192,7 +192,7 @@ class _CofState extends State<Cof> {
               child: Center(
                   child: GestureDetector(
                 onTap: () {
-                  addtofirebase(productname, image, oldprice, newprice,0);
+                  addtofirebase(productname, image, oldprice, newprice,1);
                 },
                 child: Text(
                   "Add",

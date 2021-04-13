@@ -44,66 +44,66 @@ class _CartState extends State<Cart> {
         onTap: () {
           print(getcurrentuser());
         },
-        
-          child: Card(
-            shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(15.0), ),
-            elevation: 10.0,
-                      child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-                        child: GridTile(
-                  //header: Text(title),
-                  child: Image.network(
-                    doc["Image"],
-                    height: displayHeight(context) * 0.2,
-                    width: displayWidth(context) * 0.35,
-                    fit: BoxFit.fill,
-                  ),
-                  footer: GridTileBar(
-                    title: Text(doc["Productname"]),
-                    backgroundColor: Colors.grey,
-                    //leading: doc["Productname"],
-                    trailing: new Row(children: <Widget>[
-                      doc["Itemcount"] != 0
-                          ? new IconButton(
-                              icon: new Icon(Icons.remove),
-                              onPressed: () => setState(() {
-                                count = doc["Itemcount"] - 1;
-
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(currentuserid)
-                                    .collection("Products")
-                                    .doc(title)
-                                    .update({"Itemcount": count});
-                              }),
-                            )
-                          : FirebaseFirestore.instance
-                              .collection("Users")
-                              .doc(currentuserid)
-                              .collection("Products")
-                              .doc(title)
-                              .delete(),
-                      new Text(
-                        doc["Itemcount"].toString(),
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      new IconButton(
-                        icon: new Icon(Icons.add),
-                        onPressed: () => setState(() {
-                          cnt = doc["Itemcount"] + 1;
-                          FirebaseFirestore.instance
-                              .collection("Users")
-                              .doc(currentuserid)
-                              .collection("Products")
-                              .doc(title)
-                              .update({"Itemcount": cnt});
-                        }),
-                      ),
-                    ]),
-                  )),
-            ),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
           ),
-        
+          elevation: 10.0,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15.0),
+            child: GridTile(
+                //header: Text(title),
+                child: Image.network(
+                  doc["Image"],
+                  height: displayHeight(context) * 0.2,
+                  width: displayWidth(context) * 0.35,
+                  fit: BoxFit.fill,
+                ),
+                footer: GridTileBar(
+                  title: Text(doc["Productname"]),
+                  backgroundColor: Colors.grey,
+                  //leading: doc["Productname"],
+                  trailing: new Row(children: <Widget>[
+                    doc["Itemcount"] != 0
+                        ? new IconButton(
+                            icon: new Icon(Icons.remove),
+                            onPressed: () => setState(() {
+                              count = doc["Itemcount"] - 1;
+
+                              FirebaseFirestore.instance
+                                  .collection("Users")
+                                  .doc(currentuserid)
+                                  .collection("Products")
+                                  .doc(title)
+                                  .update({"Itemcount": count});
+                            }),
+                          )
+                        : FirebaseFirestore.instance
+                            .collection("Users")
+                            .doc(currentuserid)
+                            .collection("Products")
+                            .doc(title)
+                            .delete(),
+                    new Text(
+                      doc["Itemcount"].toString(),
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    new IconButton(
+                      icon: new Icon(Icons.add),
+                      onPressed: () => setState(() {
+                        cnt = doc["Itemcount"] + 1;
+                        FirebaseFirestore.instance
+                            .collection("Users")
+                            .doc(currentuserid)
+                            .collection("Products")
+                            .doc(title)
+                            .update({"Itemcount": cnt});
+                      }),
+                    ),
+                  ]),
+                )),
+          ),
+        ),
       );
     }
 
@@ -147,6 +147,8 @@ class _CartState extends State<Cart> {
                             return _itemsofcart(
                                 context, snapshot.data.docs[index]);
                           });
+                    } else {
+                      return Text("Please check your internet connection!!");
                     }
                   },
                 ),
