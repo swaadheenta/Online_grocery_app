@@ -20,15 +20,15 @@ class _CofState extends State<Cof> {
 
   List<singlecard> coflist = [
     singlecard(
-      title: "C",
+      title: "Ground Coffee",
       isselected: true,
     ),
     singlecard(
-      title: "B",
+      title: "Instant Coffee",
       isselected: false,
     )
   ];
-  var category = "C";
+  var category = "Ground Coffee";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
@@ -132,7 +132,7 @@ class _CofState extends State<Cof> {
             ),
           ),
           Positioned(
-              left: displayWidth(context) * 0.45,
+              left: displayWidth(context) * 0.475,
               top: displayHeight(context) * 0.04,
               child: Container(
                   child: Column(
