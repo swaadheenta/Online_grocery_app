@@ -1,3 +1,10 @@
+import 'package:Online_grocery_app/Category/Foodgrains/Atta.dart';
+import 'package:Online_grocery_app/Category/Foodgrains/Dals.dart';
+import 'package:Online_grocery_app/Category/Foodgrains/Dryfruits.dart';
+import 'package:Online_grocery_app/Category/Foodgrains/Masala.dart';
+import 'package:Online_grocery_app/Category/Foodgrains/Oils.dart';
+import 'package:Online_grocery_app/Category/Foodgrains/Rice.dart';
+import 'package:Online_grocery_app/Category/Foodgrains/Salt.dart';
 import 'package:Online_grocery_app/Category/Health/Allbeverages.dart';
 import 'package:Online_grocery_app/Category/Health/coffee.dart';
 import 'package:Online_grocery_app/Category/Health/energy.dart';
@@ -107,6 +114,47 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
             else if (title == "Fruit Drinks & Juices")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => fruitdrinks()));
+              else if (title == "Atta,Flours & Sooji")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Atta()));
+               else if (title == "Dals & Pulses")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Dal()));
+              else if (title == "Rice & Rice Products")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Rice()));
+             
+              else if (title == "Salt, Sugar & Jaggery")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Salt()));
+                  else if (title == "Edible Oils & Ghee")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Oils()));
+                  else if (title == "Masala & Spices")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Masala()));
+                  else if (title == "Dry Fruits")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Dryfruits()));
+                  else if (title == "Detergents & Dishwash")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => null));
+               else if (title == "Disposables,Garbage bag")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => null));
+                   else if (title == "Freshners & Repellents")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => null));
+                   else if (title == "Mops,Brushes & Scrubs")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => null));
+                   else if (title == "Pooja needs")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => null));
+                else if (title == "Car & Shoe Care")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => null));
+
           });
     } else {
       return Padding(
