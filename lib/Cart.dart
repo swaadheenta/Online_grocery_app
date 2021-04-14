@@ -20,12 +20,9 @@ class _CartState extends State<Cart> {
     currentuserid = user.toString();
     //print(currentuserid);
     var q = await FirebaseFirestore.instance
-        .collection("Users")
-        .doc(currentuserid)
-        .collection("Details")
-        .get();
-    //currentuser = ds["name"];
-    //print(currentuser);
+        .collection("Users").doc(currentuserid).collection("Details").get();
+    //   currentuser = ds["name"];
+    //   print(currentuser);
 
     return currentuser;
   }
@@ -60,9 +57,9 @@ class _CartState extends State<Cart> {
                   fit: BoxFit.fill,
                 ),
                 footer: GridTileBar(
-                  title: Text(doc["Productname"]),
+                 // title: Text(doc["Productname"]),
                   backgroundColor: Colors.grey,
-                  //leading: doc["Productname"],
+                  // leading: doc["Productname"],
                   trailing: new Row(children: <Widget>[
                     doc["Itemcount"] != 0
                         ? new IconButton(
@@ -86,7 +83,7 @@ class _CartState extends State<Cart> {
                             .delete(),
                     new Text(
                       doc["Itemcount"].toString(),
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white),
                     ),
                     new IconButton(
                       icon: new Icon(Icons.add),

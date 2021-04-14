@@ -194,30 +194,27 @@ class _CofState extends State<Cof> {
                 ],
               ))),
           Positioned(
-            bottom: displayHeight(context) * 0.05,
-            right: displayWidth(context) * 0.05,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                color: Colors.redAccent,
-              ),
-              height: displayHeight(context) * 0.05,
-              width: displayWidth(context) * 0.3,
-              child: Center(
-                  child: GestureDetector(
-                onTap: () {
-                  addtofirebase(productname, image, oldprice, newprice, 1);
-                },
-                child: Text(
-                  "Add",
-                  style:
-                      TextStyle(color: Colors.white, fontFamily: "BreeSerif"),
-                ),
-              )),
-            ),
-          ),
+              bottom: displayHeight(context) * 0.05,
+              right: displayWidth(context) * 0.05,
+              child: GestureDetector(
+                  onTap: () {
+                    addtofirebase(productname, image, oldprice, newprice, 1);
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.redAccent,
+                      ),
+                      height: displayHeight(context) * 0.05,
+                      width: displayWidth(context) * 0.3,
+                      child: Center(
+                        child: Text(
+                          "Add",
+                          style: TextStyle(
+                              color: Colors.white, fontFamily: "BreeSerif"),
+                        ),
+                      ))))
         ],
-        // )
       );
     }
 

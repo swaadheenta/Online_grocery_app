@@ -103,10 +103,10 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                   context, MaterialPageRoute(builder: (context) => Tea()));
             else if (title == "Health Drink & Supplement")
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Healthdrinks()));
+                  MaterialPageRoute(builder: (context) =>HealthDrinks()));
             else if (title == "Fruit Drinks & Juices")
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FruitJuice()));
+                  MaterialPageRoute(builder: (context) => fruitdrinks()));
           });
     } else {
       return Padding(
