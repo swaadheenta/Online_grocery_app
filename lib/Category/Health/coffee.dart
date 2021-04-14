@@ -68,10 +68,11 @@ class _CofState extends State<Cof> {
 
     ;
     Widget _showlist(BuildContext context, DocumentSnapshot doc) {
-      String oldprice = doc['field2'];
-      String newprice = doc['field3'];
-      String productname = doc['field1'];
-      String image = doc['field5'];
+      String oldprice = doc['oldprice'];
+      String newprice = doc['newprice'];
+      String productname = doc['name'];
+      String quantity = doc['quantity'];
+      String image = doc['imgloc'];
       var height = displayHeight(context) * 0.1;
       return Stack(
         children: [
@@ -121,7 +122,7 @@ class _CofState extends State<Cof> {
                       padding: const EdgeInsets.only(
                           right: 2.0, left: 2.0, top: 20.0),
                       child: Image.network(
-                        doc['field5'],
+                        doc['imgloc'],
                         fit: BoxFit.fill,
                         filterQuality: FilterQuality.high,
                       ),
@@ -132,19 +133,32 @@ class _CofState extends State<Cof> {
             ),
           ),
           Positioned(
-              left: displayWidth(context) * 0.475,
+              left: displayWidth(context) * 0.495,
               top: displayHeight(context) * 0.04,
               child: Container(
                   child: Column(
                 children: [
                   Text(
-                    doc['field1'],
+                    doc['name'],
                     style: TextStyle(
                         fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.045,
                         fontWeight: FontWeight.bold),
                   ),
-                  Divider(),
+                  Divider(
+                    height: displayHeight(context) * 0.01,
+                  ),
+                  Text(
+                    "quantity: $quantity",
+                    style: TextStyle(
+                      fontFamily: "Langar",
+                      letterSpacing: displayWidth(context) * 0.002,
+                      fontSize: displayWidth(context) * 0.045,
+                    ),
+                  ),
+                  Divider(
+                    height: displayHeight(context) * 0.01,
+                  ),
                   Row(
                     children: [
                       Text(
@@ -157,7 +171,7 @@ class _CofState extends State<Cof> {
                         ),
                       ),
                       Text(
-                        "₹ $newprice",
+                        "  ₹ $newprice",
                         style: TextStyle(
                           fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
@@ -192,7 +206,7 @@ class _CofState extends State<Cof> {
               child: Center(
                   child: GestureDetector(
                 onTap: () {
-                  addtofirebase(productname, image, oldprice, newprice,1);
+                  addtofirebase(productname, image, oldprice, newprice, 1);
                 },
                 child: Text(
                   "Add",
@@ -270,7 +284,6 @@ Future<void> getdatafromfirebase() async {
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
     String newprice, int itemcount) async {
-  
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
