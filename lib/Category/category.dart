@@ -1,3 +1,7 @@
+import 'package:Online_grocery_app/Category/Cleaning/Cars.dart';
+import 'package:Online_grocery_app/Category/Cleaning/Detergents.dart';
+import 'package:Online_grocery_app/Category/Cleaning/Freshners.dart';
+import 'package:Online_grocery_app/Category/Cleaning/Mops.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Atta.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Dals.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Dryfruits.dart';
@@ -138,22 +142,17 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                   MaterialPageRoute(builder: (context) => Dryfruits()));
                   else if (title == "Detergents & Dishwash")
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => null));
-               else if (title == "Disposables,Garbage bag")
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => null));
+                  MaterialPageRoute(builder: (context) => Detergents()));
                    else if (title == "Freshners & Repellents")
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => null));
+                  MaterialPageRoute(builder: (context) =>Freshners() ));
                    else if (title == "Mops,Brushes & Scrubs")
+           
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => null));
-                   else if (title == "Pooja needs")
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => null));
+                  MaterialPageRoute(builder: (context) =>Mops() ));
                 else if (title == "Car & Shoe Care")
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => null));
+                  MaterialPageRoute(builder: (context) => Car()));
 
           });
     } else {

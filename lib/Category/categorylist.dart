@@ -37,10 +37,10 @@ final Categorylist = <Mytile>[
    "images/img4.jpg","Cleaning & Household",
     [
        Mytile(null,"Detergents & Dishwash"),
-          Mytile(null,"Disposables,Garbage bag"),
+          
            Mytile(null,"Freshners & Repellents"),
             Mytile(null,"Mops,Brushes & Scrubs"),
-          Mytile(null,"Pooja needs"),
+        
            Mytile(null,"Car & Shoe Care"),
            
     ]
