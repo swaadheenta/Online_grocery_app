@@ -3,13 +3,13 @@ import 'basictile.dart';
 
 final Categorylist = <Mytile>[
   Mytile("images/img1.jpg","Health Drinks & Beverages", [
-    Mytile(null,"All Beverages"),
+    
     Mytile(null,"Coffee"),
     Mytile(null,"Energy & Soft drinks"),
      Mytile(null,"Water"),
       Mytile(null,"Tea"),
        Mytile(null,"Health Drink & Supplement"),
-        Mytile(null,"Fruit Drinks & Juices"),
+       
         
   ]),
   Mytile(

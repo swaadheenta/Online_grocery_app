@@ -97,10 +97,8 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
           title: Text(title),
           onTap: () {
             
-            if (title == "All Beverages")
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => All()));
-            else if (title == "Coffee")
+           
+             if (title == "Coffee")
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Cof()));
             else if (title == "Energy & Soft drinks")
@@ -115,9 +113,7 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
             else if (title == "Health Drink & Supplement")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) =>HealthDrinks()));
-            else if (title == "Fruit Drinks & Juices")
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => fruitdrinks()));
+           
               else if (title == "Atta,Flours & Sooji")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Atta()));

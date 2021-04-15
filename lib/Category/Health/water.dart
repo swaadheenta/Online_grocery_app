@@ -25,10 +25,7 @@ class _WaterState extends State<Water> {
       title: 'Spring Water',
       isselected: false,
     ),
-    singlecard(
-      title: 'Flavoured Water',
-      isselected: false,
-    )
+  
   ];
   var category = "Cold Drinks";
   @override
