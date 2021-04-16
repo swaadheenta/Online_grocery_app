@@ -9,43 +9,40 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class Freshners extends StatefulWidget {
+class Icecream extends StatefulWidget {
   @override
-  _FreshnersState createState() => _FreshnersState();
+  _IcecreamState createState() => _IcecreamState();
 }
 
-class _FreshnersState extends State<Freshners> {
+class _IcecreamState extends State<Icecream> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> Freshnerslist = [
+  List<singlecard> Icecreamlist = [
     singlecard(
-      title: "Repellents",
+      title: "Icecreams",
       isselected: true,
     ),
-    singlecard(
-      title: "Freshners",
-      isselected: false,
-    ),
-   
+    
+    
   ];
-  var category = "Repellents";
+  var category = "Icecreams";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = Freshnerslist[index].title;
-              if (Freshnerslist[index].isselected) {
+              category = Icecreamlist[index].title;
+              if (Icecreamlist[index].isselected) {
                 //
               } else {
-                Freshnerslist[index].isselected = true;
-                print(Freshnerslist[index].isselected);
+                Icecreamlist[index].isselected = true;
+                print(Icecreamlist[index].isselected);
 
-                for (int i = 0; i < Freshnerslist.length; i++) {
+                for (int i = 0; i < Icecreamlist.length; i++) {
                   if (i != index) {
-                    Freshnerslist[i].isselected = false;
+                    Icecreamlist[i].isselected = false;
                   }
                 }
               }
@@ -55,9 +52,9 @@ class _FreshnersState extends State<Freshners> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                Freshnerslist[index].title,
+                Icecreamlist[index].title,
                 style: TextStyle(
-                    color: Freshnerslist[index].isselected
+                    color: Icecreamlist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -223,7 +220,7 @@ class _FreshnersState extends State<Freshners> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Freshners & Repellents"),
+          title: Text("Icecream & Desserts"),
         ),
         body: Stack(
           children: [
@@ -237,7 +234,7 @@ class _FreshnersState extends State<Freshners> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: Freshnerslist.length,
+                    itemCount: Icecreamlist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

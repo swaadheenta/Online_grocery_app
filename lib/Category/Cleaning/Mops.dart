@@ -23,10 +23,7 @@ class _MopsState extends State<Mops> {
       title: "Mops, wipers",
       isselected: true,
     ),
-    singlecard(
-      title: "Mops, wipers",
-      isselected: false,
-    ),
+   
     singlecard(
       title: "Toilet & Other Brushes",
       isselected: false,

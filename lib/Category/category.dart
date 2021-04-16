@@ -1,3 +1,7 @@
+import 'package:Online_grocery_app/Category/Bakery/Bakery.dart';
+import 'package:Online_grocery_app/Category/Bakery/Bread.dart';
+import 'package:Online_grocery_app/Category/Bakery/Dairy.dart';
+import 'package:Online_grocery_app/Category/Bakery/Icecream.dart';
 import 'package:Online_grocery_app/Category/Cleaning/Cars.dart';
 import 'package:Online_grocery_app/Category/Cleaning/Detergents.dart';
 import 'package:Online_grocery_app/Category/Cleaning/Freshners.dart';
@@ -149,6 +153,18 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                 else if (title == "Car & Shoe Care")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Car()));
+                  else if (title == "Dairy")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Dairy()));
+                  else if (title == "Breads")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Bread()));
+                  else if (title == "Icecreams")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Icecream()));
+                  else if (title == "Bakery Snacks")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => bakerysnacks()));
 
           });
     } else {
