@@ -27,10 +27,7 @@ class _DalState extends State<Dal> {
       title: "Urad & Other Dals",
       isselected: false,
     ),
-    singlecard(
-      title: "Cereals & Millets",
-      isselected: false,
-    )
+   
   ];
   var category = "Toor, Chana & Moong Dal";
   @override
@@ -226,7 +223,7 @@ class _DalState extends State<Dal> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Dal Floors & Sooji"),
+          title: Text("Dals & Pulses"),
         ),
         body: Stack(
           children: [

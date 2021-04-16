@@ -28,8 +28,7 @@ final Categorylist = <Mytile>[
            Mytile(null,"Rice & Rice Products"),
             Mytile(null,"Salt, Sugar & Jaggery"),
            Mytile(null,"Edible Oils & Ghee"),
-            Mytile(null,"Masala & Spices"),
-          Mytile(null,"Dry Fruits"),
+           
           
     ]
   ),

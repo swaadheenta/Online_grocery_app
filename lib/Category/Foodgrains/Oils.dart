@@ -23,10 +23,7 @@ class _OilsState extends State<Oils> {
       title: "Soya & Mustard Oils",
       isselected: true,
     ),
-    singlecard(
-      title: "Groudnut Oils",
-      isselected: false,
-    ),
+    
     singlecard(
       title: "Other Edible Oils",
       isselected: false,

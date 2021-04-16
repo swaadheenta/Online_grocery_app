@@ -23,14 +23,7 @@ class _RiceState extends State<Rice> {
       title: "Raw Rice",
       isselected: true,
     ),
-    singlecard(
-      title: "Boiled & Steamed Rice",
-      isselected: false,
-    ),
-    singlecard(
-      title: "Basmati Rice",
-      isselected: false,
-    ),
+    
      singlecard(
       title: "Poha, Sabudana & Murmura",
       isselected: false,

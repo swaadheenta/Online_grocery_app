@@ -28,10 +28,7 @@ class _TeaState extends State<Tea> {
       title: 'Exotic & Flavoured Tea',
       isselected: false,
     ),
-    singlecard(
-      title: 'Tea Bags',
-      isselected: false,
-    )
+    
   ];
   var category = "Cold Drinks";
   @override
