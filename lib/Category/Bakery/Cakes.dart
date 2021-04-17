@@ -9,44 +9,44 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class bakerysnacks extends StatefulWidget {
+class Cakes extends StatefulWidget {
   @override
-  _bakerysnacksState createState() => _bakerysnacksState();
+  _CakesState createState() => _CakesState();
 }
 
-class _bakerysnacksState extends State<bakerysnacks> {
+class _CakesState extends State<Cakes> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> bakerysnackslist = [
+  List<singlecard> Cakeslist = [
     singlecard(
-      title: "Cheese & Garlic Bread",
+      title: "Tea Cakes & Slice Cakes",
       isselected: true,
     ),
      singlecard(
-      title: "Bread Sticks & Lavash",
+      title: "Pastries & Brownies",
       isselected: false,
     ),
     
     
   ];
-  var category = "Cheese & Garlic Bread";
+  var category = "Tea Cakes & Slice Cakes";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = bakerysnackslist[index].title;
-              if (bakerysnackslist[index].isselected) {
+              category = Cakeslist[index].title;
+              if (Cakeslist[index].isselected) {
                 //
               } else {
-                bakerysnackslist[index].isselected = true;
-                print(bakerysnackslist[index].isselected);
+                Cakeslist[index].isselected = true;
+                print(Cakeslist[index].isselected);
 
-                for (int i = 0; i < bakerysnackslist.length; i++) {
+                for (int i = 0; i < Cakeslist.length; i++) {
                   if (i != index) {
-                    bakerysnackslist[i].isselected = false;
+                    Cakeslist[i].isselected = false;
                   }
                 }
               }
@@ -56,9 +56,9 @@ class _bakerysnacksState extends State<bakerysnacks> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                bakerysnackslist[index].title,
+                Cakeslist[index].title,
                 style: TextStyle(
-                    color: bakerysnackslist[index].isselected
+                    color: Cakeslist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -224,7 +224,7 @@ class _bakerysnacksState extends State<bakerysnacks> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("bakerysnacks Snacks"),
+          title: Text("Cakes Snacks"),
         ),
         body: Stack(
           children: [
@@ -238,7 +238,7 @@ class _bakerysnacksState extends State<bakerysnacks> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: bakerysnackslist.length,
+                    itemCount: Cakeslist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

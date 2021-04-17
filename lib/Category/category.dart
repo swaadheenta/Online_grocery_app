@@ -1,4 +1,4 @@
-import 'package:Online_grocery_app/Category/Bakery/Bakery.dart';
+import 'package:Online_grocery_app/Category/Bakery/Cakes.dart';
 import 'package:Online_grocery_app/Category/Bakery/Bread.dart';
 import 'package:Online_grocery_app/Category/Bakery/Dairy.dart';
 import 'package:Online_grocery_app/Category/Bakery/Icecream.dart';
@@ -162,9 +162,9 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                   else if (title == "Icecreams")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Icecream()));
-                  else if (title == "Bakery Snacks")
+                  else if (title == "Cakes & Pastries")
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => bakerysnacks()));
+                  MaterialPageRoute(builder: (context) => Cakes()));
 
           });
     } else {

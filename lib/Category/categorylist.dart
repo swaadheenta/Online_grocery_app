@@ -61,7 +61,7 @@ final Categorylist = <Mytile>[
        Mytile(null,"Dairy"),
           Mytile(null,"Breads"),
            Mytile(null,"Icecreams"),
-            Mytile(null,"Bakery Snacks"),
+            Mytile(null,"Cakes & Pastries"),
          
     ]
   ),
