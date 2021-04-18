@@ -9,65 +9,60 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class Mops extends StatefulWidget {
+class biscuits extends StatefulWidget {
   @override
-  _MopsState createState() => _MopsState();
+  _biscuitsState createState() => _biscuitsState();
 }
 
-class _MopsState extends State<Mops> {
-  bool isselected;
-  Color color = Colors.red[100];
-
-  List<singlecard> Mopslist = [
+class _biscuitsState extends State<biscuits> {
+  List<singlecard> biscuitslist = [
     singlecard(
-      title: "Mops, wipers",
+      title: 'Biscuits',
       isselected: true,
     ),
     singlecard(
-      title: "Scrubs & Brushes",
+      title: 'Chocolates',
       isselected: false,
-    )
+    ),
   ];
-  var category = "Mops, wipers";
+  var category = 'Biscuits';
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
-          onTap: () {
-            setState(() {
-              category = Mopslist[index].title;
-              if (Mopslist[index].isselected) {
-                //
-              } else {
-                Mopslist[index].isselected = true;
-                print(Mopslist[index].isselected);
-
-                for (int i = 0; i < Mopslist.length; i++) {
-                  if (i != index) {
-                    Mopslist[i].isselected = false;
-                  }
+        onTap: () {
+          setState(() {
+            category = biscuitslist[index].title;
+            if (biscuitslist[index].isselected) {
+              //Already selected and then tapped ,so do nothing !!
+            } else {
+              biscuitslist[index].isselected = true;
+              for (int i = 0; i < biscuitslist.length; i++) {
+                if (index != i) {
+                  biscuitslist[i].isselected = false;
                 }
               }
-            });
-          },
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                Mopslist[index].title,
-                style: TextStyle(
-                    color: Mopslist[index].isselected
-                        ? Colors.redAccent
-                        : Colors.black,
-                    fontFamily: "BreeSerif",
-                    fontSize: displayWidth(context) * 0.045),
-              ),
+            }
+          });
+        },
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              biscuitslist[index].title,
+              style: TextStyle(
+                  color: biscuitslist[index].isselected
+                      ? Colors.redAccent
+                      : Colors.black,
+                  fontFamily: "BreeSerif",
+                  fontSize: displayWidth(context) * 0.045),
             ),
-          ));
+          ),
+        ),
+      );
     }
 
-    ;
-    Widget _showlist(BuildContext context, DocumentSnapshot doc) {
+    Widget _showlist(BuildContext context, doc) {
       String oldprice = doc['oldprice'];
       String newprice = doc['newprice'];
       String productname = doc['name'];
@@ -198,7 +193,8 @@ class _MopsState extends State<Mops> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                    addtofirebase(productname, image, oldprice, newprice, 1);
+                    addtofirebase(
+                        productname, image, oldprice, newprice, 1, quantity);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -218,55 +214,51 @@ class _MopsState extends State<Mops> {
       );
     }
 
-    ;
-
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Mops, Brushes & Scrubs"),
-        ),
-        body: Stack(
-          children: [
-            Positioned(
-                child: Container(
-              height: displayHeight(context),
-              width: displayWidth(context),
-            )),
-            Positioned(
+      appBar: AppBar(
+        title: Text("biscuits "),
+      ),
+      body: Stack(
+        children: [
+          Positioned(
               child: Container(
-                height: displayHeight(context) * 0.07,
-                color: Colors.grey[300],
-                child: ListView.builder(
-                    itemCount: Mopslist.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _showcard(index);
-                    }),
-              ),
-            ),
-            Positioned(
-                top: displayHeight(context) * 0.1,
-                left: displayWidth(context) * 0.025,
-                child: Container(
-                    height: displayHeight(context) * 0.75,
-                    width: displayWidth(context) * 0.95,
-                    // color: Colors.yellow,
-                    child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection(category)
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return ListView.builder(
-                              itemCount: snapshot.data.docs.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return _showlist(
-                                    context, snapshot.data.docs[index]);
-                              });
-                        }
-                      },
-                    )))
-          ],
-        ));
+            height: displayHeight(context),
+            width: displayWidth(context),
+          )),
+          Positioned(
+              child: Container(
+                  height: displayHeight(context) * 0.07,
+                  color: Colors.grey[300],
+                  child: ListView.builder(
+                      itemCount: biscuitslist.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return _showcard(index);
+                      }))),
+          Positioned(
+              top: displayHeight(context) * 0.1,
+              left: displayWidth(context) * 0.025,
+              child: Container(
+                  height: displayHeight(context) * 0.75,
+                  width: displayWidth(context) * 0.95,
+                  child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection(category)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                            itemCount: snapshot.data.docs.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return _showlist(
+                                  context, snapshot.data.docs[index]);
+                            });
+                      }
+                    },
+                  )))
+        ],
+      ),
+    );
   }
 }
 
@@ -280,7 +272,7 @@ Future<void> getdatafromfirebase() async {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount) async {
+    String newprice, int itemcount, String quantity) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -292,6 +284,7 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Image": image,
     "Oldprice": oldprice,
     "Newprice": newprice,
+    "quantity": quantity,
     "Itemcount": itemcount,
   });
 }

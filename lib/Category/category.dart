@@ -20,6 +20,11 @@ import 'package:Online_grocery_app/Category/Health/fruitjuices.dart';
 import 'package:Online_grocery_app/Category/Health/health.dart';
 import 'package:Online_grocery_app/Category/Health/tea.dart';
 import 'package:Online_grocery_app/Category/Health/water.dart';
+import 'package:Online_grocery_app/Category/Snacks/Biscuits.dart';
+import 'package:Online_grocery_app/Category/Snacks/Noodles.dart';
+import 'package:Online_grocery_app/Category/Snacks/Pickles.dart';
+import 'package:Online_grocery_app/Category/Snacks/sauces.dart';
+import 'package:Online_grocery_app/Category/Snacks/snacks.dart';
 import 'package:Online_grocery_app/Category/basictile.dart';
 import 'package:Online_grocery_app/Category/categorylist.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
@@ -165,6 +170,21 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                   else if (title == "Cakes & Pastries")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Cakes()));
+                    else if (title == "Chocolates & Biscuits")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => biscuits()));
+                    else if (title == "Noodles, Pasta & Vermicilli")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => noodles()));
+                    else if (title == "Snacks & Namkeen")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => snacks()));
+                    else if (title == "Spreads, Sauces & Ketchup")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => sauces()));
+                    else if (title == "Pickles & Chutney")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => pickles()));
 
           });
     } else {

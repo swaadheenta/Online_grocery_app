@@ -9,42 +9,46 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class Mops extends StatefulWidget {
+class snacks extends StatefulWidget {
   @override
-  _MopsState createState() => _MopsState();
+  _snacksState createState() => _snacksState();
 }
 
-class _MopsState extends State<Mops> {
+class _snacksState extends State<snacks> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> Mopslist = [
+  List<singlecard> snackslist = [
     singlecard(
-      title: "Mops, wipers",
+      title: "Chips",
       isselected: true,
     ),
     singlecard(
-      title: "Scrubs & Brushes",
+      title: "Namkeen",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Health corner",
       isselected: false,
     )
   ];
-  var category = "Mops, wipers";
+  var category = "Chips";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = Mopslist[index].title;
-              if (Mopslist[index].isselected) {
+              category = snackslist[index].title;
+              if (snackslist[index].isselected) {
                 //
               } else {
-                Mopslist[index].isselected = true;
-                print(Mopslist[index].isselected);
+                snackslist[index].isselected = true;
+                print(snackslist[index].isselected);
 
-                for (int i = 0; i < Mopslist.length; i++) {
+                for (int i = 0; i < snackslist.length; i++) {
                   if (i != index) {
-                    Mopslist[i].isselected = false;
+                    snackslist[i].isselected = false;
                   }
                 }
               }
@@ -54,9 +58,9 @@ class _MopsState extends State<Mops> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                Mopslist[index].title,
+                snackslist[index].title,
                 style: TextStyle(
-                    color: Mopslist[index].isselected
+                    color: snackslist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -222,7 +226,7 @@ class _MopsState extends State<Mops> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Mops, Brushes & Scrubs"),
+          title: Text("snacksfee"),
         ),
         body: Stack(
           children: [
@@ -236,7 +240,7 @@ class _MopsState extends State<Mops> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: Mopslist.length,
+                    itemCount: snackslist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

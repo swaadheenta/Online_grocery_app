@@ -47,12 +47,12 @@ final Categorylist = <Mytile>[
    Mytile(
   "images/img5.jpg","Snacks & Confectionery",
     [
-       Mytile(null,"Detergents & Dishwash"),
-          Mytile(null,"Disposables,Garbage bag"),
-           Mytile(null,"Freshners & Repellents"),
-            Mytile(null,"Mops,Brushes & Scrubs"),
-          Mytile(null,"Pooja needs"),
-           Mytile(null,"Car & Shoe Care"),
+       Mytile(null,"Chocolates & Biscuits"),
+          Mytile(null,"Noodles, Pasta & Vermicilli"),
+           Mytile(null,"Snacks & Namkeen"),
+            Mytile(null,"Spreads, Sauces & Ketchup"),
+          Mytile(null,"Pickles & Chutney"),
+          
     ]
   ),
    Mytile(
