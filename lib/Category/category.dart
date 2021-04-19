@@ -13,6 +13,9 @@ import 'package:Online_grocery_app/Category/Foodgrains/Masala.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Oils.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Rice.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Salt.dart';
+import 'package:Online_grocery_app/Category/Fruits/fruits.dart';
+import 'package:Online_grocery_app/Category/Fruits/sprouts.dart';
+import 'package:Online_grocery_app/Category/Fruits/vegetables.dart';
 import 'package:Online_grocery_app/Category/Health/Allbeverages.dart';
 import 'package:Online_grocery_app/Category/Health/coffee.dart';
 import 'package:Online_grocery_app/Category/Health/energy.dart';
@@ -185,6 +188,16 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                     else if (title == "Pickles & Chutney")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => pickles()));
+                    else if (title == "Fresh Vegetables")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => vegetables()));
+                   else if (title == "Fresh Fruits")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => fruits()));
+                   else if (title == "Cuts & Sprouts")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => sprouts()));
+
 
           });
     } else {
