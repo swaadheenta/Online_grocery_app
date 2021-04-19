@@ -1,7 +1,13 @@
+import 'package:Online_grocery_app/Category/BabyCare/Bath.dart';
+import 'package:Online_grocery_app/Category/BabyCare/Food.dart';
 import 'package:Online_grocery_app/Category/Bakery/Cakes.dart';
 import 'package:Online_grocery_app/Category/Bakery/Bread.dart';
 import 'package:Online_grocery_app/Category/Bakery/Dairy.dart';
 import 'package:Online_grocery_app/Category/Bakery/Icecream.dart';
+import 'package:Online_grocery_app/Category/Beauty/Haircare.dart';
+import 'package:Online_grocery_app/Category/Beauty/Makeup.dart';
+import 'package:Online_grocery_app/Category/Beauty/Oralcare.dart';
+import 'package:Online_grocery_app/Category/Beauty/Skincare.dart';
 import 'package:Online_grocery_app/Category/Cleaning/Cars.dart';
 import 'package:Online_grocery_app/Category/Cleaning/Detergents.dart';
 import 'package:Online_grocery_app/Category/Cleaning/Freshners.dart';
@@ -194,6 +200,25 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                    else if (title == "Fresh Fruits")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => fruits()));
+                   else if (title == "Hair Care")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => hair()));
+                   else if (title == "Oral Care")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => oral()));
+                  else if (title == "Skin Care")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => skin()));
+                  else if (title == "Makeup")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => makeup()));
+                    else if (title == "Bath & Hygiene")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => bath()));
+                    else if (title == "Baby Food")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => food()));
+                  
                   
 
 

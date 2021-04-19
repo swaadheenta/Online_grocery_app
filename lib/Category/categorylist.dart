@@ -13,11 +13,11 @@ final Categorylist = <Mytile>[
         
   ]),
   Mytile(
-   "images/img2.jpg", "Instant & Ready Foods",
+   "images/img14.jpeg", "Kitchen Appliances",
     [
-        Mytile(null,"Energy & Soft drinks"),
-          Mytile(null,"Energy & Soft drinks"),
-           Mytile(null,"Energy & Soft drinks"),
+        Mytile(null,"Cookwares & Non Stick"),
+          Mytile(null,"Crockery & Cutlery"),
+           Mytile(null,"Kitchen Accessories"),
     ]
   ),
   Mytile(
@@ -77,23 +77,19 @@ final Categorylist = <Mytile>[
    Mytile(
    "images/img8.jpg","Beauty & Hygiene",
     [
-       Mytile(null,"Detergents & Dishwash"),
-          Mytile(null,"Disposables,Garbage bag"),
-           Mytile(null,"Freshners & Repellents"),
-            Mytile(null,"Mops,Brushes & Scrubs"),
-          Mytile(null,"Pooja needs"),
-           Mytile(null,"Car & Shoe Care"),
+       Mytile(null,"Hair Care"),
+          Mytile(null,"Skin Care"),
+           Mytile(null,"Makeup"),
+            Mytile(null,"Oral Care"),
+          
     ]
   ),
    Mytile(
     "images/img9.jpg","Baby Care",
     [
-       Mytile(null,"Detergents & Dishwash"),
-          Mytile(null,"Disposables,Garbage bag"),
-           Mytile(null,"Freshners & Repellents"),
-            Mytile(null,"Mops,Brushes & Scrubs"),
-          Mytile(null,"Pooja needs"),
-           Mytile(null,"Car & Shoe Care"),
+       Mytile(null,"Bath & Hygiene"),
+          Mytile(null,"Baby Food")
+           
     ]
   ),
 

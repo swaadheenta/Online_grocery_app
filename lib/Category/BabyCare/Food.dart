@@ -9,42 +9,38 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class Bread extends StatefulWidget {
+class food extends StatefulWidget {
   @override
-  _BreadState createState() => _BreadState();
+  _foodState createState() => _foodState();
 }
 
-class _BreadState extends State<Bread> {
+class _foodState extends State<food> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> Breadlist = [
+  List<singlecard> foodlist = [
     singlecard(
-      title: "Brown, Wheat & Multigrain",
+      title: "Baby Food",
       isselected: true,
     ),
-    singlecard(
-      title: "Milk White & Sandwich",
-      isselected: false,
-    ),
   ];
-  var category = "Brown, Wheat & Multigrain";
+  var category = "Baby Food";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = Breadlist[index].title;
-              if (Breadlist[index].isselected) {
+              category = foodlist[index].title;
+              if (foodlist[index].isselected) {
                 //
               } else {
-                Breadlist[index].isselected = true;
-                print(Breadlist[index].isselected);
+                foodlist[index].isselected = true;
+                print(foodlist[index].isselected);
 
-                for (int i = 0; i < Breadlist.length; i++) {
+                for (int i = 0; i < foodlist.length; i++) {
                   if (i != index) {
-                    Breadlist[i].isselected = false;
+                    foodlist[i].isselected = false;
                   }
                 }
               }
@@ -54,9 +50,9 @@ class _BreadState extends State<Bread> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                Breadlist[index].title,
+                foodlist[index].title,
                 style: TextStyle(
-                    color: Breadlist[index].isselected
+                    color: foodlist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -222,7 +218,7 @@ class _BreadState extends State<Bread> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Bread"),
+          title: Text("food"),
         ),
         body: Stack(
           children: [
@@ -236,7 +232,7 @@ class _BreadState extends State<Bread> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: Breadlist.length,
+                    itemCount: foodlist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

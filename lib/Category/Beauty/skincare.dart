@@ -9,42 +9,46 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class Bread extends StatefulWidget {
+class skin extends StatefulWidget {
   @override
-  _BreadState createState() => _BreadState();
+  _skinState createState() => _skinState();
 }
 
-class _BreadState extends State<Bread> {
+class _skinState extends State<skin> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> Breadlist = [
+  List<singlecard> skinlist = [
     singlecard(
-      title: "Brown, Wheat & Multigrain",
+      title: "Body Lotion",
       isselected: true,
     ),
     singlecard(
-      title: "Milk White & Sandwich",
+      title: "Facewash & Rose Water",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Lip Care",
       isselected: false,
     ),
   ];
-  var category = "Brown, Wheat & Multigrain";
+  var category = "Body Lotion";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = Breadlist[index].title;
-              if (Breadlist[index].isselected) {
+              category = skinlist[index].title;
+              if (skinlist[index].isselected) {
                 //
               } else {
-                Breadlist[index].isselected = true;
-                print(Breadlist[index].isselected);
+                skinlist[index].isselected = true;
+                print(skinlist[index].isselected);
 
-                for (int i = 0; i < Breadlist.length; i++) {
+                for (int i = 0; i < skinlist.length; i++) {
                   if (i != index) {
-                    Breadlist[i].isselected = false;
+                    skinlist[i].isselected = false;
                   }
                 }
               }
@@ -54,9 +58,9 @@ class _BreadState extends State<Bread> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                Breadlist[index].title,
+                skinlist[index].title,
                 style: TextStyle(
-                    color: Breadlist[index].isselected
+                    color: skinlist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -222,7 +226,7 @@ class _BreadState extends State<Bread> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Bread"),
+          title: Text("skin"),
         ),
         body: Stack(
           children: [
@@ -236,7 +240,7 @@ class _BreadState extends State<Bread> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: Breadlist.length,
+                    itemCount: skinlist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

@@ -9,42 +9,46 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class Bread extends StatefulWidget {
+class oral extends StatefulWidget {
   @override
-  _BreadState createState() => _BreadState();
+  _oralState createState() => _oralState();
 }
 
-class _BreadState extends State<Bread> {
+class _oralState extends State<oral> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> Breadlist = [
+  List<singlecard> orallist = [
     singlecard(
-      title: "Brown, Wheat & Multigrain",
+      title: "Toothpaste",
       isselected: true,
     ),
     singlecard(
-      title: "Milk White & Sandwich",
+      title: "Toothbrush",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Mouthwash, Tongue Cleaner",
       isselected: false,
     ),
   ];
-  var category = "Brown, Wheat & Multigrain";
+  var category = "Toothpaste";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = Breadlist[index].title;
-              if (Breadlist[index].isselected) {
+              category = orallist[index].title;
+              if (orallist[index].isselected) {
                 //
               } else {
-                Breadlist[index].isselected = true;
-                print(Breadlist[index].isselected);
+                orallist[index].isselected = true;
+                print(orallist[index].isselected);
 
-                for (int i = 0; i < Breadlist.length; i++) {
+                for (int i = 0; i < orallist.length; i++) {
                   if (i != index) {
-                    Breadlist[i].isselected = false;
+                    orallist[i].isselected = false;
                   }
                 }
               }
@@ -54,9 +58,9 @@ class _BreadState extends State<Bread> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                Breadlist[index].title,
+                orallist[index].title,
                 style: TextStyle(
-                    color: Breadlist[index].isselected
+                    color: orallist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -222,7 +226,7 @@ class _BreadState extends State<Bread> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Bread"),
+          title: Text("oral"),
         ),
         body: Stack(
           children: [
@@ -236,7 +240,7 @@ class _BreadState extends State<Bread> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: Breadlist.length,
+                    itemCount: orallist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);
