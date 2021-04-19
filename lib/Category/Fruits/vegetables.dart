@@ -24,7 +24,7 @@ class _vegetablesState extends State<vegetables> {
       isselected: true,
     ),
     singlecard(
-      title: "Ladyfinger, Cabbage & Cauliflower",
+      title: "Ladyfinger, Drumstick & Cauliflower",
       isselected: false,
     ),
     singlecard(

@@ -70,7 +70,7 @@ final Categorylist = <Mytile>[
     [
        Mytile(null,"Fresh Vegetables"),
           Mytile(null,"Fresh Fruits"),
-           Mytile(null,"Cuts & Sprouts"),
+           
            
     ]
   ),

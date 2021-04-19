@@ -20,12 +20,17 @@ class _fruitsState extends State<fruits> {
 
   List<singlecard> fruitslist = [
     singlecard(
-      title: "Fruits",
+      title: "Apples,Banana & Pomegranate",
       isselected: true,
     ),
+     singlecard(
+      title: "Melon, Papaya & Citrus Fruits",
+      isselected: false,
+    ),
+   
    
   ];
-  var category = "Fruits";
+  var category = "Apples,Banana & Pomegranate";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {

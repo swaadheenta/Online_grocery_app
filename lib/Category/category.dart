@@ -194,9 +194,7 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                    else if (title == "Fresh Fruits")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => fruits()));
-                   else if (title == "Cuts & Sprouts")
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => sprouts()));
+                  
 
 
           });
