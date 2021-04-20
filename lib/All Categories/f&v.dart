@@ -9,43 +9,55 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class crockery extends StatefulWidget {
+class fnv extends StatefulWidget {
   @override
-  _crockeryState createState() => _crockeryState();
+  _fnvState createState() => _fnvState();
 }
 
-class _crockeryState extends State<crockery> {
+class _fnvState extends State<fnv> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> crockerylist = [
+  List<singlecard> fnvlist = [
     singlecard(
-      title: "Cups, Mugs & Tumblers",
+      title: "Potato, Onion & Tomato",
       isselected: true,
     ),
     singlecard(
-      title: "Spoons & Forks",
+      title: "Ladyfinger, Drumstick & Cauliflower",
       isselected: false,
     ),
-    
+    singlecard(
+      title: "Leafy Vegetables",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Apples,Banana & Pomegranate",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Melon, Papaya & Citrus Fruits",
+      isselected: false,
+    ),
+   
   ];
-  var category = "Cups, Mugs & Tumblers";
+  var category = "Potato, Onion & Tomato";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = crockerylist[index].title;
-              if (crockerylist[index].isselected) {
+              category = fnvlist[index].title;
+              if (fnvlist[index].isselected) {
                 //
               } else {
-                crockerylist[index].isselected = true;
-                print(crockerylist[index].isselected);
+                fnvlist[index].isselected = true;
+                print(fnvlist[index].isselected);
 
-                for (int i = 0; i < crockerylist.length; i++) {
+                for (int i = 0; i < fnvlist.length; i++) {
                   if (i != index) {
-                    crockerylist[i].isselected = false;
+                    fnvlist[i].isselected = false;
                   }
                 }
               }
@@ -55,9 +67,9 @@ class _crockeryState extends State<crockery> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                crockerylist[index].title,
+                fnvlist[index].title,
                 style: TextStyle(
-                    color: crockerylist[index].isselected
+                    color: fnvlist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -223,7 +235,7 @@ class _crockeryState extends State<crockery> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("crockery"),
+          title: Text("fnvfee"),
         ),
         body: Stack(
           children: [
@@ -237,7 +249,7 @@ class _crockeryState extends State<crockery> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: crockerylist.length,
+                    itemCount: fnvlist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

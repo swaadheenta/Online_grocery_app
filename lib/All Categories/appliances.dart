@@ -9,43 +9,52 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class crockery extends StatefulWidget {
+class appliances extends StatefulWidget {
   @override
-  _crockeryState createState() => _crockeryState();
+  _appliancesState createState() => _appliancesState();
 }
 
-class _crockeryState extends State<crockery> {
+class _appliancesState extends State<appliances> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> crockerylist = [
+  List<singlecard> applianceslist = [
+    singlecard(
+      title: "Knives, Peelers & Lighters",
+      isselected: true,
+    ),
+    
+    singlecard(
+      title: "Kitchen Tools",
+      isselected: false,
+    ),
     singlecard(
       title: "Cups, Mugs & Tumblers",
-      isselected: true,
+      isselected: false,
     ),
     singlecard(
       title: "Spoons & Forks",
       isselected: false,
     ),
-    
+
   ];
-  var category = "Cups, Mugs & Tumblers";
+  var category = "Knives, Peelers & Lighters";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = crockerylist[index].title;
-              if (crockerylist[index].isselected) {
+              category = applianceslist[index].title;
+              if (applianceslist[index].isselected) {
                 //
               } else {
-                crockerylist[index].isselected = true;
-                print(crockerylist[index].isselected);
+                applianceslist[index].isselected = true;
+                print(applianceslist[index].isselected);
 
-                for (int i = 0; i < crockerylist.length; i++) {
+                for (int i = 0; i < applianceslist.length; i++) {
                   if (i != index) {
-                    crockerylist[i].isselected = false;
+                    applianceslist[i].isselected = false;
                   }
                 }
               }
@@ -55,9 +64,9 @@ class _crockeryState extends State<crockery> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                crockerylist[index].title,
+                applianceslist[index].title,
                 style: TextStyle(
-                    color: crockerylist[index].isselected
+                    color: applianceslist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -223,7 +232,7 @@ class _crockeryState extends State<crockery> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("crockery"),
+          title: Text("appliancesfee"),
         ),
         body: Stack(
           children: [
@@ -237,7 +246,7 @@ class _crockeryState extends State<crockery> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: crockerylist.length,
+                    itemCount: applianceslist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

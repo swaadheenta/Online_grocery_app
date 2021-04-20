@@ -14,21 +14,22 @@ import 'package:Online_grocery_app/Category/Cleaning/Freshners.dart';
 import 'package:Online_grocery_app/Category/Cleaning/Mops.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Atta.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Dals.dart';
-import 'package:Online_grocery_app/Category/Foodgrains/Dryfruits.dart';
-import 'package:Online_grocery_app/Category/Foodgrains/Masala.dart';
+
 import 'package:Online_grocery_app/Category/Foodgrains/Oils.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Rice.dart';
 import 'package:Online_grocery_app/Category/Foodgrains/Salt.dart';
 import 'package:Online_grocery_app/Category/Fruits/fruits.dart';
-import 'package:Online_grocery_app/Category/Fruits/sprouts.dart';
+
 import 'package:Online_grocery_app/Category/Fruits/vegetables.dart';
-import 'package:Online_grocery_app/Category/Health/Allbeverages.dart';
+
 import 'package:Online_grocery_app/Category/Health/coffee.dart';
 import 'package:Online_grocery_app/Category/Health/energy.dart';
-import 'package:Online_grocery_app/Category/Health/fruitjuices.dart';
+
 import 'package:Online_grocery_app/Category/Health/health.dart';
 import 'package:Online_grocery_app/Category/Health/tea.dart';
 import 'package:Online_grocery_app/Category/Health/water.dart';
+import 'package:Online_grocery_app/Category/Kitchen/Crockery.dart';
+import 'package:Online_grocery_app/Category/Kitchen/accessories.dart';
 import 'package:Online_grocery_app/Category/Snacks/Biscuits.dart';
 import 'package:Online_grocery_app/Category/Snacks/Noodles.dart';
 import 'package:Online_grocery_app/Category/Snacks/Pickles.dart';
@@ -148,12 +149,7 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                   else if (title == "Edible Oils & Ghee")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Oils()));
-                  else if (title == "Masala & Spices")
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Masala()));
-                  else if (title == "Dry Fruits")
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Dryfruits()));
+                
                   else if (title == "Detergents & Dishwash")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Detergents()));
@@ -218,6 +214,12 @@ class _BasicTileWidgetState extends State<BasicTileWidget> {
                     else if (title == "Baby Food")
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => food()));
+                   else if (title == "Crockery & Cutlery")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => crockery()));
+                   else if (title == "Kitchen Accessories")
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => accessories()));
                   
                   
 

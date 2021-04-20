@@ -15,7 +15,7 @@ final Categorylist = <Mytile>[
   Mytile(
    "images/img14.jpeg", "Kitchen Appliances",
     [
-        Mytile(null,"Cookwares & Non Stick"),
+       
           Mytile(null,"Crockery & Cutlery"),
            Mytile(null,"Kitchen Accessories"),
     ]

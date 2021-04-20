@@ -9,65 +9,104 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class fruitdrinks extends StatefulWidget {
+class masala extends StatefulWidget {
   @override
-  _fruitdrinksState createState() => _fruitdrinksState();
+  _masalaState createState() => _masalaState();
 }
 
-class _fruitdrinksState extends State<fruitdrinks> {
-  List<singlecard> fruitdrinkslist = [
+class _masalaState extends State<masala> {
+  bool isselected;
+  Color color = Colors.red[100];
+
+  List<singlecard> masalalist = [
     singlecard(
-      title: 'Juices',
+      title: "Sooji, Maida & Besan",
       isselected: true,
     ),
     singlecard(
-      title: 'Unsweetened, Cold Press',
+      title: "Atta Whole Wheat",
       isselected: false,
     ),
     singlecard(
-      title: 'Syrups & Concentrates',
+      title: "Rice & Other Flours",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Toor, Chana & Moong Dal",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Urad & Other Dals",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Soya & Mustard Oils",
+      isselected: false,
+    ),
+    
+    singlecard(
+      title: "Other Edible Oils",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Raw Rice",
+      isselected: false,
+    ),
+    
+     singlecard(
+      title: "Poha, Sabudana & Murmura",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Sugar & Jaggery",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Salts",
       isselected: false,
     )
   ];
-  var category = 'Juices';
+  var category = "Sooji, Maida & Besan";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
-        onTap: () {
-          setState(() {
-            category = fruitdrinkslist[index].title;
-            if (fruitdrinkslist[index].isselected) {
-              //Already selected and then tapped ,so do nothing !!
-            } else {
-              fruitdrinkslist[index].isselected = true;
-              for (int i = 0; i < fruitdrinkslist.length; i++) {
-                if (index != i) {
-                  fruitdrinkslist[i].isselected = false;
+          onTap: () {
+            setState(() {
+              category = masalalist[index].title;
+              if (masalalist[index].isselected) {
+                //
+              } else {
+                masalalist[index].isselected = true;
+                print(masalalist[index].isselected);
+
+                for (int i = 0; i < masalalist.length; i++) {
+                  if (i != index) {
+                    masalalist[i].isselected = false;
+                  }
                 }
               }
-            }
-          });
-        },
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              fruitdrinkslist[index].title,
-              style: TextStyle(
-                  color: fruitdrinkslist[index].isselected
-                      ? Colors.redAccent
-                      : Colors.black,
-                  fontFamily: "BreeSerif",
-                  fontSize: displayWidth(context) * 0.045),
+            });
+          },
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                masalalist[index].title,
+                style: TextStyle(
+                    color: masalalist[index].isselected
+                        ? Colors.redAccent
+                        : Colors.black,
+                    fontFamily: "BreeSerif",
+                    fontSize: displayWidth(context) * 0.045),
+              ),
             ),
-          ),
-        ),
-      );
+          ));
     }
 
-       Widget _showlist(BuildContext context, doc) {
-         String oldprice = doc['oldprice'];
+    ;
+    Widget _showlist(BuildContext context, DocumentSnapshot doc) {
+      String oldprice = doc['oldprice'];
       String newprice = doc['newprice'];
       String productname = doc['name'];
       String quantity = doc['quantity'];
@@ -197,7 +236,7 @@ class _fruitdrinksState extends State<fruitdrinks> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                    addtofirebase(productname, image, oldprice, newprice, 1,quantity);
+                    addtofirebase(productname, image, oldprice, newprice, 1);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -217,56 +256,59 @@ class _fruitdrinksState extends State<fruitdrinks> {
       );
     }
 
-  
-
+    ;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("fruitdrinks Drinks"),
-      ),
-      body: Stack(
-        children: [
-          Positioned(
+        appBar: AppBar(
+          title: Text("masalafee"),
+        ),
+        body: Stack(
+          children: [
+            Positioned(
+                child: Container(
+              height: displayHeight(context),
+              width: displayWidth(context),
+            )),
+            Positioned(
               child: Container(
-            height: displayHeight(context),
-            width: displayWidth(context),
-          )),
-          Positioned(
-              child: Container(
-                  height: displayHeight(context) * 0.07,
-                  color: Colors.grey[300],
-                  child: ListView.builder(
-                      itemCount: fruitdrinkslist.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        return _showcard(index);
-                      }))),
-          Positioned(top: displayHeight(context) * 0.1,
+                height: displayHeight(context) * 0.07,
+                color: Colors.grey[300],
+                child: ListView.builder(
+                    itemCount: masalalist.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _showcard(index);
+                    }),
+              ),
+            ),
+            Positioned(
+                top: displayHeight(context) * 0.1,
                 left: displayWidth(context) * 0.025,
                 child: Container(
                     height: displayHeight(context) * 0.75,
                     width: displayWidth(context) * 0.95,
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection(category).snapshots(),
-              builder: (context,snapshot)
-            { 
-              if(snapshot.hasData)
-              {
-                return ListView.builder(
-                  itemCount: snapshot.data.docs.length,
-                  itemBuilder: (BuildContext context,int index)
-                {
-                  return _showlist(context,snapshot.data.docs[index]);
-                                  });
-                                }
-                              },)
-                            ))
-                          ],
-                        ),
-                      );
-                    }}
-                  
-                Future<void> getdatafromfirebase() async {
+                    // color: Colors.yellow,
+                    child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection(category)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                              itemCount: snapshot.data.docs.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return _showlist(
+                                    context, snapshot.data.docs[index]);
+                              });
+                        }
+                      },
+                    )))
+          ],
+        ));
+  }
+}
+
+Future<void> getdatafromfirebase() async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   DocumentSnapshot variable = await FirebaseFirestore.instance
       .collection('Users')
@@ -276,7 +318,7 @@ class _fruitdrinksState extends State<fruitdrinks> {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,String quantity) async {
+    String newprice, int itemcount) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -288,7 +330,6 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Image": image,
     "Oldprice": oldprice,
     "Newprice": newprice,
-    "quantity": quantity,
     "Itemcount": itemcount,
   });
 }

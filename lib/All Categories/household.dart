@@ -9,43 +9,66 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class crockery extends StatefulWidget {
+class household extends StatefulWidget {
   @override
-  _crockeryState createState() => _crockeryState();
+  _householdState createState() => _householdState();
 }
 
-class _crockeryState extends State<crockery> {
+class _householdState extends State<household> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> crockerylist = [
+  List<singlecard> householdlist = [
     singlecard(
-      title: "Cups, Mugs & Tumblers",
+      title: "Shoe Polish, Car Freshners",
       isselected: true,
     ),
     singlecard(
-      title: "Spoons & Forks",
+      title: "Car Polish & Cleaners",
       isselected: false,
     ),
-    
+      singlecard(
+      title: "DishWashes, Bars & Powders",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Detergent Powder, Liquid",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Repellents",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Freshners",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Mops, wipers",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Scrubs & Brushes",
+      isselected: false,
+    )
   ];
-  var category = "Cups, Mugs & Tumblers";
+  var category = "Shoe Polish, Car Freshners";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = crockerylist[index].title;
-              if (crockerylist[index].isselected) {
+              category = householdlist[index].title;
+              if (householdlist[index].isselected) {
                 //
               } else {
-                crockerylist[index].isselected = true;
-                print(crockerylist[index].isselected);
+                householdlist[index].isselected = true;
+                print(householdlist[index].isselected);
 
-                for (int i = 0; i < crockerylist.length; i++) {
+                for (int i = 0; i < householdlist.length; i++) {
                   if (i != index) {
-                    crockerylist[i].isselected = false;
+                    householdlist[i].isselected = false;
                   }
                 }
               }
@@ -55,9 +78,9 @@ class _crockeryState extends State<crockery> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                crockerylist[index].title,
+                householdlist[index].title,
                 style: TextStyle(
-                    color: crockerylist[index].isselected
+                    color: householdlist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -223,7 +246,7 @@ class _crockeryState extends State<crockery> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("crockery"),
+          title: Text("householdfee"),
         ),
         body: Stack(
           children: [
@@ -237,7 +260,7 @@ class _crockeryState extends State<crockery> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: crockerylist.length,
+                    itemCount: householdlist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

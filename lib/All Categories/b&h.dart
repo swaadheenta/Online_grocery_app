@@ -9,42 +9,78 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class Dryfruits extends StatefulWidget {
+class bnh extends StatefulWidget {
   @override
-  _DryfruitsState createState() => _DryfruitsState();
+  _bnhState createState() => _bnhState();
 }
 
-class _DryfruitsState extends State<Dryfruits> {
+class _bnhState extends State<bnh> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> Dryfruitslist = [
-    singlecard(
-      title: "Almonds,Raisins & Cashews",
+  List<singlecard> bnhlist = [
+   singlecard(
+      title: "Shampoo & Conditioners",
       isselected: true,
     ),
     singlecard(
-      title: "Other Dry Fruits",
+      title: "Hair Oil & Serum",
       isselected: false,
-    )
+    ),
+     singlecard(
+      title: "Toothpaste",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Toothbrush",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Mouthwash, Tongue Cleaner",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Body Lotion",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Facewash & Rose Water",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Lip Care",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Face",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Eyes",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Lips",
+      isselected: false,
+    ),
   ];
-  var category = "Almonds";
+  var category = "Shampoo & Conditioners";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = Dryfruitslist[index].title;
-              if (Dryfruitslist[index].isselected) {
+              category = bnhlist[index].title;
+              if (bnhlist[index].isselected) {
                 //
               } else {
-                Dryfruitslist[index].isselected = true;
-                print(Dryfruitslist[index].isselected);
+                bnhlist[index].isselected = true;
+                print(bnhlist[index].isselected);
 
-                for (int i = 0; i < Dryfruitslist.length; i++) {
+                for (int i = 0; i < bnhlist.length; i++) {
                   if (i != index) {
-                    Dryfruitslist[i].isselected = false;
+                    bnhlist[i].isselected = false;
                   }
                 }
               }
@@ -54,9 +90,9 @@ class _DryfruitsState extends State<Dryfruits> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                Dryfruitslist[index].title,
+                bnhlist[index].title,
                 style: TextStyle(
-                    color: Dryfruitslist[index].isselected
+                    color: bnhlist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -222,7 +258,7 @@ class _DryfruitsState extends State<Dryfruits> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Dryfruits"),
+          title: Text("bnhfee"),
         ),
         body: Stack(
           children: [
@@ -236,7 +272,7 @@ class _DryfruitsState extends State<Dryfruits> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: Dryfruitslist.length,
+                    itemCount: bnhlist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

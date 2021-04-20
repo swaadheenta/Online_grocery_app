@@ -9,42 +9,66 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class sprouts extends StatefulWidget {
+class dairy extends StatefulWidget {
   @override
-  _sproutsState createState() => _sproutsState();
+  _dairyState createState() => _dairyState();
 }
 
-class _sproutsState extends State<sprouts> {
+class _dairyState extends State<dairy> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> sproutslist = [
-    singlecard(
-      title: "Cut & Peeled Veggies",
+  List<singlecard> dairylist = [
+  singlecard(
+      title: "Milk & Curd",
       isselected: true,
     ),
     singlecard(
-      title: "Fresh Salad & Sprouts",
+      title: "Paneer,Tofu & Cream",
       isselected: false,
-    )
+    ),
+     singlecard(
+      title: "Cheese & Butter",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Tea Cakes & Slice Cakes",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Pastries & Brownies",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Brown, Wheat & Multigrain",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Milk White & Sandwich",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Icecreams",
+      isselected: false,
+    ),
   ];
-  var category = "Cut & Peeled Veggies";
+  var category = "Milk & Curd";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = sproutslist[index].title;
-              if (sproutslist[index].isselected) {
+              category = dairylist[index].title;
+              if (dairylist[index].isselected) {
                 //
               } else {
-                sproutslist[index].isselected = true;
-                print(sproutslist[index].isselected);
+                dairylist[index].isselected = true;
+                print(dairylist[index].isselected);
 
-                for (int i = 0; i < sproutslist.length; i++) {
+                for (int i = 0; i < dairylist.length; i++) {
                   if (i != index) {
-                    sproutslist[i].isselected = false;
+                    dairylist[i].isselected = false;
                   }
                 }
               }
@@ -54,9 +78,9 @@ class _sproutsState extends State<sprouts> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                sproutslist[index].title,
+                dairylist[index].title,
                 style: TextStyle(
-                    color: sproutslist[index].isselected
+                    color: dairylist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -222,7 +246,7 @@ class _sproutsState extends State<sprouts> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Cuts & Sprouts"),
+          title: Text("dairyfee"),
         ),
         body: Stack(
           children: [
@@ -236,7 +260,7 @@ class _sproutsState extends State<sprouts> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: sproutslist.length,
+                    itemCount: dairylist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

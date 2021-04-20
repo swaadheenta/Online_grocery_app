@@ -9,42 +9,82 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class Masala extends StatefulWidget {
+class confectionery extends StatefulWidget {
   @override
-  _MasalaState createState() => _MasalaState();
+  _confectioneryState createState() => _confectioneryState();
 }
 
-class _MasalaState extends State<Masala> {
+class _confectioneryState extends State<confectionery> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> Masalalist = [
+  List<singlecard> confectionerylist = [
     singlecard(
-      title: "Almonds,Raisins & Cashews",
+      title: 'Noodles',
       isselected: true,
     ),
     singlecard(
-      title: "Other Dry Fruits",
+      title: 'Pasta & Vermicilli',
       isselected: false,
-    )
+    ),
+     singlecard(
+      title: "Chips",
+      isselected: false,
+    ),
+    singlecard(
+      title: "Namkeen",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Health corner",
+      isselected: false,
+    ),
+     singlecard(
+      title: 'Tomato ketchup & sauces',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Chilli & soya sauce',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Spreads',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Biscuits',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Chocolates',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Pickles',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Chutneys',
+      isselected: false,
+    ),
   ];
-  var category = "Almonds";
+  var category = 'Noodles';
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = Masalalist[index].title;
-              if (Masalalist[index].isselected) {
+              category = confectionerylist[index].title;
+              if (confectionerylist[index].isselected) {
                 //
               } else {
-                Masalalist[index].isselected = true;
-                print(Masalalist[index].isselected);
+                confectionerylist[index].isselected = true;
+                print(confectionerylist[index].isselected);
 
-                for (int i = 0; i < Masalalist.length; i++) {
+                for (int i = 0; i < confectionerylist.length; i++) {
                   if (i != index) {
-                    Masalalist[i].isselected = false;
+                    confectionerylist[i].isselected = false;
                   }
                 }
               }
@@ -54,9 +94,9 @@ class _MasalaState extends State<Masala> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                Masalalist[index].title,
+                confectionerylist[index].title,
                 style: TextStyle(
-                    color: Masalalist[index].isselected
+                    color: confectionerylist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -222,7 +262,7 @@ class _MasalaState extends State<Masala> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Masala"),
+          title: Text("confectioneryfee"),
         ),
         body: Stack(
           children: [
@@ -236,7 +276,7 @@ class _MasalaState extends State<Masala> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: Masalalist.length,
+                    itemCount: confectionerylist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);

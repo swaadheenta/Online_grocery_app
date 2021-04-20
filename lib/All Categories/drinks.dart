@@ -9,43 +9,92 @@ class singlecard {
   singlecard({this.title, this.isselected});
 }
 
-class crockery extends StatefulWidget {
+class drinks extends StatefulWidget {
   @override
-  _crockeryState createState() => _crockeryState();
+  _drinksState createState() => _drinksState();
 }
 
-class _crockeryState extends State<crockery> {
+class _drinksState extends State<drinks> {
   bool isselected;
   Color color = Colors.red[100];
 
-  List<singlecard> crockerylist = [
+  List<singlecard> drinkslist = [
     singlecard(
-      title: "Cups, Mugs & Tumblers",
+      title: "Ground Coffee",
       isselected: true,
     ),
     singlecard(
-      title: "Spoons & Forks",
+      title: "Instant Coffee",
+      isselected: false,
+    ),
+     singlecard(
+      title: "Cold Drinks",
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Sports & Energy Drinks',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Icetea, Non Aerated Drink',
       isselected: false,
     ),
     
+    singlecard(
+      title: 'Children(2-5 yrs)',
+      isselected: false,
+    ),
+    singlecard(
+      title:'Kids(5+ yrs)',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Glucose Powder, Tablets',     
+      isselected: false,
+    ),
+     singlecard(
+      title: 'Men & Women',    
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Leaf & Dust Tea',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Green Tea',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Exotic & Flavoured Tea',
+      isselected: false,
+    ),
+    singlecard(
+      title: 'Packaged Water',
+      isselected: true,
+    ),
+    singlecard(
+      title: 'Spring Water',
+      isselected: false,
+    ),
+
   ];
-  var category = "Cups, Mugs & Tumblers";
+  var category = "Ground Coffee";
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
           onTap: () {
             setState(() {
-              category = crockerylist[index].title;
-              if (crockerylist[index].isselected) {
+              category = drinkslist[index].title;
+              if (drinkslist[index].isselected) {
                 //
               } else {
-                crockerylist[index].isselected = true;
-                print(crockerylist[index].isselected);
+                drinkslist[index].isselected = true;
+                print(drinkslist[index].isselected);
 
-                for (int i = 0; i < crockerylist.length; i++) {
+                for (int i = 0; i < drinkslist.length; i++) {
                   if (i != index) {
-                    crockerylist[i].isselected = false;
+                    drinkslist[i].isselected = false;
                   }
                 }
               }
@@ -55,9 +104,9 @@ class _crockeryState extends State<crockery> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                crockerylist[index].title,
+                drinkslist[index].title,
                 style: TextStyle(
-                    color: crockerylist[index].isselected
+                    color: drinkslist[index].isselected
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
@@ -223,7 +272,7 @@ class _crockeryState extends State<crockery> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("crockery"),
+          title: Text("drinksfee"),
         ),
         body: Stack(
           children: [
@@ -237,7 +286,7 @@ class _crockeryState extends State<crockery> {
                 height: displayHeight(context) * 0.07,
                 color: Colors.grey[300],
                 child: ListView.builder(
-                    itemCount: crockerylist.length,
+                    itemCount: drinkslist.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return _showcard(index);
