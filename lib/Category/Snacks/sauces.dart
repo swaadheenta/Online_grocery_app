@@ -28,7 +28,6 @@ class _saucesState extends State<sauces> {
       title: 'Spreads',
       isselected: false,
     ),
-    
   ];
   var category = 'Tomato ketchup & sauces';
   @override
@@ -52,7 +51,7 @@ class _saucesState extends State<sauces> {
         },
         child: Card(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Text(
               sauceslist[index].title,
               style: TextStyle(
@@ -60,15 +59,15 @@ class _saucesState extends State<sauces> {
                       ? Colors.redAccent
                       : Colors.black,
                   fontFamily: "BreeSerif",
-                  fontSize: displayWidth(context) * 0.045),
+                  fontSize: displayWidth(context) * 0.042),
             ),
           ),
         ),
       );
     }
 
-       Widget _showlist(BuildContext context, doc) {
-         String oldprice = doc['oldprice'];
+     Widget _showlist(BuildContext context, DocumentSnapshot doc) {
+      String oldprice = doc['oldprice'];
       String newprice = doc['newprice'];
       String productname = doc['name'];
       String quantity = doc['quantity'];
@@ -102,7 +101,7 @@ class _saucesState extends State<sauces> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
               child: Container(
-                height: displayHeight(context) * 0.2,
+                height: displayHeight(context) * 0.18,
                 width: displayWidth(context) * 0.38,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
@@ -112,7 +111,7 @@ class _saucesState extends State<sauces> {
                   padding:
                       const EdgeInsets.only(bottom: 20, left: 8.0, right: 8.0),
                   child: Container(
-                    height: displayHeight(context) * 0.18,
+                    height: displayHeight(context) * 0.16,
                     width: displayWidth(context) * 0.36,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
@@ -138,12 +137,16 @@ class _saucesState extends State<sauces> {
               child: Container(
                   child: Column(
                 children: [
+                  Divider(
+                    height: displayHeight(context) * 0.02,
+                  ),
                   Text(
                     doc['name'],
                     style: TextStyle(
                         fontFamily: "BreeSerif",
-                        fontSize: displayWidth(context) * 0.045,
-                        fontWeight: FontWeight.bold),
+                        fontSize: displayWidth(context) * 0.04,
+                        fontWeight: FontWeight.w400
+                        ),
                   ),
                   Divider(
                     height: displayHeight(context) * 0.01,
@@ -151,9 +154,9 @@ class _saucesState extends State<sauces> {
                   Text(
                     "quantity: $quantity",
                     style: TextStyle(
-                      fontFamily: "Langar",
+                     // fontFamily: "Langar",
                       letterSpacing: displayWidth(context) * 0.002,
-                      fontSize: displayWidth(context) * 0.045,
+                      fontSize: displayWidth(context) * 0.04,
                     ),
                   ),
                   Divider(
@@ -164,18 +167,18 @@ class _saucesState extends State<sauces> {
                       Text(
                         "₹ $oldprice",
                         style: TextStyle(
-                          fontFamily: "Langar",
+                        //  fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
-                          fontSize: displayWidth(context) * 0.045,
+                          fontSize: displayWidth(context) * 0.04,
                           decoration: TextDecoration.lineThrough,
                         ),
                       ),
                       Text(
                         "  ₹ $newprice",
                         style: TextStyle(
-                          fontFamily: "Langar",
+                       //   fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
-                          fontSize: displayWidth(context) * 0.045,
+                          fontSize: displayWidth(context) * 0.04,
                         ),
                       ),
                     ],
@@ -184,7 +187,7 @@ class _saucesState extends State<sauces> {
                   Text(
                     " ",
                     style: TextStyle(
-                        fontFamily: "BreeSerif",
+                       // fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.045,
                         fontWeight: FontWeight.bold),
                   ),
@@ -194,7 +197,7 @@ class _saucesState extends State<sauces> {
                 ],
               ))),
           Positioned(
-              bottom: displayHeight(context) * 0.05,
+              bottom: displayHeight(context) * 0.045,
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
@@ -218,13 +221,18 @@ class _saucesState extends State<sauces> {
       );
     }
 
-  
-
+    ;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("sauces "),
-      ),
+          title: Text("Spreads, Sauces & Ketchups",style: TextStyle(fontSize: displayWidth(context)*0.045),),
+          leading: IconButton(
+            onPressed:()
+            {
+              Navigator.pop(context);
+            } ,
+            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
+        ),
       body: Stack(
         children: [
           Positioned(
@@ -242,32 +250,34 @@ class _saucesState extends State<sauces> {
                       itemBuilder: (BuildContext context, int index) {
                         return _showcard(index);
                       }))),
-          Positioned(top: displayHeight(context) * 0.1,
-                left: displayWidth(context) * 0.025,
-                child: Container(
-                    height: displayHeight(context) * 0.75,
-                    width: displayWidth(context) * 0.95,
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection(category).snapshots(),
-              builder: (context,snapshot)
-            { 
-              if(snapshot.hasData)
-              {
-                return ListView.builder(
-                  itemCount: snapshot.data.docs.length,
-                  itemBuilder: (BuildContext context,int index)
-                {
-                  return _showlist(context,snapshot.data.docs[index]);
-                                  });
-                                }
-                              },)
-                            ))
-                          ],
-                        ),
-                      );
-                    }}
-                  
-                Future<void> getdatafromfirebase() async {
+          Positioned(
+              top: displayHeight(context) * 0.1,
+              left: displayWidth(context) * 0.025,
+              child: Container(
+                  height: displayHeight(context) * 0.75,
+                  width: displayWidth(context) * 0.95,
+                  child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection(category)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                            itemCount: snapshot.data.docs.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return _showlist(
+                                  context, snapshot.data.docs[index]);
+                            });
+                      }
+                    },
+                  )))
+        ],
+      ),
+    );
+  }
+}
+
+Future<void> getdatafromfirebase() async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   DocumentSnapshot variable = await FirebaseFirestore.instance
       .collection('Users')
@@ -277,7 +287,7 @@ class _saucesState extends State<sauces> {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,String quantity) async {
+    String newprice, int itemcount, String quantity) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")

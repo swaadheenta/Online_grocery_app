@@ -52,7 +52,7 @@ class _TeaState extends State<Tea> {
         },
         child: Card(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Text(
               Tealist[index].title,
               style: TextStyle(
@@ -60,15 +60,15 @@ class _TeaState extends State<Tea> {
                       ? Colors.redAccent
                       : Colors.black,
                   fontFamily: "BreeSerif",
-                  fontSize: displayWidth(context) * 0.045),
+                 fontSize: displayWidth(context) * 0.042),
             ),
           ),
         ),
       );
     }
 
-       Widget _showlist(BuildContext context, doc) {
-         String oldprice = doc['oldprice'];
+     Widget _showlist(BuildContext context, DocumentSnapshot doc) {
+      String oldprice = doc['oldprice'];
       String newprice = doc['newprice'];
       String productname = doc['name'];
       String quantity = doc['quantity'];
@@ -102,7 +102,7 @@ class _TeaState extends State<Tea> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
               child: Container(
-                height: displayHeight(context) * 0.2,
+                height: displayHeight(context) * 0.18,
                 width: displayWidth(context) * 0.38,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
@@ -112,7 +112,7 @@ class _TeaState extends State<Tea> {
                   padding:
                       const EdgeInsets.only(bottom: 20, left: 8.0, right: 8.0),
                   child: Container(
-                    height: displayHeight(context) * 0.18,
+                    height: displayHeight(context) * 0.16,
                     width: displayWidth(context) * 0.36,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
@@ -138,12 +138,16 @@ class _TeaState extends State<Tea> {
               child: Container(
                   child: Column(
                 children: [
+                  Divider(
+                    height: displayHeight(context) * 0.02,
+                  ),
                   Text(
                     doc['name'],
                     style: TextStyle(
                         fontFamily: "BreeSerif",
-                        fontSize: displayWidth(context) * 0.045,
-                        fontWeight: FontWeight.bold),
+                        fontSize: displayWidth(context) * 0.04,
+                        fontWeight: FontWeight.w400
+                        ),
                   ),
                   Divider(
                     height: displayHeight(context) * 0.01,
@@ -151,9 +155,9 @@ class _TeaState extends State<Tea> {
                   Text(
                     "quantity: $quantity",
                     style: TextStyle(
-                      fontFamily: "Langar",
+                     // fontFamily: "Langar",
                       letterSpacing: displayWidth(context) * 0.002,
-                      fontSize: displayWidth(context) * 0.045,
+                      fontSize: displayWidth(context) * 0.04,
                     ),
                   ),
                   Divider(
@@ -164,18 +168,18 @@ class _TeaState extends State<Tea> {
                       Text(
                         "₹ $oldprice",
                         style: TextStyle(
-                          fontFamily: "Langar",
+                        //  fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
-                          fontSize: displayWidth(context) * 0.045,
+                          fontSize: displayWidth(context) * 0.04,
                           decoration: TextDecoration.lineThrough,
                         ),
                       ),
                       Text(
                         "  ₹ $newprice",
                         style: TextStyle(
-                          fontFamily: "Langar",
+                       //   fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
-                          fontSize: displayWidth(context) * 0.045,
+                          fontSize: displayWidth(context) * 0.04,
                         ),
                       ),
                     ],
@@ -184,7 +188,7 @@ class _TeaState extends State<Tea> {
                   Text(
                     " ",
                     style: TextStyle(
-                        fontFamily: "BreeSerif",
+                       // fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.045,
                         fontWeight: FontWeight.bold),
                   ),
@@ -194,7 +198,7 @@ class _TeaState extends State<Tea> {
                 ],
               ))),
           Positioned(
-              bottom: displayHeight(context) * 0.05,
+              bottom: displayHeight(context) * 0.045,
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
@@ -218,13 +222,19 @@ class _TeaState extends State<Tea> {
       );
     }
 
-  
+    ;
 
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tea "),
-      ),
+          title: Text("Tea",style: TextStyle(fontSize: displayWidth(context)*0.045),),
+          leading: IconButton(
+            onPressed:()
+            {
+              Navigator.pop(context);
+            } ,
+            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
+        ),
       body: Stack(
         children: [
           Positioned(
