@@ -30,7 +30,7 @@ class _TeaState extends State<Tea> {
     ),
     
   ];
-  var category = "Cold Drinks";
+  var category = 'Leaf & Dust Tea';
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {

@@ -15,9 +15,12 @@ class Energy extends StatefulWidget {
 }
 
 class _EnergyState extends State<Energy> {
-  List<singlecard> energylist = [
+  bool isselected;
+  Color color = Colors.red[100];
+
+  List<singlecard> Energylist = [
     singlecard(
-      title: "Cold Drinks",
+      title: 'Cold Drinks',
       isselected: true,
     ),
     singlecard(
@@ -29,43 +32,45 @@ class _EnergyState extends State<Energy> {
       isselected: false,
     )
   ];
-  var category = "Cold Drinks";
+  var category = 'Cold Drinks';
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {
       return GestureDetector(
-        onTap: () {
-          setState(() {
-            category = energylist[index].title;
-            if (energylist[index].isselected) {
-              //Already selected and then tapped ,so do nothing !!
-            } else {
-              energylist[index].isselected = true;
-              for (int i = 0; i < energylist.length; i++) {
-                if (index != i) {
-                  energylist[i].isselected = false;
+          onTap: () {
+            setState(() {
+              category = Energylist[index].title;
+              if (Energylist[index].isselected) {
+                //
+              } else {
+                Energylist[index].isselected = true;
+                print(Energylist[index].isselected);
+
+                for (int i = 0; i < Energylist.length; i++) {
+                  if (i != index) {
+                    Energylist[i].isselected = false;
+                  }
                 }
               }
-            }
-          });
-        },
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              energylist[index].title,
-              style: TextStyle(
-                  color: energylist[index].isselected
-                      ? Colors.redAccent
-                      : Colors.black,
-                  fontFamily: "BreeSerif",
-                 fontSize: displayWidth(context) * 0.042),
+            });
+          },
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                Energylist[index].title,
+                style: TextStyle(
+                    color: Energylist[index].isselected
+                        ? Colors.redAccent
+                        : Colors.black,
+                    fontFamily: "BreeSerif",
+                   fontSize: displayWidth(context) * 0.042),
+              ),
             ),
-          ),
-        ),
-      );
+          ));
     }
 
+    ;
    Widget _showlist(BuildContext context, DocumentSnapshot doc) {
       String oldprice = doc['oldprice'];
       String newprice = doc['newprice'];
@@ -201,7 +206,7 @@ class _EnergyState extends State<Energy> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                    addtofirebase(productname, image, oldprice, newprice, 1,quantity);
+                    addtofirebase(productname, image, oldprice, newprice, 1,0);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -222,12 +227,10 @@ class _EnergyState extends State<Energy> {
     }
 
     ;
-  
-
 
     return Scaffold(
-      appBar: AppBar(
-          title: Text("Energy & Soft Drinks",style: TextStyle(fontSize: displayWidth(context)*0.045),),
+        appBar: AppBar(
+          title: Text("Energyfee",style: TextStyle(fontSize: displayWidth(context)*0.045),),
           leading: IconButton(
             onPressed:()
             {
@@ -235,49 +238,53 @@ class _EnergyState extends State<Energy> {
             } ,
             icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
         ),
-      body: Stack(
-        children: [
-          Positioned(
+        body: Stack(
+          children: [
+            Positioned(
+                child: Container(
+              height: displayHeight(context),
+              width: displayWidth(context),
+            )),
+            Positioned(
               child: Container(
-            height: displayHeight(context),
-            width: displayWidth(context),
-          )),
-          Positioned(
-              child: Container(
-                  height: displayHeight(context) * 0.07,
-                  color: Colors.grey[300],
-                  child: ListView.builder(
-                      itemCount: energylist.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        return _showcard(index);
-                      }))),
-          Positioned(top: displayHeight(context) * 0.1,
+                height: displayHeight(context) * 0.07,
+                color: Colors.grey[300],
+                child: ListView.builder(
+                    itemCount: Energylist.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _showcard(index);
+                    }),
+              ),
+            ),
+            Positioned(
+                top: displayHeight(context) * 0.1,
                 left: displayWidth(context) * 0.025,
                 child: Container(
                     height: displayHeight(context) * 0.75,
                     width: displayWidth(context) * 0.95,
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection(category).snapshots(),
-              builder: (context,snapshot)
-            { 
-              if(snapshot.hasData)
-              {
-                return ListView.builder(
-                  itemCount: snapshot.data.docs.length,
-                  itemBuilder: (BuildContext context,int index)
-                {
-                  return _showlist(context,snapshot.data.docs[index]);
-                                  });
-                                }
-                              },)
-                            ))
-                          ],
-                        ),
-                      );
-                    }}
-                  
-                Future<void> getdatafromfirebase() async {
+                    // color: Colors.yellow,
+                    child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection(category)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                              itemCount: snapshot.data.docs.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return _showlist(
+                                    context, snapshot.data.docs[index]);
+                              });
+                        }
+                      },
+                    )))
+          ],
+        ));
+  }
+}
+
+Future<void> getdatafromfirebase() async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   DocumentSnapshot variable = await FirebaseFirestore.instance
       .collection('Users')
@@ -287,7 +294,7 @@ class _EnergyState extends State<Energy> {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,String quantity) async {
+    String newprice, int itemcount,int totalprice) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -299,7 +306,7 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Image": image,
     "Oldprice": oldprice,
     "Newprice": newprice,
-    "quantity": quantity,
     "Itemcount": itemcount,
+    "totalprice":totalprice,
   });
 }

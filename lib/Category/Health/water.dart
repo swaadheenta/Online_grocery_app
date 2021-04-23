@@ -27,7 +27,7 @@ class _WaterState extends State<Water> {
     ),
   
   ];
-  var category = "Cold Drinks";
+  var category = 'Packaged Water';
   @override
   Widget build(BuildContext context) {
     Widget _showcard(int index) {

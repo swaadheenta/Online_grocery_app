@@ -70,7 +70,14 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Shop By Category"),
+          title: Text("Categories",style: TextStyle(fontSize: displayWidth(context)*0.045),),
+          /*leading: IconButton(
+            onPressed:()
+            {
+              Navigator.pop(context);
+            } ,
+            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),*/
+            centerTitle: true,
         ),
         body: Stack(children: [
           Positioned(

@@ -28,7 +28,7 @@ class AuthService {
           .doc(user.uid.toString())
           .collection("Details")
           .doc(username)
-          .set({"name": username, "phoneno": phoneno});
+          .set({"name": username, "phoneno": phoneno,"price":0});
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());

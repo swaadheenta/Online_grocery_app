@@ -4,101 +4,87 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
-  Cart({Key key}) : super(key: key);
-
   @override
   _CartState createState() => _CartState();
 }
 
 class _CartState extends State<Cart> {
-  String currentuserid;
-  String currentuser;
-  var cnt;
+  var user = FirebaseAuth.instance.currentUser.uid.toString();
+  var i, finalans;
 
-  Future<String> getcurrentuser() async {
-    var user = FirebaseAuth.instance.currentUser.uid;
-    currentuserid = user.toString();
-    //print(currentuserid);
-    var q = await FirebaseFirestore.instance
-        .collection("Users").doc(currentuserid).collection("Details").get();
-    //   currentuser = ds["name"];
-    //   print(currentuser);
-
-    return currentuser;
-  }
+  var ans = 0;
+  var total = 0;
 
   @override
   Widget build(BuildContext context) {
-    print("Current usser is");
-    print(getcurrentuser());
+    
 
-    Widget _itemsofcart(BuildContext context, DocumentSnapshot doc) {
-      var count;
+    Future<void> getprice() async {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user)
+          .collection("Products")
+          .get();
 
+      total = 0;
+      for (int i = 0; i < querySnapshot.size; i++) {
+        var a = querySnapshot.docs[i];
+        setState(() {
+          total = total + a["totalprice"];
+        });
+        
+      }
+
+      print("total=$total");
+    }
+
+    Widget finalprice(BuildContext context, doc) {
+     
+      ans = int.parse(doc['Newprice']) * doc['Itemcount'];
       String title = doc["Productname"];
-      print(title);
-      return GestureDetector(
-        onTap: () {
-          print(getcurrentuser());
-        },
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          elevation: 10.0,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15.0),
-            child: GridTile(
-                //header: Text(title),
+     
+      FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user)
+          .collection("Products")
+          .doc(title)
+          .update({"totalprice": ans});
+     getprice();
+      return Card(
+        elevation: 10.0,
+        child: Container(
+          height: displayHeight(context) * 0.15,
+          width: displayWidth(context) * 0.8,
+          child: Row(
+            children: [
+              Container(
+                height: displayHeight(context) * 0.125,
+                width: displayWidth(context) * 0.25,
                 child: Image.network(
                   doc["Image"],
-                  height: displayHeight(context) * 0.2,
-                  width: displayWidth(context) * 0.35,
                   fit: BoxFit.fill,
                 ),
-                footer: GridTileBar(
-                 // title: Text(doc["Productname"]),
-                  backgroundColor: Colors.grey,
-                  // leading: doc["Productname"],
-                  trailing: new Row(children: <Widget>[
-                    doc["Itemcount"] != 0
-                        ? new IconButton(
-                            icon: new Icon(Icons.remove),
-                            onPressed: () => setState(() {
-                              count = doc["Itemcount"] - 1;
-
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(currentuserid)
-                                  .collection("Products")
-                                  .doc(title)
-                                  .update({"Itemcount": count});
-                            }),
-                          )
-                        : FirebaseFirestore.instance
-                            .collection("Users")
-                            .doc(currentuserid)
-                            .collection("Products")
-                            .doc(title)
-                            .delete(),
-                    new Text(
-                      doc["Itemcount"].toString(),
-                      style: TextStyle(color: Colors.white),
+              ),
+              SizedBox(
+                width: displayWidth(context) * 0.1,
+              ),
+              Container(
+                  width: displayWidth(context) * 0.35,
+                  child: Text(doc['Productname'])),
+              Padding(
+                padding: const EdgeInsets.only(left: 30.0),
+                child: Card(
+                  elevation: 10.0,
+                  child: Container(
+                    width: displayWidth(context) * 0.15,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(ans.toString()),
                     ),
-                    new IconButton(
-                      icon: new Icon(Icons.add),
-                      onPressed: () => setState(() {
-                        cnt = doc["Itemcount"] + 1;
-                        FirebaseFirestore.instance
-                            .collection("Users")
-                            .doc(currentuserid)
-                            .collection("Products")
-                            .doc(title)
-                            .update({"Itemcount": cnt});
-                      }),
-                    ),
-                  ]),
-                )),
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       );
@@ -106,49 +92,61 @@ class _CartState extends State<Cart> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cart"),
-      ),
+          title: Text("Your Basket",style: TextStyle(fontSize: displayWidth(context)*0.045),),
+          /*leading: IconButton(
+            onPressed:()
+            {
+              Navigator.pop(context);
+            } ,
+            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),*/
+            centerTitle: true,
+        ),
       body: Stack(
-        alignment: Alignment.center,
         children: [
           Positioned(
+              top: 0.0,
+              left: 0.0,
               child: Container(
-            height: displayHeight(context),
-            width: displayWidth(context),
-            //color: Colors.amber,
-          )),
+                height: displayHeight(context),
+                width: displayWidth(context),
+                color: Colors.white,
+              )),
           Positioned(
-              top: displayHeight(context) * 0.02,
-              left: displayWidth(context) * 0.04,
+            top: displayHeight(context) * 0.015,
+            child: Container(
+              height: displayHeight(context) * 0.7,
+              width: displayWidth(context),
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("Users")
+                    .doc(user)
+                    .collection("Products")
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        itemCount: snapshot.data.docs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return finalprice(context, snapshot.data.docs[index]);
+                        });
+                  } else {
+                    return Text("Please check your internet connection!!");
+                  }
+                },
+              ),
+            ),
+          ),
+          Positioned(
+              top: displayHeight(context) * 0.72,
               child: Container(
-                height: displayHeight(context) * 0.77,
-                width: displayWidth(context) * 0.9,
-                // color: Colors.yellow,
-                child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("Users")
-                      .doc(currentuserid)
-                      .collection("Products")
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return GridView.builder(
-                          itemCount: snapshot.data.docs.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: displayWidth(context) * 0.02,
-                            crossAxisSpacing: displayWidth(context) * 0.06,
-                          ),
-                          itemBuilder: (BuildContext context, int index) {
-                            return _itemsofcart(
-                                context, snapshot.data.docs[index]);
-                          });
-                    } else {
-                      return Text("Please check your internet connection!!");
-                    }
-                  },
-                ),
+                height: displayHeight(context) * 0.08,
+                width: displayWidth(context),
+                color: Colors.grey,
+                child: Center(
+                    child: Text(
+                  "Price : $total",
+                  style: TextStyle(color: Colors.white),
+                )),
               ))
         ],
       ),
