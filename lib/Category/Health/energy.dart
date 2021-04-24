@@ -230,7 +230,7 @@ class _EnergyState extends State<Energy> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Energyfee",style: TextStyle(fontSize: displayWidth(context)*0.045),),
+          title: Text("Energy & Soft Drinks",style: TextStyle(fontSize: displayWidth(context)*0.045),),
           leading: IconButton(
             onPressed:()
             {
