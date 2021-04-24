@@ -200,7 +200,7 @@ class _IcecreamState extends State<Icecream> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                    addtofirebase(productname, image, oldprice, newprice, 1);
+                    addtofirebase(productname, image, oldprice, newprice, 1,0);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -288,7 +288,7 @@ Future<void> getdatafromfirebase() async {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount) async {
+    String newprice, int itemcount,int totalprice) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -301,5 +301,6 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Oldprice": oldprice,
     "Newprice": newprice,
     "Itemcount": itemcount,
+    "totalprice":totalprice,
   });
 }

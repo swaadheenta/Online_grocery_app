@@ -202,7 +202,7 @@ class _TeaState extends State<Tea> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                    addtofirebase(productname, image, oldprice, newprice, 1,quantity);
+                    addtofirebase(productname, image, oldprice, newprice, 1,0);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -287,7 +287,7 @@ class _TeaState extends State<Tea> {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,String quantity) async {
+    String newprice, int itemcount,int totalprice) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -299,7 +299,7 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Image": image,
     "Oldprice": oldprice,
     "Newprice": newprice,
-    "quantity": quantity,
     "Itemcount": itemcount,
+    "totalprice":totalprice,
   });
 }
