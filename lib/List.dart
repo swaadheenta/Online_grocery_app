@@ -20,18 +20,11 @@ class _ShoppinglistState extends State<Shoppinglist> {
   int finalprice;
   String docname;
 
-  Future<String> getcurrentuser() async {
+  Future<String> getcurrentuser() async 
+  {
     var user = FirebaseAuth.instance.currentUser.uid;
     currentuserid = user.toString();
-    
-
-    var ds = await FirebaseFirestore.instance
-        .collection("Users")
-        .doc(currentuserid)
-        .collection("Products")
-        .get();
-   
-
+    var ds = await FirebaseFirestore.instance.collection("Users").doc(currentuserid).collection("Products").get();
     return currentuser;
   }
 
@@ -69,9 +62,9 @@ class _ShoppinglistState extends State<Shoppinglist> {
                     fit: BoxFit.fill,
                   ),
                   footer: GridTileBar(
-                    // title: Text(doc["Productname"]),
-                    backgroundColor: Colors.black38,
-                    // leading: doc["Productname"],
+                  
+                    backgroundColor: Colors.grey,
+                    
                     leading: new Row(children: <Widget>[
                       doc["Itemcount"] != 0
                           ? new IconButton(
@@ -80,9 +73,7 @@ class _ShoppinglistState extends State<Shoppinglist> {
                               ////  price -= int.parse(doc['Newprice']) *
                                     doc['Itemcount'];
                                 count = doc["Itemcount"] - 1;
-                                //ans -= int.parse(doc["Newprice"]);
-                               // print("newans is$ans");
-                                //  print(Price);
+                               
                                 FirebaseFirestore.instance
                                     .collection("Users")
                                     .doc(currentuserid)
@@ -104,12 +95,11 @@ class _ShoppinglistState extends State<Shoppinglist> {
                       new IconButton(
                         icon: new Icon(Icons.add),
                         onPressed: () => setState(() {
-                          // price-=
-                           //   int.parse(doc['Newprice']) * doc['Itemcount'];
+                         
                           cnt = doc["Itemcount"] + 1;
-                          //  ans += int.parse(doc["Newprice"]);
+                       
                           print("newans is$ans");
-                          // print(price);
+                         
                           FirebaseFirestore.instance
                               .collection("Users")
                               .doc(currentuserid)
@@ -130,12 +120,7 @@ class _ShoppinglistState extends State<Shoppinglist> {
     return Scaffold(
       appBar: AppBar(
           title: Text("Shopping List",style: TextStyle(fontSize: displayWidth(context)*0.045),),
-          /*leading: IconButton(
-            onPressed:()
-            {
-              Navigator.pop(context);
-            } ,
-            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),*/
+          
             centerTitle: true,
         ),
       body: Stack(
@@ -145,7 +130,7 @@ class _ShoppinglistState extends State<Shoppinglist> {
               child: Container(
             height: displayHeight(context),
             width: displayWidth(context),
-            //color: Colors.amber,
+           
           )),
           Positioned(
               top: displayHeight(context) * 0.02,
@@ -153,7 +138,7 @@ class _ShoppinglistState extends State<Shoppinglist> {
               child: Container(
                 height: displayHeight(context) * 0.77,
                 width: displayWidth(context) * 0.9,
-                // color: Colors.yellow,
+               
                 child: StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection("Users")
@@ -175,7 +160,7 @@ class _ShoppinglistState extends State<Shoppinglist> {
                                 context, snapshot.data.docs[index]);
                           });
                     } else {
-                      return Text("Please check your internet connection!!");
+                      return Text("Please check your internet connection !!"         );
                     }
                   },
                 ),

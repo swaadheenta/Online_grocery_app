@@ -1,4 +1,6 @@
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
+import 'package:Online_grocery_app/home.dart';
+import 'package:Online_grocery_app/uhome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +19,6 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     Future<void> getprice() async {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection("Users")
@@ -32,24 +32,22 @@ class _CartState extends State<Cart> {
         setState(() {
           total = total + a["totalprice"];
         });
-        
       }
 
       print("total=$total");
     }
 
     Widget finalprice(BuildContext context, doc) {
-     
       ans = int.parse(doc['Newprice']) * doc['Itemcount'];
       String title = doc["Productname"];
-     
+
       FirebaseFirestore.instance
           .collection("Users")
           .doc(user)
           .collection("Products")
           .doc(title)
           .update({"totalprice": ans});
-     getprice();
+      getprice();
       return Card(
         elevation: 10.0,
         child: Container(
@@ -92,15 +90,12 @@ class _CartState extends State<Cart> {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text("Your Basket",style: TextStyle(fontSize: displayWidth(context)*0.045),),
-          /*leading: IconButton(
-            onPressed:()
-            {
-              Navigator.pop(context);
-            } ,
-            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),*/
-            centerTitle: true,
+        title: Text(
+          "Your Basket",
+          style: TextStyle(fontSize: displayWidth(context) * 0.045),
         ),
+        centerTitle: true,
+      ),
       body: Stack(
         children: [
           Positioned(
@@ -139,15 +134,35 @@ class _CartState extends State<Cart> {
           Positioned(
               top: displayHeight(context) * 0.72,
               child: Container(
-                height: displayHeight(context) * 0.08,
-                width: displayWidth(context),
-                color: Colors.grey,
-                child: Center(
-                    child: Text(
-                  "Price : $total",
-                  style: TextStyle(color: Colors.white),
-                )),
-              ))
+                  height: displayHeight(context) * 0.08,
+                  width: displayWidth(context),
+                  color: Colors.black54,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: displayWidth(context) * 0.035,
+                      ),
+                      Text(
+                        "Price : $total",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: displayWidth(context) * 0.5,
+                      ),
+                      RaisedButton(
+                          //  color: Colors.blue,
+                          child: Text(
+                            "Confirm Order",
+                            //style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Homepage()));
+                          })
+                    ],
+                  ))),
         ],
       ),
     );

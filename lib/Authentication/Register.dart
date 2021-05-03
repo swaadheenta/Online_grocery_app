@@ -1,3 +1,4 @@
+import 'package:Online_grocery_app/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'Login.dart';
@@ -137,6 +138,12 @@ class _RegisterState extends State<Register> {
                               setState(() {
                                 error = "Please enter a valid email";
                               });
+                            }
+                              else {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (Context) => Homepage()));
                             }
                           }
                         })

@@ -94,7 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 error =
                                     "Could Not sign in with those credentials !!";
                               });
-                            } else {
+                            } 
+                            else {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
