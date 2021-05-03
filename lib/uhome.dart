@@ -7,6 +7,8 @@ import 'package:Online_grocery_app/All%20Categories/f&v.dart';
 import 'package:Online_grocery_app/All%20Categories/household.dart';
 import 'package:Online_grocery_app/All%20Categories/masala.dart';
 import 'package:Online_grocery_app/All%20Categories/sn&C.dart';
+import 'package:Online_grocery_app/Authentication/Login.dart';
+import 'package:Online_grocery_app/Cart.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
@@ -22,43 +24,50 @@ class _ushomeState extends State<ushome> {
   @override
   Widget build(BuildContext context) {
     Widget _imagecarousel = Container(
-      height: displayHeight(context)*0.25,
+      height: displayHeight(context) * 0.25,
       width: displayWidth(context),
       child: Carousel(
         boxFit: BoxFit.fill,
         images: [
-          
           AssetImage("images/offer1.jpg"),
           AssetImage("images/offer2.jpg"),
           AssetImage("images/offer3.jpg"),
-          
         ],
         autoplay: true,
-       animationCurve: Curves.fastOutSlowIn,
-       animationDuration: Duration(milliseconds: 1000),
-       dotSize: 4.0,
-       indicatorBgPadding: 1.5,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds: 1000),
+        dotSize: 4.0,
+        indicatorBgPadding: 1.5,
       ),
     );
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Hi there",
-          style: TextStyle(
-              fontFamily: "Breeserif", fontSize: displayWidth(context) * 0.04),
+        appBar: AppBar(
+          title: Text(
+            "Hi there",
+            style: TextStyle(
+                fontFamily: "Breeserif",
+                fontSize: displayWidth(context) * 0.04),
+          ),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                })
+          ],
         ),
-      ),
-      body: ListView(
-        children: [
-          _imagecarousel,
-           Opacity(
-             opacity: 0.0,
-                        child: Divider(
-               height: displayHeight(context)*0.025,
-             ),
-           ),
-          Center(
-            child: Text(
+        body: ListView(
+          children: [
+            _imagecarousel,
+            Opacity(
+              opacity: 0.0,
+              child: Divider(
+                height: displayHeight(context) * 0.025,
+              ),
+            ),
+            Center(
+              child: Text(
                 "Shop by Category",
                 style: TextStyle(
                   fontFamily: "Langar",
@@ -67,12 +76,11 @@ class _ushomeState extends State<ushome> {
                   wordSpacing: displayWidth(context) * 0.025,
                 ),
               ),
-          ),
-            Opacity(
-              opacity:0.0,
-              child: Divider()),
+            ),
+            Opacity(opacity: 0.0, child: Divider()),
             Padding(
-              padding: const EdgeInsets.only(left:8.0,right: 8.0,bottom: 8.0),
+              padding:
+                  const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
               child: Table(
                   defaultColumnWidth:
                       FixedColumnWidth(displayWidth(context) * 0.3),
@@ -81,8 +89,10 @@ class _ushomeState extends State<ushome> {
                     TableRow(children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => drinks()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => drinks()));
                         },
                         child: Container(
                           height: displayHeight(context) * 0.2,
@@ -151,8 +161,10 @@ class _ushomeState extends State<ushome> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => masala()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => masala()));
                         },
                         child: Container(
                           height: displayHeight(context) * 0.2,
@@ -398,11 +410,10 @@ class _ushomeState extends State<ushome> {
                     ]),
                   ]),
             ),
-        ],
-      )
-      
-      
-      /*SingleChildScrollView(
+          ],
+        )
+
+        /*SingleChildScrollView(
         child: Column(
           children: [
              Divider(
@@ -751,7 +762,7 @@ class _ushomeState extends State<ushome> {
         ),
       ),*/
 
-      /*Positioned(
+        /*Positioned(
           top: displayHeight(context) * 0.18,
           left: displayWidth(context) * 0.05,
           right: displayWidth(context) * 0.05,
@@ -760,7 +771,7 @@ class _ushomeState extends State<ushome> {
                           
                          ),*/
 
-      //),
-    );
+        //),
+        );
   }
 }

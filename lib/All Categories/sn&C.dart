@@ -1,3 +1,4 @@
+import 'package:Online_grocery_app/Cart.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,7 +28,7 @@ class _confectioneryState extends State<confectionery> {
       title: 'Pasta & Vermicilli',
       isselected: false,
     ),
-     singlecard(
+    singlecard(
       title: "Chips",
       isselected: false,
     ),
@@ -35,11 +36,11 @@ class _confectioneryState extends State<confectionery> {
       title: "Namkeen",
       isselected: false,
     ),
-     singlecard(
+    singlecard(
       title: "Health corner",
       isselected: false,
     ),
-     singlecard(
+    singlecard(
       title: 'Tomato ketchup & sauces',
       isselected: false,
     ),
@@ -107,7 +108,7 @@ class _confectioneryState extends State<confectionery> {
     }
 
     ;
-   Widget _showlist(BuildContext context, DocumentSnapshot doc) {
+    Widget _showlist(BuildContext context, DocumentSnapshot doc) {
       String oldprice = doc['oldprice'];
       String newprice = doc['newprice'];
       String productname = doc['name'];
@@ -186,8 +187,7 @@ class _confectioneryState extends State<confectionery> {
                     style: TextStyle(
                         fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.04,
-                        fontWeight: FontWeight.w400
-                        ),
+                        fontWeight: FontWeight.w400),
                   ),
                   Divider(
                     height: displayHeight(context) * 0.01,
@@ -195,7 +195,7 @@ class _confectioneryState extends State<confectionery> {
                   Text(
                     "quantity: $quantity",
                     style: TextStyle(
-                     // fontFamily: "Langar",
+                      // fontFamily: "Langar",
                       letterSpacing: displayWidth(context) * 0.002,
                       fontSize: displayWidth(context) * 0.04,
                     ),
@@ -208,7 +208,7 @@ class _confectioneryState extends State<confectionery> {
                       Text(
                         "₹ $oldprice",
                         style: TextStyle(
-                        //  fontFamily: "Langar",
+                          //  fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                           decoration: TextDecoration.lineThrough,
@@ -217,7 +217,7 @@ class _confectioneryState extends State<confectionery> {
                       Text(
                         "  ₹ $newprice",
                         style: TextStyle(
-                       //   fontFamily: "Langar",
+                          //   fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                         ),
@@ -228,7 +228,7 @@ class _confectioneryState extends State<confectionery> {
                   Text(
                     " ",
                     style: TextStyle(
-                       // fontFamily: "BreeSerif",
+                        // fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.045,
                         fontWeight: FontWeight.bold),
                   ),
@@ -242,7 +242,11 @@ class _confectioneryState extends State<confectionery> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                    addtofirebase(productname, image, oldprice, newprice, 1,0);
+                    SnackBar snackbar = SnackBar(
+                        content: Text(
+                            "$productname added successfully !!"));
+                    Scaffold.of(context).showSnackBar(snackbar);
+                    addtofirebase(productname, image, oldprice, newprice, 1, 0);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -264,16 +268,27 @@ class _confectioneryState extends State<confectionery> {
 
     ;
 
-
     return Scaffold(
         appBar: AppBar(
-          title: Text("Snacks & Confectionery",style: TextStyle(fontSize: displayWidth(context)*0.045),),
+          title: Text(
+            "Snacks & Confectionery",
+            style: TextStyle(fontSize: displayWidth(context) * 0.045),
+          ),
           leading: IconButton(
-            onPressed:()
-            {
+            onPressed: () {
               Navigator.pop(context);
-            } ,
-            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
+            },
+            icon: Icon(Icons.arrow_back_ios),
+            iconSize: displayWidth(context) * 0.045,
+          ),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => Cart()));
+                })
+          ],
         ),
         body: Stack(
           children: [
@@ -331,7 +346,7 @@ Future<void> getdatafromfirebase() async {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,int totalprice) async {
+    String newprice, int itemcount, int totalprice) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -344,6 +359,6 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Oldprice": oldprice,
     "Newprice": newprice,
     "Itemcount": itemcount,
-    "totalprice":totalprice,
+    "totalprice": totalprice,
   });
 }

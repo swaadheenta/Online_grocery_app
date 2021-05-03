@@ -1,3 +1,4 @@
+import 'package:Online_grocery_app/Cart.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +24,6 @@ class _appliancesState extends State<appliances> {
       title: "Knives, Peelers & Lighters",
       isselected: true,
     ),
-    
     singlecard(
       title: "Kitchen Tools",
       isselected: false,
@@ -36,7 +36,6 @@ class _appliancesState extends State<appliances> {
       title: "Spoons & Forks",
       isselected: false,
     ),
-
   ];
   var category = "Knives, Peelers & Lighters";
   @override
@@ -156,8 +155,7 @@ class _appliancesState extends State<appliances> {
                     style: TextStyle(
                         fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.04,
-                        fontWeight: FontWeight.w400
-                        ),
+                        fontWeight: FontWeight.w400),
                   ),
                   Divider(
                     height: displayHeight(context) * 0.01,
@@ -165,7 +163,7 @@ class _appliancesState extends State<appliances> {
                   Text(
                     "quantity: $quantity",
                     style: TextStyle(
-                     // fontFamily: "Langar",
+                      // fontFamily: "Langar",
                       letterSpacing: displayWidth(context) * 0.002,
                       fontSize: displayWidth(context) * 0.04,
                     ),
@@ -178,7 +176,7 @@ class _appliancesState extends State<appliances> {
                       Text(
                         "₹ $oldprice",
                         style: TextStyle(
-                        //  fontFamily: "Langar",
+                          //  fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                           decoration: TextDecoration.lineThrough,
@@ -187,7 +185,7 @@ class _appliancesState extends State<appliances> {
                       Text(
                         "  ₹ $newprice",
                         style: TextStyle(
-                       //   fontFamily: "Langar",
+                          //   fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                         ),
@@ -198,7 +196,7 @@ class _appliancesState extends State<appliances> {
                   Text(
                     " ",
                     style: TextStyle(
-                       // fontFamily: "BreeSerif",
+                        // fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.045,
                         fontWeight: FontWeight.bold),
                   ),
@@ -212,7 +210,11 @@ class _appliancesState extends State<appliances> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                    addtofirebase(productname, image, oldprice, newprice, 1,0);
+                    SnackBar snackbar = SnackBar(
+                        content: Text(
+                            "$productname added successfully !!"));
+                    Scaffold.of(context).showSnackBar(snackbar);
+                    addtofirebase(productname, image, oldprice, newprice, 1, 0);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -236,17 +238,28 @@ class _appliancesState extends State<appliances> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Kitchen Appliances",style: TextStyle(fontSize: displayWidth(context)*0.045),),
+          title: Text(
+            "Kitchen Appliances",
+            style: TextStyle(fontSize: displayWidth(context) * 0.045),
+          ),
           leading: IconButton(
-            onPressed:()
-            {
+            onPressed: () {
               Navigator.pop(context);
-            } ,
-            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
+            },
+            icon: Icon(Icons.arrow_back_ios),
+            iconSize: displayWidth(context) * 0.045,
+          ),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => Cart()));
+                })
+          ],
         ),
         body: Stack(
           children: [
-
             //  Whole Page !!
             Positioned(
                 child: Container(
@@ -304,7 +317,7 @@ Future<void> getdatafromfirebase() async {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,int totalprice) async {
+    String newprice, int itemcount, int totalprice) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -317,6 +330,6 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Oldprice": oldprice,
     "Newprice": newprice,
     "Itemcount": itemcount,
-    "totalprice":totalprice,
+    "totalprice": totalprice,
   });
 }
