@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+
+
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -23,12 +25,26 @@ class AuthService {
           email: email, password: password);
       User user = result.user;
       print(user);
+
       FirebaseFirestore.instance
           .collection("Users")
           .doc(user.uid.toString())
           .collection("Details")
           .doc(username)
-          .set({"name": username, "phoneno": phoneno,"price":0});
+          .set({"name": username, "phoneno": phoneno, "price": 0});
+      FirebaseFirestore.instance
+          .collection("Orders")
+          .doc(user.uid.toString())
+          .set({
+        "name": username,
+        "phoneno": phoneno,
+        "gender": "ebb",
+        "address": "hghjgjhh",
+        "id":user.uid.toString(),
+        "pending":false,
+        "completed":false,
+        
+      });
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());

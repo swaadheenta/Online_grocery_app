@@ -270,6 +270,41 @@ class _TeaState extends State<Tea> {
                   return _showlist(context,snapshot.data.docs[index]);
                                   });
                                 }
+                                 else
+                        {
+                          return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.wifi_off_outlined,
+                                size: displayWidth(context) * 0.15,
+                              ),
+                              Opacity(
+                                opacity: 0.0,
+                                child: Divider(
+                                  height: displayHeight(context) * 0.005,
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  "Please check your internet connection ...",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    //fontWeight: FontWeight.bold,
+                                    fontSize: displayWidth(context) * 0.055,
+                                    fontFamily: "PatuaOne",
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                        }
                               },)
                             ))
                           ],

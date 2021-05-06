@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formkey = GlobalKey<FormState>();
   String email = "";
   String password = "";
-  String error=" ";
+  String error = " ";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,42 +94,47 @@ class _LoginScreenState extends State<LoginScreen> {
                                 error =
                                     "Could Not sign in with those credentials !!";
                               });
-                            } 
-                            else {
-                              Navigator.push(
+                            } else {
+                              Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (Context) => Homepage()));
+                                      builder: (context) => Homepage()));
                             }
                           }
                         }),
-                        
                   ],
                 ),
               ),
             ),
           ),
-          Positioned( top: displayHeight(context)*0.71,
-            child: SizedBox(
-                          height: displayHeight(context)*0.1,
-                          child: Text(error,style: TextStyle(color: Colors.red),),
-                        ),),
           Positioned(
-            top: displayHeight(context)*0.9,
+            top: displayHeight(context) * 0.71,
+            child: SizedBox(
+              height: displayHeight(context) * 0.1,
+              child: Text(
+                error,
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          ),
+          Positioned(
+              top: displayHeight(context) * 0.9,
               child: Row(
-            children: [
-              Text("Don't have an account ? "),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (Context) => Register()));
-                  },
-                  child: Text(
-                    "Register Now",
-                    style: TextStyle(color: Colors.blue),
-                  )),
-            ],
-          ))
+                children: [
+                  Text("Don't have an account ? "),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (Context) => Register()));
+                      },
+                      child: Text(
+                        "Register Now",
+                        style: TextStyle(color: Colors.blue),
+                      )),
+                ],
+              ))
         ],
       ),
     );
