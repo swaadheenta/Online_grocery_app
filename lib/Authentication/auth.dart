@@ -31,7 +31,7 @@ class AuthService {
           .doc(user.uid.toString())
           .collection("Details")
           .doc(username)
-          .set({"name": username, "phoneno": phoneno, "price": 0});
+          .set({"name": username, "phoneno": phoneno, "price": 0, "email":email});
       FirebaseFirestore.instance
           .collection("Orders")
           .doc(user.uid.toString())
@@ -41,7 +41,7 @@ class AuthService {
         "gender": "ebb",
         "address": "hghjgjhh",
         "id":user.uid.toString(),
-        "pending":false,
+        "pending":true,
         "completed":false,
         
       });

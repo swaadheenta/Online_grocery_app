@@ -20,7 +20,6 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
 
-List<Map<String,String>>products=[];
 
    
     Future<void> getprice() async {
