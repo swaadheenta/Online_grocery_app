@@ -21,7 +21,8 @@ class _RegisterState extends State<Register> {
   String password = "";
   String username;
   String phoneno;
-  
+  String address;
+
   String error;
   @override
   Widget build(BuildContext context) {
@@ -94,7 +95,8 @@ class _RegisterState extends State<Register> {
                             ? "Username should be atleast 6 characters long"
                             : null,
                         decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.verified_user_rounded), hintText: "Username"),
+                            prefixIcon: Icon(Icons.verified_user_rounded),
+                            hintText: "Username"),
                         //obscureText: true,
                         onChanged: (val) {
                           setState(() {
@@ -110,7 +112,7 @@ class _RegisterState extends State<Register> {
                     Container(
                       width: displayWidth(context) * 0.8,
                       child: TextFormField(
-                        validator: (val) => val.length !=10
+                        validator: (val) => val.length != 10
                             ? "phoneno should be of 10 characters"
                             : null,
                         decoration: InputDecoration(
@@ -131,15 +133,15 @@ class _RegisterState extends State<Register> {
                         child: Text("Sign Up"),
                         onPressed: () async {
                           if (_formkey.currentState.validate()) {
-                            dynamic result = await _auth
-                                .registerWithEmailAndPassword(email, password,username,phoneno);
+                            dynamic result =
+                                await _auth.registerWithEmailAndPassword(email,
+                                    password, username, phoneno, address);
                             //  FirebaseFirestore.instance.collection("Users").doc("Helo").set({"name":"Happy"});
                             if (result == null) {
                               setState(() {
                                 error = "Please enter a valid email";
                               });
-                            }
-                              else {
+                            } else {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

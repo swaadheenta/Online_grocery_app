@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: displayHeight(context) * 0.65,
               width: displayWidth(context) * 1.0,
               color: Colors.white,
-              child: Form(
+              child:Form (
                 key: _formkey,
                 child: Column(
                   children: [

@@ -1,9 +1,6 @@
 import 'package:Online_grocery_app/Authentication/User.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-
 
 
 class AuthService {
@@ -19,7 +16,7 @@ class AuthService {
 
   // Register using email and password !!
   Future registerWithEmailAndPassword(
-      String email, String password, String username, String phoneno) async {
+      String email, String password, String username, String phoneno,String address) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -39,7 +36,7 @@ class AuthService {
         "name": username,
         "phoneno": phoneno,
         "gender": "ebb",
-        "address": "hghjgjhh",
+        "address": address,
         "id":user.uid.toString(),
         "pending":true,
         "completed":false,
