@@ -136,28 +136,32 @@ class _CartState extends State<Cart> {
             ),
           ),
           Positioned(
-              top: displayHeight(context) * 0.72,
+              top: displayHeight(context) * 0.68,
               child: Container(
-                  height: displayHeight(context) * 0.08,
+                  height: displayHeight(context) * 0.1,
                   width: displayWidth(context),
-                  color: Colors.black54,
+                  color: Colors.blueGrey[700],
                   child: Row(
                     children: [
+                    
+                        SizedBox(
+                        width: displayWidth(context) * 0.1,
+                       
+                      ), 
+
+                     
                       SizedBox(
-                        width: displayWidth(context) * 0.035,
-                      ),
-                      Text(
+                        width: displayWidth(context) * 0.55,
+                        child:  Text(
                         "Price : $total",
                         style: TextStyle(color: Colors.white),
                       ),
-                      SizedBox(
-                        width: displayWidth(context) * 0.45,
                       ),
                       RaisedButton(
-                          //  color: Colors.blue,
+                            color: Colors.green,
                           child: Text(
                             "Confirm Order",
-                            //style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () {
                             Navigator.push(

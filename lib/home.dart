@@ -1,6 +1,7 @@
 import 'package:Online_grocery_app/List.dart';
 import 'package:Online_grocery_app/Category/category.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
+import 'package:Online_grocery_app/Profile.dart';
 import 'package:Online_grocery_app/uhome.dart';
 import 'package:flutter/material.dart';
 import 'Cart.dart';
@@ -18,6 +19,7 @@ class _HomepageState extends State<Homepage> {
     Category(),
     Shoppinglist(),
     Cart(),
+    profile(),
   ];
 
   void ontap(int index) {
@@ -55,7 +57,7 @@ class _HomepageState extends State<Homepage> {
                       color: _selectedindex == 1 ? Colors.blue : Colors.grey),
                 ),
                 backgroundColor: Colors.white),
-            BottomNavigationBarItem(
+           BottomNavigationBarItem(
                 icon: Icon(Icons.list_alt,
                     color: _selectedindex == 2 ? Colors.blue : Colors.grey),
                 //label: "cart",
@@ -73,6 +75,16 @@ class _HomepageState extends State<Homepage> {
                   "Cart",
                   style: TextStyle(
                       color: _selectedindex == 3 ? Colors.blue : Colors.grey),
+                ),
+                backgroundColor: Colors.white),
+                  BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle,
+                    color: _selectedindex == 4 ? Colors.blue : Colors.grey),
+                //label: "Search",
+                title: Text(
+                  "Profile",
+                  style: TextStyle(
+                      color: _selectedindex == 4 ? Colors.blue : Colors.grey),
                 ),
                 backgroundColor: Colors.white)
           ],

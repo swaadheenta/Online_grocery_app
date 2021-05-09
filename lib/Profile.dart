@@ -11,70 +11,68 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
-
   String name = "";
- // String email = "";
+  // String email = "";
   String phoneno = "";
   String gender = "";
   String address = "";
+  String delivery = "";
   //String weight = "";
 
   Future<String> getpersonalinfo() async {
     var docname = FirebaseAuth.instance.currentUser.uid.toString();
-    DocumentSnapshot ds =
-        await FirebaseFirestore.instance.collection("Orders").doc(docname).get();
+    DocumentSnapshot ds = await FirebaseFirestore.instance
+        .collection("Orders")
+        .doc(docname)
+        .get();
     setState(() {
       name = ds["name"];
-      //email = ds["email"];
+     
       phoneno = ds["phoneno"];
-      //height = ds["height"];
-      //weight = ds["weight"];
-      //age = ds["age"];
-       gender = ds["gender"];
-       address  = ds["address"];
-
-      
+    
+      gender = ds["gender"];
+      address = ds["address"];
+      if (ds["pending"] == false)
+        delivery = "Not yet delivered";
+      else
+        delivery = "Delivered !!";
     });
 
     return "yes";
   }
 
-
   Future addnametofirebase() async {
-    var docname = FirebaseAuth.instance.currentUser.uid.toString();
+    var docname = FirebaseAuth.instance.currentUser.uid;
+    print(docname);
     await FirebaseFirestore.instance
         .collection("Orders")
         .doc(docname)
-        .update({"name": name});
-
- 
+        .update({"name": name, "hello": "world"});
   }
 
   Future addphonenotofirebase() async {
     var docname = FirebaseAuth.instance.currentUser.uid.toString();
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Orders")
         .doc(docname)
         .update({"phoneno": phoneno});
   }
 
   Future addaddresstofirebase() async {
-    var docname = FirebaseAuth.instance.currentUser.uid.toString();
+    var docname = FirebaseAuth.instance.currentUser.uid;
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Orders")
         .doc(docname)
         .update({"address": address});
   }
 
   Future addgendertofirebase() async {
-    var docname = FirebaseAuth.instance.currentUser.uid.toString();
+    var docname = FirebaseAuth.instance.currentUser.uid;
     await FirebaseFirestore.instance
-        .collection("Users")
+        .collection("Orders")
         .doc(docname)
         .update({"gender": gender});
   }
-
-  
 
   Future<void> _displayTextInputDialogofname(BuildContext context) async {
     String codeDialog;
@@ -161,7 +159,7 @@ class _profileState extends State<profile> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Enter your age'),
+            title: Text('Enter your address'),
             content: TextField(
               onChanged: (value) {
                 setState(() {
@@ -228,10 +226,23 @@ class _profileState extends State<profile> {
         });
   }
 
-  
+  Future<String> getdeliverystatus() async {
+    var docname = FirebaseAuth.instance.currentUser.uid;
+    DocumentSnapshot ds = await FirebaseFirestore.instance
+        .collection("Orders")
+        .doc(docname)
+        .get();
+
+    bool ans = ds.data()["pending"];
+    if (ans == true) {
+      return "Not yet delivered";
+    } else
+      return "Delivered";
+  }
 
   @override
   Widget build(BuildContext context) {
+    getpersonalinfo();
     return Scaffold(
       body: Stack(alignment: Alignment.center, children: [
         Positioned(
@@ -248,17 +259,7 @@ class _profileState extends State<profile> {
             width: displayWidth(context),
           ),
         ),
-        Positioned(
-            top: displayHeight(context) * 0.05,
-            left: displayWidth(context) * 0.015,
-            child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
-                ))),
+       
         Positioned(
             top: displayHeight(context) * 0.1,
             child: Column(children: [
@@ -274,17 +275,12 @@ class _profileState extends State<profile> {
                     color: Colors.white,
                     fontSize: displayWidth(context) * 0.04),
               ),
-              /*Text(
-                email,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: displayWidth(context) * 0.04),
-              ),*/
+            
             ])),
         Positioned(
-          top: displayHeight(context) * 0.41,
+          top: displayHeight(context) * 0.38,
           child: Container(
-            height: displayHeight(context) * 0.58,
+            height: displayHeight(context) * 0.525,
             width: displayWidth(context),
             child: SingleChildScrollView(
               child: Column(
@@ -359,7 +355,7 @@ class _profileState extends State<profile> {
                     ),
                   ),
                   Divider(),
-                  //Card displaying age !!
+                  //Card displaying address !!
                   Card(
                     elevation: 10.0,
                     child: Container(
@@ -394,7 +390,7 @@ class _profileState extends State<profile> {
                     ),
                   ),
                   Divider(),
-                  //Card displaying height !!
+                  //Card displaying gender !!
                   Card(
                     elevation: 10.0,
                     child: Container(
@@ -429,7 +425,33 @@ class _profileState extends State<profile> {
                     ),
                   ),
                   Divider(),
-                
+
+                  //card displaying confirmation status !!
+                  Card(
+                    elevation: 10.0,
+                    child: Container(
+                      height: displayHeight(context) * 0.135,
+                      width: displayWidth(context) * 0.9,
+                      child: Stack(children: [
+                        Positioned(
+                            left: displayWidth(context) * 0.05,
+                            top: displayHeight(context) * 0.025,
+                            child: Text(
+                              "Order Status :",
+                              style: TextStyle(
+                                  fontSize: displayWidth(context) * 0.045),
+                            )),
+                        Positioned(
+                            right: displayWidth(context) * 0.05,
+                            top: displayHeight(context) * 0.025,
+                            child: Text(
+                              delivery,
+                              style: TextStyle(
+                                  fontSize: displayWidth(context) * 0.045),
+                            )),
+                      ]),
+                    ),
+                  ),
                 ],
               ),
             ),
