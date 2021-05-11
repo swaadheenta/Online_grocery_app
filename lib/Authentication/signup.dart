@@ -31,11 +31,18 @@ class _signupState extends State<signup> {
       Card(
           elevation: 10.0,
           child: Container(
-              height: displayHeight(context) * 0.075,
+              height: displayHeight(context) * 0.1,
               child: Column(
                 children: [
+                     Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("GROCERY ",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold),),
+                      Text("STORE",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold,color: Colors.orange)),
+                    ],
+                  ),
                   Divider(
-                    height: displayHeight(context) * 0.02,
+                    height: displayHeight(context) * 0.03,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -73,12 +80,13 @@ class _signupState extends State<signup> {
               ))),
       !loginisselected
           ? Container(
-              height: displayHeight(context) * 0.95,
+              height: displayHeight(context) * 0.9,
               width: displayWidth(context),
               child: Form(
                 key: _formkey,
                 child: Column(
                   children: [
+                   
                     SizedBox(
                       height: displayHeight(context) * 0.02,
                       width: displayWidth(context),
@@ -258,7 +266,7 @@ class _signupState extends State<signup> {
                               error = "Please enter a valid email";
                             });
                           } else {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (Context) => Homepage()));

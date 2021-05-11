@@ -1,3 +1,4 @@
+import 'package:Online_grocery_app/Cart.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -203,6 +204,10 @@ class _FreshnersState extends State<Freshners> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
+                     SnackBar snackbar = SnackBar(
+                        content: Text(
+                            "$productname added successfully !!"));
+                    Scaffold.of(context).showSnackBar(snackbar);
                     addtofirebase(productname, image, oldprice, newprice, 1,0);
                   },
                   child: Container(
@@ -234,6 +239,14 @@ class _FreshnersState extends State<Freshners> {
               Navigator.pop(context);
             } ,
             icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
+             actions: [
+            IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => Cart()));
+                })
+          ],
         ),
         body: Stack(
           children: [
@@ -273,6 +286,41 @@ class _FreshnersState extends State<Freshners> {
                                 return _showlist(
                                     context, snapshot.data.docs[index]);
                               });
+                        }
+                         else
+                        {
+                          return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.wifi_off_outlined,
+                                size: displayWidth(context) * 0.15,
+                              ),
+                              Opacity(
+                                opacity: 0.0,
+                                child: Divider(
+                                  height: displayHeight(context) * 0.005,
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  "Please check your internet connection ...",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    //fontWeight: FontWeight.bold,
+                                    fontSize: displayWidth(context) * 0.055,
+                                    fontFamily: "PatuaOne",
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
                         }
                       },
                     )))

@@ -19,9 +19,16 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> displayinputdialogofconfirm(BuildContext context) async {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Your order has been confirmed"),
+            );
+          });
+    }
 
-
-   
     Future<void> getprice() async {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection("Users")
@@ -32,7 +39,7 @@ class _CartState extends State<Cart> {
       total = 0;
       for (int i = 0; i < querySnapshot.size; i++) {
         var a = querySnapshot.docs[i];
-       // print(a["totalprice"]);
+        // print(a["totalprice"]);
         setState(() {
           total = total + a["totalprice"];
         });
@@ -140,34 +147,27 @@ class _CartState extends State<Cart> {
               child: Container(
                   height: displayHeight(context) * 0.1,
                   width: displayWidth(context),
-                  color: Colors.blueGrey[700],
+                  color: Colors.black54,
                   child: Row(
                     children: [
-                    
-                        SizedBox(
+                      SizedBox(
                         width: displayWidth(context) * 0.1,
-                       
-                      ), 
-
-                     
+                      ),
                       SizedBox(
                         width: displayWidth(context) * 0.55,
-                        child:  Text(
-                        "Price : $total",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                        child: Text(
+                          "Price : $total",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       RaisedButton(
-                            color: Colors.green,
+                          color: Colors.green,
                           child: Text(
                             "Confirm Order",
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Homepage()));
+                            displayinputdialogofconfirm(context);
                           })
                     ],
                   ))),
@@ -176,4 +176,3 @@ class _CartState extends State<Cart> {
     );
   }
 }
-

@@ -20,11 +20,6 @@ class _firstState extends State<first> {
   String password = "";
   String error = " ";
   bool _obscureText = true;
-  void _toggle() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +28,16 @@ class _firstState extends State<first> {
       Card(
           elevation: 10.0,
           child: Container(
-              height: displayHeight(context) * 0.362,
+              height: displayHeight(context) * 0.4,
               child: Column(
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("GROCERY ",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold),),
+                      Text("STORE",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold,color: Colors.orange)),
+                    ],
+                  ),
                   Container(
                       height: displayHeight(context) * 0.3,
                       width: displayWidth(context),
@@ -88,7 +90,7 @@ class _firstState extends State<first> {
               ))),
       loginisselected
           ? Container(
-              height: displayHeight(context) * 0.638,
+              height: displayHeight(context) * 0.6,
               width: displayWidth(context),
               child: Form(
                 key: _formkey,

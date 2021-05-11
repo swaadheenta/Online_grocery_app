@@ -1,3 +1,4 @@
+import 'package:Online_grocery_app/Cart.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -197,6 +198,10 @@ class _biscuitsState extends State<biscuits> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
+                     SnackBar snackbar = SnackBar(
+                        content: Text(
+                            "$productname added successfully !!"));
+                    Scaffold.of(context).showSnackBar(snackbar);
                     addtofirebase(productname, image, oldprice, newprice, 1,0);
                   },
                   child: Container(
@@ -229,6 +234,14 @@ class _biscuitsState extends State<biscuits> {
               Navigator.pop(context);
             } ,
             icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
+             actions: [
+            IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => Cart()));
+                })
+          ],
         ),
       body: Stack(
         children: [

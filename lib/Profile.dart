@@ -32,7 +32,7 @@ class _profileState extends State<profile> {
     
       gender = ds["gender"];
       address = ds["address"];
-      if (ds["pending"] == false)
+      if (ds["pending"] == true)
         delivery = "Not yet delivered";
       else
         delivery = "Delivered !!";
