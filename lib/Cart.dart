@@ -1,5 +1,6 @@
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:Online_grocery_app/home.dart';
+import 'package:Online_grocery_app/payment.dart';
 import 'package:Online_grocery_app/uhome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,6 +26,15 @@ class _CartState extends State<Cart> {
           builder: (context) {
             return AlertDialog(
               title: Text("Your order has been confirmed"),
+              actions: [
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Payment()));
+                  },
+                  child: Text("Proceed to Payment"),
+                )
+              ],
             );
           });
     }
@@ -45,7 +55,23 @@ class _CartState extends State<Cart> {
         });
       }
 
-      //print("total=$total");
+      QuerySnapshot ds = await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user)
+          .collection("Details")
+          .get();
+
+      var s = ds.docs[0];
+      var docname = s["name"];
+
+      print(docname);
+
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user)
+          .collection("Details")
+          .doc(docname)
+          .update({"price": total});
     }
 
     Widget finalprice(BuildContext context, doc) {
