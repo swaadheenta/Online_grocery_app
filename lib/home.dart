@@ -19,7 +19,7 @@ class _HomepageState extends State<Homepage> {
     Category(),
     Shoppinglist(),
     Cart(),
-  //  profile(),
+   profile(),
   ];
 
   void ontap(int index) {
@@ -77,7 +77,7 @@ class _HomepageState extends State<Homepage> {
                       color: _selectedindex == 3 ? Colors.blue : Colors.grey),
                 ),
                 backgroundColor: Colors.white),
-                  /*BottomNavigationBarItem(
+                  BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle,
                     color: _selectedindex == 4 ? Colors.blue : Colors.grey),
                 //label: "Search",
@@ -86,7 +86,7 @@ class _HomepageState extends State<Homepage> {
                   style: TextStyle(
                       color: _selectedindex == 4 ? Colors.blue : Colors.grey),
                 ),
-                backgroundColor: Colors.white)*/
+                backgroundColor: Colors.white)
           ],
           currentIndex: _selectedindex,
           onTap: ontap,

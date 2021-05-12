@@ -13,10 +13,35 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   var user = FirebaseAuth.instance.currentUser.uid.toString();
-  var i, finalans;
+  var i;
+  var finalans = 0;
 
   var ans = 0;
   var total = 0;
+
+  /* Future<void> getprice() async {
+      print("getprice");
+      QuerySnapshot q = await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user)
+          .collection("Details")
+          .get();
+
+      var a = q.docs[0];
+
+    
+        finalans = a["price"];
+   
+
+
+
+
+     
+
+      
+
+      print("finalans is $finalans");
+    }*/
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +51,30 @@ class _CartState extends State<Cart> {
           builder: (context) {
             return AlertDialog(
               title: Text("Your order has been confirmed"),
-              actions: [
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Payment()));
-                  },
-                  child: Text("Proceed to Payment"),
-                )
-              ],
+              content: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Payment()));
+                },
+                child: Container(
+                  width: displayWidth(context)*0.3,
+                  height: displayHeight(context)*0.06,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text(
+                      "Proceed to Payment",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: displayWidth(context) * 0.045),
+                    ),
+                  ),
+                ),
+              ),
             );
           });
     }
 
-    Future<void> getprice() async {
+    Future<void> calculateprice() async {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection("Users")
           .doc(user)
@@ -50,9 +85,8 @@ class _CartState extends State<Cart> {
       for (int i = 0; i < querySnapshot.size; i++) {
         var a = querySnapshot.docs[i];
         // print(a["totalprice"]);
-        setState(() {
-          total = total + a["totalprice"];
-        });
+
+        total = total + a["totalprice"];
       }
 
       QuerySnapshot ds = await FirebaseFirestore.instance
@@ -65,14 +99,30 @@ class _CartState extends State<Cart> {
       var docname = s["name"];
 
       print(docname);
+      print("total=$total");
 
-      await FirebaseFirestore.instance
+      FirebaseFirestore.instance
           .collection("Users")
           .doc(user)
           .collection("Details")
           .doc(docname)
           .update({"price": total});
     }
+
+    /*Future<void> getprice() async {
+      print("getprice");
+      QuerySnapshot q = await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user)
+          .collection("Details")
+          .get();
+
+      var a = q.docs[0];
+
+      finalans = a["price"];
+
+      print("finalans is $finalans");
+    }*/
 
     Widget finalprice(BuildContext context, doc) {
       ans = int.parse(doc['Newprice']) * doc['Itemcount'];
@@ -84,7 +134,9 @@ class _CartState extends State<Cart> {
           .collection("Products")
           .doc(title)
           .update({"totalprice": ans});
-      getprice();
+      calculateprice();
+      //getprice();
+
       return Card(
         elevation: 10.0,
         child: Container(
@@ -169,34 +221,39 @@ class _CartState extends State<Cart> {
             ),
           ),
           Positioned(
-              top: displayHeight(context) * 0.68,
+              top: displayHeight(context) * 0.72,
+              left: displayWidth(context) * 0.2,
               child: Container(
-                  height: displayHeight(context) * 0.1,
-                  width: displayWidth(context),
+                  height: displayHeight(context) * 0.075,
+                  width: displayWidth(context) * 0.6,
                   color: Colors.black54,
-                  child: Row(
+                  child:
+                      /*Row(
                     children: [
                       SizedBox(
-                        width: displayWidth(context) * 0.1,
-                      ),
-                      SizedBox(
+                        width: displayWidth(context) * 0.65,
+                      ),*/
+                      /* SizedBox(
                         width: displayWidth(context) * 0.55,
                         child: Text(
-                          "Price : $total",
+                          "Price : $finalans",
                           style: TextStyle(color: Colors.white),
                         ),
-                      ),
+                      ),*/
                       RaisedButton(
                           color: Colors.green,
                           child: Text(
                             "Confirm Order",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: displayWidth(context) * 0.045),
                           ),
                           onPressed: () {
                             displayinputdialogofconfirm(context);
                           })
-                    ],
-                  ))),
+                  // ],
+                  ))
+          //),
         ],
       ),
     );

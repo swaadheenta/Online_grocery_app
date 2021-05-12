@@ -391,40 +391,7 @@ class _profileState extends State<profile> {
                   ),
                   Divider(),
                   //Card displaying gender !!
-                  Card(
-                    elevation: 10.0,
-                    child: Container(
-                      height: displayHeight(context) * 0.135,
-                      width: displayWidth(context) * 0.9,
-                      child: Stack(children: [
-                        Positioned(
-                            left: displayWidth(context) * 0.05,
-                            top: displayHeight(context) * 0.025,
-                            child: Text(
-                              "Gender :",
-                              style: TextStyle(
-                                  fontSize: displayWidth(context) * 0.045),
-                            )),
-                        Positioned(
-                            right: displayWidth(context) * 0.05,
-                            top: displayHeight(context) * 0.025,
-                            child: Text(
-                              gender,
-                              style: TextStyle(
-                                  fontSize: displayWidth(context) * 0.045),
-                            )),
-                        Positioned(
-                            right: displayWidth(context) * 0.05,
-                            bottom: displayHeight(context) * 0.01,
-                            child: IconButton(
-                              onPressed: () =>
-                                  _displayTextInputDialogofgender(context),
-                              icon: Icon(Icons.edit),
-                            )),
-                      ]),
-                    ),
-                  ),
-                  Divider(),
+                 
 
                   //card displaying confirmation status !!
                   Card(

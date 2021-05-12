@@ -8,6 +8,7 @@ import 'package:Online_grocery_app/All%20Categories/household.dart';
 import 'package:Online_grocery_app/All%20Categories/masala.dart';
 import 'package:Online_grocery_app/All%20Categories/sn&C.dart';
 import 'package:Online_grocery_app/Authentication/Login.dart';
+import 'package:Online_grocery_app/Authentication/firstscreen.dart';
 import 'package:Online_grocery_app/Cart.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -53,7 +54,7 @@ class _ushomeState extends State<ushome> {
                 icon: Icon(Icons.logout),
                 onPressed: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                      context, MaterialPageRoute(builder: (context) => first()));
                 })
           ],
         ),
