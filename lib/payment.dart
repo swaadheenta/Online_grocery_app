@@ -1,4 +1,7 @@
+import 'package:Online_grocery_app/Authentication/firstscreen.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
+import 'package:Online_grocery_app/Profile.dart';
+import 'package:Online_grocery_app/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,50 +33,83 @@ class _PaymentState extends State<Payment> {
     print("finalans is $finalans");
   }
 
-  Future<void> displayinputdialogofconfirm(BuildContext context) async {
-    return showDialog(
+  Future<void> displaymodalsheetofpay(BuildContext context) async {
+    return showModalBottomSheet(
         context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text("Thank you for shopping"),
-            content: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Payment()));
-              },
-              child: Row(
-                children: [
-                  Container(
-                    width: displayWidth(context) * 0.2,
-                    height: displayHeight(context) * 0.06,
-                    color: Colors.blue,
-                    child: Center(
-                      child: Text(
-                        "Edit details",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: displayWidth(context) * 0.045),
+        builder: (BuildContext context) {
+          return Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                Color(0xffbDE6262),
+                Color(0xffbFFB88C),
+              ]),
+            ),
+            height: displayHeight(context) * 0.2,
+            width: displayWidth(context),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: displayHeight(context) * 0.02,
+                ),
+                Text(
+                  "Thanks for shopping !!",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: displayWidth(context) * 0.045),
+                ),
+                SizedBox(
+                  height: displayHeight(context) * 0.05,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => profile()));
+                      },
+                      child: Card(
+                        elevation: 10.0,
+                        child: Container(
+                          height: displayHeight(context) * 0.045,
+                          width: displayWidth(context) * 0.25,
+                          child: Center(child: Text("Edit Details")),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: displayWidth(context)*0.1,
-                  ),
-                  Container(
-                    width: displayWidth(context) * 0.2,
-                    height: displayHeight(context) * 0.06,
-                    color: Colors.blue,
-                    child: Center(
-                      child: Text(
-                        "Continue Shopping",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: displayWidth(context) * 0.045),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Homepage()));
+                      },
+                      child: Card(
+                        elevation: 10.0,
+                        child: Container(
+                          height: displayHeight(context) * 0.045,
+                          width: displayWidth(context) * 0.35,
+                          child: Center(child: Text("Continue Shopping")),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => first()));
+                      },
+                      child: Card(
+                        elevation: 10.0,
+                        child: Container(
+                          height: displayHeight(context) * 0.045,
+                          width: displayWidth(context) * 0.25,
+                          child: Center(child: Text("Log Out")),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
           );
         });
@@ -165,7 +201,7 @@ class _PaymentState extends State<Payment> {
           Center(
             child: GestureDetector(
               onTap: () {
-                displayinputdialogofconfirm(context);
+                displaymodalsheetofpay(context);
               },
               child: Container(
                 height: displayHeight(context) * 0.065,

@@ -19,30 +19,6 @@ class _CartState extends State<Cart> {
   var ans = 0;
   var total = 0;
 
-  /* Future<void> getprice() async {
-      print("getprice");
-      QuerySnapshot q = await FirebaseFirestore.instance
-          .collection("Users")
-          .doc(user)
-          .collection("Details")
-          .get();
-
-      var a = q.docs[0];
-
-    
-        finalans = a["price"];
-   
-
-
-
-
-     
-
-      
-
-      print("finalans is $finalans");
-    }*/
-
   @override
   Widget build(BuildContext context) {
     Future<void> displayinputdialogofconfirm(BuildContext context) async {
@@ -55,10 +31,11 @@ class _CartState extends State<Cart> {
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Payment()));
+                 Navigator.pop(context);
                 },
                 child: Container(
-                  width: displayWidth(context)*0.3,
-                  height: displayHeight(context)*0.06,
+                  width: displayWidth(context) * 0.3,
+                  height: displayHeight(context) * 0.06,
                   color: Colors.blue,
                   child: Center(
                     child: Text(
@@ -108,21 +85,6 @@ class _CartState extends State<Cart> {
           .doc(docname)
           .update({"price": total});
     }
-
-    /*Future<void> getprice() async {
-      print("getprice");
-      QuerySnapshot q = await FirebaseFirestore.instance
-          .collection("Users")
-          .doc(user)
-          .collection("Details")
-          .get();
-
-      var a = q.docs[0];
-
-      finalans = a["price"];
-
-      print("finalans is $finalans");
-    }*/
 
     Widget finalprice(BuildContext context, doc) {
       ans = int.parse(doc['Newprice']) * doc['Itemcount'];
@@ -198,7 +160,7 @@ class _CartState extends State<Cart> {
           Positioned(
             top: displayHeight(context) * 0.015,
             child: Container(
-              height: displayHeight(context) * 0.7,
+              height: displayHeight(context) * 0.735,
               width: displayWidth(context),
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
@@ -221,39 +183,23 @@ class _CartState extends State<Cart> {
             ),
           ),
           Positioned(
-              top: displayHeight(context) * 0.72,
-              left: displayWidth(context) * 0.2,
+              top: displayHeight(context) * 0.753,
+              left: displayWidth(context) * 0.25,
               child: Container(
-                  height: displayHeight(context) * 0.075,
-                  width: displayWidth(context) * 0.6,
+                  height: displayHeight(context) * 0.055,
+                  width: displayWidth(context) * 0.5,
                   color: Colors.black54,
-                  child:
-                      /*Row(
-                    children: [
-                      SizedBox(
-                        width: displayWidth(context) * 0.65,
-                      ),*/
-                      /* SizedBox(
-                        width: displayWidth(context) * 0.55,
-                        child: Text(
-                          "Price : $finalans",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),*/
-                      RaisedButton(
-                          color: Colors.green,
-                          child: Text(
-                            "Confirm Order",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: displayWidth(context) * 0.045),
-                          ),
-                          onPressed: () {
-                            displayinputdialogofconfirm(context);
-                          })
-                  // ],
-                  ))
-          //),
+                  child: RaisedButton(
+                      color: Colors.green,
+                      child: Text(
+                        "Confirm Order",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: displayWidth(context) * 0.045),
+                      ),
+                      onPressed: () {
+                        displayinputdialogofconfirm(context);
+                      })))
         ],
       ),
     );

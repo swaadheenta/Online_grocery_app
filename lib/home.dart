@@ -39,7 +39,7 @@ class _HomepageState extends State<Homepage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home,
                     color: _selectedindex == 0 ? Colors.blue : Colors.grey),
-                // label: "Home",
+               
 
                 backgroundColor: Colors.white,
                 title: Text(
@@ -50,7 +50,7 @@ class _HomepageState extends State<Homepage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.category,
                     color: _selectedindex == 1 ? Colors.blue : Colors.grey),
-                //label: "Categories",
+             
                 title: Text(
                   "Categories",
                   style: TextStyle(
@@ -60,7 +60,7 @@ class _HomepageState extends State<Homepage> {
            BottomNavigationBarItem(
                 icon: Icon(Icons.list_alt,
                     color: _selectedindex == 2 ? Colors.blue : Colors.grey),
-                //label: "cart",
+              
                 title: Text(
                   "List",
                   style: TextStyle(
@@ -70,7 +70,7 @@ class _HomepageState extends State<Homepage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_basket,
                     color: _selectedindex == 3 ? Colors.blue : Colors.grey),
-                //label: "Search",
+                
                 title: Text(
                   "Cart",
                   style: TextStyle(
@@ -80,7 +80,7 @@ class _HomepageState extends State<Homepage> {
                   BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle,
                     color: _selectedindex == 4 ? Colors.blue : Colors.grey),
-                //label: "Search",
+              
                 title: Text(
                   "Profile",
                   style: TextStyle(
