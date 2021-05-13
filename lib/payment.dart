@@ -63,22 +63,10 @@ class _PaymentState extends State<Payment> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                  
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => profile()));
-                      },
-                      child: Card(
-                        elevation: 10.0,
-                        child: Container(
-                          height: displayHeight(context) * 0.045,
-                          width: displayWidth(context) * 0.25,
-                          child: Center(child: Text("Edit Details")),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
+                        Navigator.of(context).popUntil((route) => route.isFirst);
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -95,6 +83,7 @@ class _PaymentState extends State<Payment> {
                     ),
                     GestureDetector(
                       onTap: () {
+                        Navigator.of(context).popUntil((route) => route.isFirst);
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) => first()));
                       },
@@ -203,17 +192,37 @@ class _PaymentState extends State<Payment> {
               onTap: () {
                 displaymodalsheetofpay(context);
               },
-              child: Container(
-                height: displayHeight(context) * 0.065,
-                width: displayWidth(context) * 0.8,
-                color: Colors.red,
-                child: Center(
-                    child: Text(
-                  "Pay Rs $finalans",
-                  style: TextStyle(
-                      fontSize: displayWidth(context) * 0.055,
-                      color: Colors.white),
-                )),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    height: displayHeight(context) * 0.065,
+                    width: displayWidth(context) * 0.4,
+                    color: Colors.red,
+                    child: Center(
+                        child: Text(
+                      "Pay Rs $finalans",
+                      style: TextStyle(
+                          fontSize: displayWidth(context) * 0.055,
+                          color: Colors.white),
+                    )),
+                  ),
+                 
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => profile()));
+                      },
+                      child: Card(
+                        elevation: 10.0,
+                        child: Container(
+                          height: displayHeight(context) * 0.045,
+                          width: displayWidth(context) * 0.25,
+                          child: Center(child: Text("Edit Details")),
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
           ),

@@ -29,9 +29,9 @@ class _CartState extends State<Cart> {
               title: Text("Your order has been confirmed"),
               content: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
+                  Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => Payment()));
-                 Navigator.pop(context);
+                
                 },
                 child: Container(
                   width: displayWidth(context) * 0.3,
@@ -160,7 +160,7 @@ class _CartState extends State<Cart> {
           Positioned(
             top: displayHeight(context) * 0.015,
             child: Container(
-              height: displayHeight(context) * 0.735,
+              height: displayHeight(context) * 0.675,
               width: displayWidth(context),
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
@@ -183,7 +183,7 @@ class _CartState extends State<Cart> {
             ),
           ),
           Positioned(
-              top: displayHeight(context) * 0.753,
+              top: displayHeight(context) * 0.7,
               left: displayWidth(context) * 0.25,
               child: Container(
                   height: displayHeight(context) * 0.055,

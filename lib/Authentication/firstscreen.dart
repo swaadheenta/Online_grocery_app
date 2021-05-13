@@ -118,9 +118,7 @@ class _firstState extends State<first> {
                                 val.isEmpty ? "Enter an email" : null,
                             decoration: InputDecoration(
 
-                                // prefixIcon: Icon(Icons.email), hintText: "Email",
-                                // labelText: "Email",
-                                // alignLabelWithHint: true
+                             
                                 ),
                             onChanged: (val) {
                               setState(() {
@@ -180,6 +178,7 @@ class _firstState extends State<first> {
                                 "Could Not sign in with those credentials !!";
                           });
                         } else {
+                          Navigator.of(context).popUntil((route) => route.isFirst);
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

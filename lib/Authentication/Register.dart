@@ -142,7 +142,8 @@ class _RegisterState extends State<Register> {
                                 error = "Please enter a valid email";
                               });
                             } else {
-                              Navigator.push(
+                              Navigator.of(context).popUntil((route) => route.isFirst);
+                              Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (Context) => Homepage()));

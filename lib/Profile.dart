@@ -251,6 +251,7 @@ class _profileState extends State<profile> {
             width: displayWidth(context),
           ),
         ),
+        
         Positioned(
           top: 0.0,
           child: Container(

@@ -34,11 +34,20 @@ class _signupState extends State<signup> {
               height: displayHeight(context) * 0.1,
               child: Column(
                 children: [
-                     Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("GROCERY ",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold),),
-                      Text("STORE",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold,color: Colors.orange)),
+                      Text(
+                        "GROCERY ",
+                        style: TextStyle(
+                            fontSize: displayWidth(context) * 0.055,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text("STORE",
+                          style: TextStyle(
+                              fontSize: displayWidth(context) * 0.055,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange)),
                     ],
                   ),
                   Divider(
@@ -51,7 +60,7 @@ class _signupState extends State<signup> {
                           onTap: () {
                             setState(() {
                               loginisselected = true;
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => first()));
@@ -86,7 +95,6 @@ class _signupState extends State<signup> {
                 key: _formkey,
                 child: Column(
                   children: [
-                   
                     SizedBox(
                       height: displayHeight(context) * 0.02,
                       width: displayWidth(context),
@@ -176,7 +184,7 @@ class _signupState extends State<signup> {
                             validator: (val) => val.length == 0
                                 ? "Address cannot be empty"
                                 : null,
-                            obscureText: true,
+                            //   obscureText: true,
                             onChanged: (val) {
                               setState(() {
                                 address = val;
@@ -207,8 +215,8 @@ class _signupState extends State<signup> {
                             validator: (val) => val.length == 10
                                 ? null
                                 : "Phone number should consists of 10 characters onlu",
-                           
-                            obscureText: true,
+
+                            //  obscureText: true,
                             onChanged: (val) {
                               setState(() {
                                 phoneno = val;
@@ -239,8 +247,8 @@ class _signupState extends State<signup> {
                             validator: (val) => val.length < 6
                                 ? "Username should consist of atleast 6 characters"
                                 : null,
-                        
-                            obscureText: true,
+
+                            // obscureText: true,
                             onChanged: (val) {
                               setState(() {
                                 username = val;
@@ -251,7 +259,7 @@ class _signupState extends State<signup> {
                       ),
                     ),
                     SizedBox(
-                      height: displayHeight(context) * 0.04,
+                      height: displayHeight(context) * 0.045,
                       width: displayWidth(context) * 0.8,
                     ),
                     GestureDetector(
@@ -259,7 +267,7 @@ class _signupState extends State<signup> {
                         if (_formkey.currentState.validate()) {
                           dynamic result =
                               await _auth.registerWithEmailAndPassword(
-                                  email, password, username, phoneno,address);
+                                  email, password, username, phoneno, address);
                           //  FirebaseFirestore.instance.collection("Users").doc("Helo").set({"name":"Happy"});
                           if (result == null) {
                             setState(() {
@@ -269,7 +277,7 @@ class _signupState extends State<signup> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (Context) => Homepage()));
+                                    builder: (context) => Homepage()));
                           }
                         }
                       },
