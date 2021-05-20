@@ -83,7 +83,7 @@ class _CategoryState extends State<Category> {
           Positioned(
             top: displayHeight(context) * 0.02,
             child: Container(
-              height: displayHeight(context) * 0.78,
+              height: displayHeight(context) * 0.75,
               width: displayWidth(context),
               child: ListView(
                 children:

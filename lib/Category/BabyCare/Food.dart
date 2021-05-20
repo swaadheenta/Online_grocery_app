@@ -130,29 +130,30 @@ class _foodState extends State<food> {
               ),
             ),
           ),
-             stock==false?
-             
-                
-                       Positioned(
-               left: displayWidth(context) * 0.05,
-              top: displayHeight(context) * 0.1,
-              child: Card(
-                elevation: 10.0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  border: Border.all(color:  Colors.grey),
-                                ),
-                height: displayHeight(context)*0.035,
-                width: displayWidth(context)*0.38,
-                child: Center(child: Text("OUT OF STOCK",
-               // style: TextStyle(color: Colors.grey)
-                )),
-
-            ),
-              )):Container(height: displayHeight(context)*0.0,width: displayWidth(context)*0.0,),
-             
-          
+          stock == false
+              ? Positioned(
+                  left: displayWidth(context) * 0.05,
+                  top: displayHeight(context) * 0.1,
+                  child: Card(
+                    elevation: 10.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      height: displayHeight(context) * 0.035,
+                      width: displayWidth(context) * 0.38,
+                      child: Center(
+                          child: Text(
+                        "OUT OF STOCK",
+                        // style: TextStyle(color: Colors.grey)
+                      )),
+                    ),
+                  ))
+              : Container(
+                  height: displayHeight(context) * 0.0,
+                  width: displayWidth(context) * 0.0,
+                ),
           Positioned(
               left: displayWidth(context) * 0.495,
               top: displayHeight(context) * 0.04,

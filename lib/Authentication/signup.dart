@@ -195,7 +195,7 @@ class _signupState extends State<signup> {
                       ),
                     ),
                     SizedBox(
-                      height: displayHeight(context) * 0.02,
+                      height: displayHeight(context) * 0.025,
                       width: displayWidth(context) * 0.8,
                     ),
                     Container(
@@ -227,7 +227,7 @@ class _signupState extends State<signup> {
                       ),
                     ),
                     SizedBox(
-                      height: displayHeight(context) * 0.02,
+                      height: displayHeight(context) * 0.025,
                       width: displayWidth(context) * 0.8,
                     ),
                     Container(

@@ -30,7 +30,7 @@ class _ushomeState extends State<ushome> {
       child: Carousel(
         boxFit: BoxFit.fill,
         images: [
-          AssetImage("images/offer1.jpg"),
+          AssetImage("images/of1.jpg"),
           AssetImage("images/offer2.jpg"),
           AssetImage("images/offer3.jpg"),
         ],
@@ -60,7 +60,8 @@ class _ushomeState extends State<ushome> {
         ),
         body: ListView(
           children: [
-            _imagecarousel,
+           
+           _imagecarousel,
             Opacity(
               opacity: 0.0,
               child: Divider(

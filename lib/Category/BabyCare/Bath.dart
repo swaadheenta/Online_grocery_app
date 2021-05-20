@@ -28,10 +28,7 @@ class _bathState extends State<bath> {
       title: "Baby Bath & Powder",
       isselected: false,
     ),
-    singlecard(
-      title: "Diapers & Wipes",
-      isselected: false,
-    ),
+   
   ];
   var category = "Baby Creams & Lotions";
   @override
@@ -148,13 +145,14 @@ class _bathState extends State<bath> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         border: Border.all(color: Colors.grey),
+                        color: Colors.grey
                       ),
                       height: displayHeight(context) * 0.035,
                       width: displayWidth(context) * 0.38,
                       child: Center(
                           child: Text(
                         "OUT OF STOCK",
-                        // style: TextStyle(color: Colors.grey)
+                         style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)
                       )),
                     ),
                   ))
@@ -271,7 +269,7 @@ class _bathState extends State<bath> {
           ),
           actions: [
             IconButton(
-                icon: Icon(Icons.logout),
+                icon: Icon(Icons.shopping_cart),
                 onPressed: () {
                   Navigator.pushReplacement(
                       context, MaterialPageRoute(builder: (context) => Cart()));
