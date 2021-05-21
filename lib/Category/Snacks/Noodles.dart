@@ -56,7 +56,7 @@ class _noodlesState extends State<noodles> {
                       ? Colors.redAccent
                       : Colors.black,
                   fontFamily: "BreeSerif",
-                 fontSize: displayWidth(context) * 0.042),
+                  fontSize: displayWidth(context) * 0.042),
             ),
           ),
         ),
@@ -69,6 +69,7 @@ class _noodlesState extends State<noodles> {
       String productname = doc['name'];
       String quantity = doc['quantity'];
       String image = doc['imgloc'];
+      bool stock = doc["stock"];
       var height = displayHeight(context) * 0.1;
       return Stack(
         children: [
@@ -142,8 +143,7 @@ class _noodlesState extends State<noodles> {
                     style: TextStyle(
                         fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.04,
-                        fontWeight: FontWeight.w400
-                        ),
+                        fontWeight: FontWeight.w400),
                   ),
                   Divider(
                     height: displayHeight(context) * 0.01,
@@ -151,7 +151,7 @@ class _noodlesState extends State<noodles> {
                   Text(
                     "quantity: $quantity",
                     style: TextStyle(
-                     // fontFamily: "Langar",
+                      // fontFamily: "Langar",
                       letterSpacing: displayWidth(context) * 0.002,
                       fontSize: displayWidth(context) * 0.04,
                     ),
@@ -164,7 +164,7 @@ class _noodlesState extends State<noodles> {
                       Text(
                         "₹ $oldprice",
                         style: TextStyle(
-                        //  fontFamily: "Langar",
+                          //  fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                           decoration: TextDecoration.lineThrough,
@@ -173,7 +173,7 @@ class _noodlesState extends State<noodles> {
                       Text(
                         "  ₹ $newprice",
                         style: TextStyle(
-                       //   fontFamily: "Langar",
+                          //   fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                         ),
@@ -184,7 +184,7 @@ class _noodlesState extends State<noodles> {
                   Text(
                     " ",
                     style: TextStyle(
-                       // fontFamily: "BreeSerif",
+                        // fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.045,
                         fontWeight: FontWeight.bold),
                   ),
@@ -198,11 +198,10 @@ class _noodlesState extends State<noodles> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                     SnackBar snackbar = SnackBar(
-                        content: Text(
-                            "$productname added successfully !!"));
+                    SnackBar snackbar = SnackBar(
+                        content: Text("$productname added successfully !!"));
                     Scaffold.of(context).showSnackBar(snackbar);
-                    addtofirebase(productname, image, oldprice, newprice, 1,0);
+                    addtofirebase(productname, image, oldprice, newprice, 1, 0);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -225,22 +224,26 @@ class _noodlesState extends State<noodles> {
     ;
     return Scaffold(
       appBar: AppBar(
-          title: Text("Noodles, Patsa & Vermicilli",style: TextStyle(fontSize: displayWidth(context)*0.045),),
-          leading: IconButton(
-            onPressed:()
-            {
-              Navigator.pop(context);
-            } ,
-            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
-             actions: [
-            IconButton(
-                icon: Icon(Icons.shopping_cart),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => Cart()));
-                })
-          ],
+        title: Text(
+          "Noodles, Patsa & Vermicilli",
+          style: TextStyle(fontSize: displayWidth(context) * 0.045),
         ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios),
+          iconSize: displayWidth(context) * 0.045,
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => Cart()));
+              })
+        ],
+      ),
       body: Stack(
         children: [
           Positioned(
@@ -276,42 +279,40 @@ class _noodlesState extends State<noodles> {
                               return _showlist(
                                   context, snapshot.data.docs[index]);
                             });
-                      }
-                       else
-                        {
-                          return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.wifi_off_outlined,
-                                size: displayWidth(context) * 0.15,
-                              ),
-                              Opacity(
-                                opacity: 0.0,
-                                child: Divider(
-                                  height: displayHeight(context) * 0.005,
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.wifi_off_outlined,
+                                  size: displayWidth(context) * 0.15,
                                 ),
-                              ),
-                              Center(
-                                child: Text(
-                                  "Please check your internet connection ...",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    fontSize: displayWidth(context) * 0.055,
-                                    fontFamily: "PatuaOne",
+                                Opacity(
+                                  opacity: 0.0,
+                                  child: Divider(
+                                    height: displayHeight(context) * 0.005,
                                   ),
                                 ),
-                              )
-                            ],
+                                Center(
+                                  child: Text(
+                                    "Please check your internet connection ...",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      //fontWeight: FontWeight.bold,
+                                      fontSize: displayWidth(context) * 0.055,
+                                      fontFamily: "PatuaOne",
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                        }
+                        );
+                      }
                     },
                   )))
         ],
@@ -330,7 +331,7 @@ Future<void> getdatafromfirebase() async {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,int totalprice) async {
+    String newprice, int itemcount, int totalprice) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -343,6 +344,6 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Oldprice": oldprice,
     "Newprice": newprice,
     "Itemcount": itemcount,
-    "totalprice":totalprice,
+    "totalprice": totalprice,
   });
 }

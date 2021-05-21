@@ -26,7 +26,6 @@ class _WaterState extends State<Water> {
       title: 'Spring Water',
       isselected: false,
     ),
-  
   ];
   var category = 'Packaged Water';
   @override
@@ -65,12 +64,13 @@ class _WaterState extends State<Water> {
       );
     }
 
-      Widget _showlist(BuildContext context, DocumentSnapshot doc) {
+    Widget _showlist(BuildContext context, DocumentSnapshot doc) {
       String oldprice = doc['oldprice'];
       String newprice = doc['newprice'];
       String productname = doc['name'];
       String quantity = doc['quantity'];
       String image = doc['imgloc'];
+      bool stock = doc["stock"];
       var height = displayHeight(context) * 0.1;
       return Stack(
         children: [
@@ -130,6 +130,30 @@ class _WaterState extends State<Water> {
               ),
             ),
           ),
+          stock == false
+              ? Positioned(
+                  left: displayWidth(context) * 0.05,
+                  top: displayHeight(context) * 0.1,
+                  child: Card(
+                    elevation: 10.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey),
+                      height: displayHeight(context) * 0.035,
+                      width: displayWidth(context) * 0.38,
+                      child: Center(
+                          child: Text("OUT OF STOCK",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold))),
+                    ),
+                  ))
+              : Container(
+                  height: displayHeight(context) * 0.0,
+                  width: displayWidth(context) * 0.0,
+                ),
           Positioned(
               left: displayWidth(context) * 0.495,
               top: displayHeight(context) * 0.04,
@@ -144,8 +168,7 @@ class _WaterState extends State<Water> {
                     style: TextStyle(
                         fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.04,
-                        fontWeight: FontWeight.w400
-                        ),
+                        fontWeight: FontWeight.w400),
                   ),
                   Divider(
                     height: displayHeight(context) * 0.01,
@@ -153,7 +176,7 @@ class _WaterState extends State<Water> {
                   Text(
                     "quantity: $quantity",
                     style: TextStyle(
-                     // fontFamily: "Langar",
+                      // fontFamily: "Langar",
                       letterSpacing: displayWidth(context) * 0.002,
                       fontSize: displayWidth(context) * 0.04,
                     ),
@@ -166,7 +189,7 @@ class _WaterState extends State<Water> {
                       Text(
                         "₹ $oldprice",
                         style: TextStyle(
-                        //  fontFamily: "Langar",
+                          //  fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                           decoration: TextDecoration.lineThrough,
@@ -175,7 +198,7 @@ class _WaterState extends State<Water> {
                       Text(
                         "  ₹ $newprice",
                         style: TextStyle(
-                       //   fontFamily: "Langar",
+                          //   fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                         ),
@@ -186,7 +209,7 @@ class _WaterState extends State<Water> {
                   Text(
                     " ",
                     style: TextStyle(
-                       // fontFamily: "BreeSerif",
+                        // fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.045,
                         fontWeight: FontWeight.bold),
                   ),
@@ -200,11 +223,10 @@ class _WaterState extends State<Water> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                     SnackBar snackbar = SnackBar(
-                        content: Text(
-                            "$productname added successfully !!"));
+                    SnackBar snackbar = SnackBar(
+                        content: Text("$productname added successfully !!"));
                     Scaffold.of(context).showSnackBar(snackbar);
-                    addtofirebase(productname, image, oldprice, newprice, 1,0);
+                    addtofirebase(productname, image, oldprice, newprice, 1, 0);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -225,27 +247,29 @@ class _WaterState extends State<Water> {
     }
 
     ;
-  
-
 
     return Scaffold(
       appBar: AppBar(
-          title: Text("Water",style: TextStyle(fontSize: displayWidth(context)*0.045),),
-          leading: IconButton(
-            onPressed:()
-            {
-              Navigator.pop(context);
-            } ,
-            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
-             actions: [
-            IconButton(
-                icon: Icon(Icons.shopping_cart),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => Cart()));
-                })
-          ],
+        title: Text(
+          "Water",
+          style: TextStyle(fontSize: displayWidth(context) * 0.045),
         ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios),
+          iconSize: displayWidth(context) * 0.045,
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => Cart()));
+              })
+        ],
+      ),
       body: Stack(
         children: [
           Positioned(
@@ -263,67 +287,67 @@ class _WaterState extends State<Water> {
                       itemBuilder: (BuildContext context, int index) {
                         return _showcard(index);
                       }))),
-          Positioned(top: displayHeight(context) * 0.1,
-                left: displayWidth(context) * 0.025,
-                child: Container(
-                    height: displayHeight(context) * 0.75,
-                    width: displayWidth(context) * 0.95,
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection(category).snapshots(),
-              builder: (context,snapshot)
-            { 
-              if(snapshot.hasData)
-              {
-                return ListView.builder(
-                  itemCount: snapshot.data.docs.length,
-                  itemBuilder: (BuildContext context,int index)
-                {
-                  return _showlist(context,snapshot.data.docs[index]);
-                                  });
-                                }
-                                 else
-                        {
-                          return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.wifi_off_outlined,
-                                size: displayWidth(context) * 0.15,
-                              ),
-                              Opacity(
-                                opacity: 0.0,
-                                child: Divider(
-                                  height: displayHeight(context) * 0.005,
+          Positioned(
+              top: displayHeight(context) * 0.1,
+              left: displayWidth(context) * 0.025,
+              child: Container(
+                  height: displayHeight(context) * 0.75,
+                  width: displayWidth(context) * 0.95,
+                  child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection(category)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                            itemCount: snapshot.data.docs.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return _showlist(
+                                  context, snapshot.data.docs[index]);
+                            });
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.wifi_off_outlined,
+                                  size: displayWidth(context) * 0.15,
                                 ),
-                              ),
-                              Center(
-                                child: Text(
-                                  "Please check your internet connection ...",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    fontSize: displayWidth(context) * 0.055,
-                                    fontFamily: "PatuaOne",
+                                Opacity(
+                                  opacity: 0.0,
+                                  child: Divider(
+                                    height: displayHeight(context) * 0.005,
                                   ),
                                 ),
-                              )
-                            ],
+                                Center(
+                                  child: Text(
+                                    "Please check your internet connection ...",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      //fontWeight: FontWeight.bold,
+                                      fontSize: displayWidth(context) * 0.055,
+                                      fontFamily: "PatuaOne",
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                        }
-                              },)
-                            ))
-                          ],
-                        ),
-                      );
-                    }}
-                  
-                Future<void> getdatafromfirebase() async {
+                        );
+                      }
+                    },
+                  )))
+        ],
+      ),
+    );
+  }
+}
+
+Future<void> getdatafromfirebase() async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   DocumentSnapshot variable = await FirebaseFirestore.instance
       .collection('Users')
@@ -333,7 +357,7 @@ class _WaterState extends State<Water> {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,int totalprice) async {
+    String newprice, int itemcount, int totalprice) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -346,6 +370,6 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Oldprice": oldprice,
     "Newprice": newprice,
     "Itemcount": itemcount,
-    "totalprice":totalprice,
+    "totalprice": totalprice,
   });
 }

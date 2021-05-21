@@ -22,15 +22,15 @@ class _HealthDrinksState extends State<HealthDrinks> {
       isselected: true,
     ),
     singlecard(
-      title:'Kids(5+ yrs)',
+      title: 'Kids(5+ yrs)',
       isselected: false,
     ),
     singlecard(
-      title: 'Glucose Powder, Tablets',     
+      title: 'Glucose Powder, Tablets',
       isselected: false,
     ),
-     singlecard(
-      title: 'Men & Women',    
+    singlecard(
+      title: 'Men & Women',
       isselected: false,
     )
   ];
@@ -77,6 +77,7 @@ class _HealthDrinksState extends State<HealthDrinks> {
       String productname = doc['name'];
       String quantity = doc['quantity'];
       String image = doc['imgloc'];
+      bool stock = doc["stock"];
       var height = displayHeight(context) * 0.1;
       return Stack(
         children: [
@@ -136,6 +137,30 @@ class _HealthDrinksState extends State<HealthDrinks> {
               ),
             ),
           ),
+          stock == false
+              ? Positioned(
+                  left: displayWidth(context) * 0.05,
+                  top: displayHeight(context) * 0.1,
+                  child: Card(
+                    elevation: 10.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey),
+                      height: displayHeight(context) * 0.035,
+                      width: displayWidth(context) * 0.38,
+                      child: Center(
+                          child: Text("OUT OF STOCK",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold))),
+                    ),
+                  ))
+              : Container(
+                  height: displayHeight(context) * 0.0,
+                  width: displayWidth(context) * 0.0,
+                ),
           Positioned(
               left: displayWidth(context) * 0.495,
               top: displayHeight(context) * 0.04,
@@ -150,8 +175,7 @@ class _HealthDrinksState extends State<HealthDrinks> {
                     style: TextStyle(
                         fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.04,
-                        fontWeight: FontWeight.w400
-                        ),
+                        fontWeight: FontWeight.w400),
                   ),
                   Divider(
                     height: displayHeight(context) * 0.01,
@@ -159,7 +183,7 @@ class _HealthDrinksState extends State<HealthDrinks> {
                   Text(
                     "quantity: $quantity",
                     style: TextStyle(
-                     // fontFamily: "Langar",
+                      // fontFamily: "Langar",
                       letterSpacing: displayWidth(context) * 0.002,
                       fontSize: displayWidth(context) * 0.04,
                     ),
@@ -172,7 +196,7 @@ class _HealthDrinksState extends State<HealthDrinks> {
                       Text(
                         "₹ $oldprice",
                         style: TextStyle(
-                        //  fontFamily: "Langar",
+                          //  fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                           decoration: TextDecoration.lineThrough,
@@ -181,7 +205,7 @@ class _HealthDrinksState extends State<HealthDrinks> {
                       Text(
                         "  ₹ $newprice",
                         style: TextStyle(
-                       //   fontFamily: "Langar",
+                          //   fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                         ),
@@ -192,7 +216,7 @@ class _HealthDrinksState extends State<HealthDrinks> {
                   Text(
                     " ",
                     style: TextStyle(
-                       // fontFamily: "BreeSerif",
+                        // fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.045,
                         fontWeight: FontWeight.bold),
                   ),
@@ -206,11 +230,10 @@ class _HealthDrinksState extends State<HealthDrinks> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                     SnackBar snackbar = SnackBar(
-                        content: Text(
-                            "$productname added successfully !!"));
+                    SnackBar snackbar = SnackBar(
+                        content: Text("$productname added successfully !!"));
                     Scaffold.of(context).showSnackBar(snackbar);
-                    addtofirebase(productname, image, oldprice, newprice, 1,0);
+                    addtofirebase(productname, image, oldprice, newprice, 1, 0);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -232,25 +255,28 @@ class _HealthDrinksState extends State<HealthDrinks> {
 
     ;
 
-
     return Scaffold(
       appBar: AppBar(
-          title: Text("Health Drinks & Supplement",style: TextStyle(fontSize: displayWidth(context)*0.045),),
-          leading: IconButton(
-            onPressed:()
-            {
-              Navigator.pop(context);
-            } ,
-            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
-             actions: [
-            IconButton(
-                icon: Icon(Icons.shopping_cart),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => Cart()));
-                })
-          ],
+        title: Text(
+          "Health Drinks & Supplement",
+          style: TextStyle(fontSize: displayWidth(context) * 0.045),
         ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios),
+          iconSize: displayWidth(context) * 0.045,
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => Cart()));
+              })
+        ],
+      ),
       body: Stack(
         children: [
           Positioned(
@@ -268,67 +294,67 @@ class _HealthDrinksState extends State<HealthDrinks> {
                       itemBuilder: (BuildContext context, int index) {
                         return _showcard(index);
                       }))),
-          Positioned(top: displayHeight(context) * 0.1,
-                left: displayWidth(context) * 0.025,
-                child: Container(
-                    height: displayHeight(context) * 0.75,
-                    width: displayWidth(context) * 0.95,
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance.collection(category).snapshots(),
-              builder: (context,snapshot)
-            { 
-              if(snapshot.hasData)
-              {
-                return ListView.builder(
-                  itemCount: snapshot.data.docs.length,
-                  itemBuilder: (BuildContext context,int index)
-                {
-                  return _showlist(context,snapshot.data.docs[index]);
-                                  });
-                                }
-                                 else
-                        {
-                          return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.wifi_off_outlined,
-                                size: displayWidth(context) * 0.15,
-                              ),
-                              Opacity(
-                                opacity: 0.0,
-                                child: Divider(
-                                  height: displayHeight(context) * 0.005,
+          Positioned(
+              top: displayHeight(context) * 0.1,
+              left: displayWidth(context) * 0.025,
+              child: Container(
+                  height: displayHeight(context) * 0.75,
+                  width: displayWidth(context) * 0.95,
+                  child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection(category)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                            itemCount: snapshot.data.docs.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return _showlist(
+                                  context, snapshot.data.docs[index]);
+                            });
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.wifi_off_outlined,
+                                  size: displayWidth(context) * 0.15,
                                 ),
-                              ),
-                              Center(
-                                child: Text(
-                                  "Please check your internet connection ...",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    fontSize: displayWidth(context) * 0.055,
-                                    fontFamily: "PatuaOne",
+                                Opacity(
+                                  opacity: 0.0,
+                                  child: Divider(
+                                    height: displayHeight(context) * 0.005,
                                   ),
                                 ),
-                              )
-                            ],
+                                Center(
+                                  child: Text(
+                                    "Please check your internet connection ...",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      //fontWeight: FontWeight.bold,
+                                      fontSize: displayWidth(context) * 0.055,
+                                      fontFamily: "PatuaOne",
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                        }
-                              },)
-                            ))
-                          ],
-                        ),
-                      );
-                    }}
-                  
-                Future<void> getdatafromfirebase() async {
+                        );
+                      }
+                    },
+                  )))
+        ],
+      ),
+    );
+  }
+}
+
+Future<void> getdatafromfirebase() async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   DocumentSnapshot variable = await FirebaseFirestore.instance
       .collection('Users')
@@ -338,7 +364,7 @@ class _HealthDrinksState extends State<HealthDrinks> {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,int totalprice) async {
+    String newprice, int itemcount, int totalprice) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -351,6 +377,6 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Oldprice": oldprice,
     "Newprice": newprice,
     "Itemcount": itemcount,
-    "totalprice":totalprice,
+    "totalprice": totalprice,
   });
 }

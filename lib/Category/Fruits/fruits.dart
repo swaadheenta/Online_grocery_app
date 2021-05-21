@@ -24,12 +24,10 @@ class _fruitsState extends State<fruits> {
       title: "Apples,Banana & Pomegranate",
       isselected: true,
     ),
-     singlecard(
+    singlecard(
       title: "Melon, Papaya & Citrus Fruits",
       isselected: false,
     ),
-   
-   
   ];
   var category = "Apples,Banana & Pomegranate";
   @override
@@ -70,12 +68,13 @@ class _fruitsState extends State<fruits> {
     }
 
     ;
-   Widget _showlist(BuildContext context, DocumentSnapshot doc) {
+    Widget _showlist(BuildContext context, DocumentSnapshot doc) {
       String oldprice = doc['oldprice'];
       String newprice = doc['newprice'];
       String productname = doc['name'];
       String quantity = doc['quantity'];
       String image = doc['imgloc'];
+      bool stock = doc["stock"];
       var height = displayHeight(context) * 0.1;
       return Stack(
         children: [
@@ -135,6 +134,30 @@ class _fruitsState extends State<fruits> {
               ),
             ),
           ),
+          stock == false
+              ? Positioned(
+                  left: displayWidth(context) * 0.05,
+                  top: displayHeight(context) * 0.1,
+                  child: Card(
+                    elevation: 10.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey),
+                      height: displayHeight(context) * 0.035,
+                      width: displayWidth(context) * 0.38,
+                      child: Center(
+                          child: Text("OUT OF STOCK",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold))),
+                    ),
+                  ))
+              : Container(
+                  height: displayHeight(context) * 0.0,
+                  width: displayWidth(context) * 0.0,
+                ),
           Positioned(
               left: displayWidth(context) * 0.495,
               top: displayHeight(context) * 0.04,
@@ -149,8 +172,7 @@ class _fruitsState extends State<fruits> {
                     style: TextStyle(
                         fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.04,
-                        fontWeight: FontWeight.w400
-                        ),
+                        fontWeight: FontWeight.w400),
                   ),
                   Divider(
                     height: displayHeight(context) * 0.01,
@@ -158,7 +180,7 @@ class _fruitsState extends State<fruits> {
                   Text(
                     "quantity: $quantity",
                     style: TextStyle(
-                     // fontFamily: "Langar",
+                      // fontFamily: "Langar",
                       letterSpacing: displayWidth(context) * 0.002,
                       fontSize: displayWidth(context) * 0.04,
                     ),
@@ -171,7 +193,7 @@ class _fruitsState extends State<fruits> {
                       Text(
                         "₹ $oldprice",
                         style: TextStyle(
-                        //  fontFamily: "Langar",
+                          //  fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                           decoration: TextDecoration.lineThrough,
@@ -180,7 +202,7 @@ class _fruitsState extends State<fruits> {
                       Text(
                         "  ₹ $newprice",
                         style: TextStyle(
-                       //   fontFamily: "Langar",
+                          //   fontFamily: "Langar",
                           letterSpacing: displayWidth(context) * 0.002,
                           fontSize: displayWidth(context) * 0.04,
                         ),
@@ -191,7 +213,7 @@ class _fruitsState extends State<fruits> {
                   Text(
                     " ",
                     style: TextStyle(
-                       // fontFamily: "BreeSerif",
+                        // fontFamily: "BreeSerif",
                         fontSize: displayWidth(context) * 0.045,
                         fontWeight: FontWeight.bold),
                   ),
@@ -205,11 +227,10 @@ class _fruitsState extends State<fruits> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                     SnackBar snackbar = SnackBar(
-                        content: Text(
-                            "$productname added successfully !!"));
+                    SnackBar snackbar = SnackBar(
+                        content: Text("$productname added successfully !!"));
                     Scaffold.of(context).showSnackBar(snackbar);
-                    addtofirebase(productname, image, oldprice, newprice, 1,0);
+                    addtofirebase(productname, image, oldprice, newprice, 1, 0);
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -232,14 +253,18 @@ class _fruitsState extends State<fruits> {
     ;
     return Scaffold(
         appBar: AppBar(
-          title: Text("Fresh Fruits",style: TextStyle(fontSize: displayWidth(context)*0.045),),
+          title: Text(
+            "Fresh Fruits",
+            style: TextStyle(fontSize: displayWidth(context) * 0.045),
+          ),
           leading: IconButton(
-            onPressed:()
-            {
+            onPressed: () {
               Navigator.pop(context);
-            } ,
-            icon: Icon(Icons.arrow_back_ios),iconSize: displayWidth(context)*0.045,),
-             actions: [
+            },
+            icon: Icon(Icons.arrow_back_ios),
+            iconSize: displayWidth(context) * 0.045,
+          ),
+          actions: [
             IconButton(
                 icon: Icon(Icons.shopping_cart),
                 onPressed: () {
@@ -286,41 +311,39 @@ class _fruitsState extends State<fruits> {
                                 return _showlist(
                                     context, snapshot.data.docs[index]);
                               });
-                        }
-                         else
-                        {
+                        } else {
                           return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.wifi_off_outlined,
-                                size: displayWidth(context) * 0.15,
-                              ),
-                              Opacity(
-                                opacity: 0.0,
-                                child: Divider(
-                                  height: displayHeight(context) * 0.005,
-                                ),
-                              ),
-                              Center(
-                                child: Text(
-                                  "Please check your internet connection ...",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    fontSize: displayWidth(context) * 0.055,
-                                    fontFamily: "PatuaOne",
+                            padding: const EdgeInsets.all(10.0),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.wifi_off_outlined,
+                                    size: displayWidth(context) * 0.15,
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      );
+                                  Opacity(
+                                    opacity: 0.0,
+                                    child: Divider(
+                                      height: displayHeight(context) * 0.005,
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      "Please check your internet connection ...",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        fontSize: displayWidth(context) * 0.055,
+                                        fontFamily: "PatuaOne",
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
                         }
                       },
                     )))
@@ -339,7 +362,7 @@ Future<void> getdatafromfirebase() async {
 }
 
 Future<void> addtofirebase(String productname, String image, String oldprice,
-    String newprice, int itemcount,int totalprice) async {
+    String newprice, int itemcount, int totalprice) async {
   var docname = FirebaseAuth.instance.currentUser.uid;
   FirebaseFirestore.instance
       .collection("Users")
@@ -352,6 +375,6 @@ Future<void> addtofirebase(String productname, String image, String oldprice,
     "Oldprice": oldprice,
     "Newprice": newprice,
     "Itemcount": itemcount,
-    "totalprice":totalprice,
+    "totalprice": totalprice,
   });
 }
