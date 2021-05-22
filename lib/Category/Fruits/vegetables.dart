@@ -235,10 +235,17 @@ class _vegetablesState extends State<vegetables> {
               right: displayWidth(context) * 0.05,
               child: GestureDetector(
                   onTap: () {
-                    SnackBar snackbar = SnackBar(
-                        content: Text("$productname added successfully !!"));
-                    Scaffold.of(context).showSnackBar(snackbar);
-                    addtofirebase(productname, image, oldprice, newprice, 1, 0);
+                    if (doc["stock"] == true) {
+                      SnackBar snackbar = SnackBar(
+                          content: Text("$productname added successfully !!"));
+                      Scaffold.of(context).showSnackBar(snackbar);
+                      addtofirebase(
+                          productname, image, oldprice, newprice, 1, 0);
+                    } else {
+                      SnackBar snackbar =
+                          SnackBar(content: Text("Not in Stock !!"));
+                      Scaffold.of(context).showSnackBar(snackbar);
+                    }
                   },
                   child: Container(
                       decoration: BoxDecoration(
