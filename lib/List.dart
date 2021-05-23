@@ -20,15 +20,17 @@ class _ShoppinglistState extends State<Shoppinglist> {
   int finalprice;
   String docname;
 
-  Future<String> getcurrentuser() async 
-  {
+  Future<String> getcurrentuser() async {
     var user = FirebaseAuth.instance.currentUser.uid;
     currentuserid = user.toString();
-    var ds = await FirebaseFirestore.instance.collection("Users").doc(currentuserid).collection("Products").get();
+    var ds = await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentuserid)
+        .collection("Products")
+        .get();
     return currentuser;
   }
 
-  
   @override
   Widget build(BuildContext context) {
     print("Current usser is");
@@ -36,24 +38,81 @@ class _ShoppinglistState extends State<Shoppinglist> {
 
     Widget _itemsofShoppinglist(BuildContext context, DocumentSnapshot doc) {
       var count;
-   
+
       price = price + ans;
       print("price=$price");
-     
+
       String title = doc["Productname"];
-    
+
       return GestureDetector(
-        onTap: () {
-          
-        },
-        child: Card(
+        onTap: () {},
+        child: Stack(
+          children: [
+            Positioned(
+                
+              child: Container(
+                height: displayHeight(context) * 0.45,
+                width: displayWidth(context) * 0.4,
+                // color: Colors.blue,
+              ),
+            ),
+            Positioned(
+                top: displayHeight(context) * 0.05,
+                left: displayWidth(context) * 0.0,
+                child: Card(
+                 
+                  
+                  //color: Colors.yellow,
+                  child: Container(
+                    height: displayHeight(context) * 0.35,
+                    width: displayWidth(context) * 0.4,
+                   
+                  ),
+                )),
+            Positioned(
+                top: displayHeight(context) * 0.0,
+                left: displayWidth(context) * 0.035,
+                child: Card(
+                  elevation: 10.0,
+                  child: Container(
+                    height: displayHeight(context) * 0.135,
+                    width: displayWidth(context) * 0.25,
+                    child: Image.network(
+                      doc["Image"],
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                )),
+            Positioned(
+                top: displayHeight(context) * 0.16,
+                left: displayWidth(context) * 0.05,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.only(topLeft: Radius.circular(20))),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20)),
+                        color: Colors.grey[500],
+                        ),
+                    height: displayHeight(context) * 0.05,
+                    width: displayWidth(context) * 0.4,
+                  ),
+                ))
+          ],
+        ),
+
+        /*Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
           elevation: 10.0,
           child: ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
-              child: GridTile(
+              child: 
+              GridTile(
                   //header: Text(title),
                   child: Image.network(
                     doc["Image"],
@@ -109,20 +168,22 @@ class _ShoppinglistState extends State<Shoppinglist> {
                         }),
                       ),
                     ]),
-                  ))),
-        ),
+                  ))
+                  ),
+        ),*/
       );
     }
 
     ;
 
-  
     return Scaffold(
       appBar: AppBar(
-          title: Text("Shopping List",style: TextStyle(fontSize: displayWidth(context)*0.045),),
-          
-            centerTitle: true,
+        title: Text(
+          "Shopping List",
+          style: TextStyle(fontSize: displayWidth(context) * 0.045),
         ),
+        centerTitle: true,
+      ),
       body: Stack(
         alignment: Alignment.center,
         children: [
@@ -130,7 +191,6 @@ class _ShoppinglistState extends State<Shoppinglist> {
               child: Container(
             height: displayHeight(context),
             width: displayWidth(context),
-           
           )),
           Positioned(
               top: displayHeight(context) * 0.02,
@@ -138,7 +198,6 @@ class _ShoppinglistState extends State<Shoppinglist> {
               child: Container(
                 height: displayHeight(context) * 0.77,
                 width: displayWidth(context) * 0.9,
-               
                 child: StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection("Users")
@@ -160,12 +219,11 @@ class _ShoppinglistState extends State<Shoppinglist> {
                                 context, snapshot.data.docs[index]);
                           });
                     } else {
-                      return Text("Please check your internet connection !!"         );
+                      return Text("Please check your internet connection !!");
                     }
                   },
                 ),
               )),
-      
         ],
       ),
     );

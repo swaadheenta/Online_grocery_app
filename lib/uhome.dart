@@ -10,6 +10,9 @@ import 'package:Online_grocery_app/All%20Categories/sn&C.dart';
 import 'package:Online_grocery_app/Authentication/Login.dart';
 import 'package:Online_grocery_app/Authentication/firstscreen.dart';
 import 'package:Online_grocery_app/Cart.dart';
+import 'package:Online_grocery_app/Category/BabyCare/Food.dart';
+import 'package:Online_grocery_app/Category/Foodgrains/Oils.dart';
+import 'package:Online_grocery_app/Category/Health/health.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +27,7 @@ class ushome extends StatefulWidget {
 class _ushomeState extends State<ushome> {
   @override
   Widget build(BuildContext context) {
-    Widget _imagecarousel = Container(
+    /*Widget _imagecarousel = Container(
       height: displayHeight(context) * 0.25,
       width: displayWidth(context),
       child: Carousel(
@@ -40,7 +43,7 @@ class _ushomeState extends State<ushome> {
         dotSize: 4.0,
         indicatorBgPadding: 1.5,
       ),
-    );
+    );*/
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -53,15 +56,73 @@ class _ushomeState extends State<ushome> {
             IconButton(
                 icon: Icon(Icons.logout),
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => first()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => first()));
                 })
           ],
         ),
         body: ListView(
+          
           children: [
-           
-           _imagecarousel,
+            Container(
+              height: displayHeight(context) * 0.25,
+              width: displayWidth(context),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HealthDrinks()));
+                    },
+                    child: Container(
+                      height: displayHeight(context) * 0.25,
+                      width: displayWidth(context),
+                      child: Image(
+                        image: AssetImage(
+                          "images/offer1.jpg",
+                        ),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => dairy()));
+                    },
+                    child: Container(
+                      height: displayHeight(context) * 0.25,
+                      width: displayWidth(context),
+                      child: Image(
+                        image: AssetImage(
+                          "images/off2.jpg",
+                        ),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Oils()));
+                    },
+                    child: Container(
+                      height: displayHeight(context) * 0.25,
+                      width: displayWidth(context),
+                      child: Image(
+                        image: AssetImage(
+                          "images/offer3.jpg",
+                        ),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Opacity(
               opacity: 0.0,
               child: Divider(
