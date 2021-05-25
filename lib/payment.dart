@@ -1,6 +1,7 @@
 import 'package:Online_grocery_app/Authentication/firstscreen.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
 import 'package:Online_grocery_app/Profile.dart';
+import 'package:Online_grocery_app/editprofile.dart';
 import 'package:Online_grocery_app/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,12 +39,12 @@ class _PaymentState extends State<Payment> {
         context: context,
         builder: (BuildContext context) {
           return Container(
-            decoration: BoxDecoration(
+            /*decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
                 Color(0xffbDE6262),
                 Color(0xffbFFB88C),
               ]),
-            ),
+            ),*/
             height: displayHeight(context) * 0.2,
             width: displayWidth(context),
             child: Column(
@@ -52,9 +53,11 @@ class _PaymentState extends State<Payment> {
                   height: displayHeight(context) * 0.02,
                 ),
                 Text(
-                  "Thanks for shopping !!",
+                  "Thank You For Shopping !!",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
+                     // fontWeight: FontWeight.w500,
+                      fontFamily: "BreeSerif",
                       fontSize: displayWidth(context) * 0.045),
                 ),
                 SizedBox(
@@ -74,10 +77,15 @@ class _PaymentState extends State<Payment> {
                       },
                       child: Card(
                         elevation: 10.0,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         child: Container(
                           height: displayHeight(context) * 0.045,
                           width: displayWidth(context) * 0.35,
-                          child: Center(child: Text("Continue Shopping")),
+                          decoration: BoxDecoration(
+                           color: Colors.blue,
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                          
+                          child: Center(child: Text("Continue Shopping",style: TextStyle(color: Colors.white),)),
                         ),
                       ),
                     ),
@@ -89,10 +97,14 @@ class _PaymentState extends State<Payment> {
                       },
                       child: Card(
                         elevation: 10.0,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         child: Container(
                           height: displayHeight(context) * 0.045,
-                          width: displayWidth(context) * 0.25,
-                          child: Center(child: Text("Log Out")),
+                          width: displayWidth(context) * 0.35,
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                          child: Center(child: Text("Log Out",style: TextStyle(color: Colors.white),)),
                         ),
                       ),
                     ),
@@ -195,30 +207,40 @@ class _PaymentState extends State<Payment> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    height: displayHeight(context) * 0.065,
-                    width: displayWidth(context) * 0.4,
-                    color: Colors.red,
-                    child: Center(
-                        child: Text(
-                      "Pay Rs $finalans",
-                      style: TextStyle(
-                          fontSize: displayWidth(context) * 0.055,
-                          color: Colors.white),
-                    )),
+                  Card(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                                      child: Container(
+                      height: displayHeight(context) * 0.045,
+                      width: displayWidth(context) * 0.4,
+                      decoration: BoxDecoration(
+                         color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)) ),
+                     
+                      child: Center(
+                          child: Text(
+                        "Pay Rs $finalans",
+                        style: TextStyle(
+                            fontSize: displayWidth(context) * 0.045,
+                            color: Colors.white),
+                      )),
+                    ),
                   ),
                  
                     GestureDetector(
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => profile()));
+                            MaterialPageRoute(builder: (context) => editadd()));
                       },
                       child: Card(
                         elevation: 10.0,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         child: Container(
                           height: displayHeight(context) * 0.045,
-                          width: displayWidth(context) * 0.25,
-                          child: Center(child: Text("Edit Details")),
+                          width: displayWidth(context) * 0.35,
+                          child: Center(child: Text("Edit Details", style: TextStyle(
+                            fontSize: displayWidth(context) * 0.045,
+                            //color: Colors.white
+                            ),)),
                         ),
                       ),
                     ),

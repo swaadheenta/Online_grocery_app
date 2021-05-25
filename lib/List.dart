@@ -49,24 +49,30 @@ class _ShoppinglistState extends State<Shoppinglist> {
         child: Stack(
           children: [
             Positioned(
-                
-              child: Container(
-                height: displayHeight(context) * 0.45,
-                width: displayWidth(context) * 0.4,
-                // color: Colors.blue,
+              child:  Container(
+                  decoration: BoxDecoration(
+                     // color: Colors.blue,
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  height: displayHeight(context) * 0.45,
+                  width: displayWidth(context) * 0.4,
+                ),
               ),
-            ),
+        
             Positioned(
                 top: displayHeight(context) * 0.05,
                 left: displayWidth(context) * 0.0,
                 child: Card(
-                 
-                  
-                  //color: Colors.yellow,
+                  elevation: 10.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                
                   child: Container(
-                    height: displayHeight(context) * 0.35,
+                    decoration: BoxDecoration(
+                       // color: Colors.yellow,
+                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                    height: displayHeight(context) * 0.155,
                     width: displayWidth(context) * 0.4,
-                   
                   ),
                 )),
             Positioned(
@@ -89,16 +95,17 @@ class _ShoppinglistState extends State<Shoppinglist> {
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(20))),
+                          BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20)),),
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             bottomRight: Radius.circular(20)),
-                        color: Colors.grey[500],
-                        ),
+                        color: Colors.black45),
                     height: displayHeight(context) * 0.05,
-                    width: displayWidth(context) * 0.4,
+                    width: displayWidth(context) * 0.3559,
                   ),
                 ))
           ],

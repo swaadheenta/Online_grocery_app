@@ -244,7 +244,8 @@ class _profileState extends State<profile> {
   Widget build(BuildContext context) {
     getpersonalinfo();
     return Scaffold(
-      body: Stack(alignment: Alignment.center, children: [
+      body: 
+      Stack(alignment: Alignment.center, children: [
         Positioned(
           child: Container(
             height: displayHeight(context),
@@ -309,15 +310,7 @@ class _profileState extends State<profile> {
                               style: TextStyle(
                                   fontSize: displayWidth(context) * 0.045),
                             )),
-                        Positioned(
-                            right: displayWidth(context) * 0.05,
-                            bottom: displayHeight(context) * 0.01,
-                            child: IconButton(
-                              onPressed: () =>
-                                  _displayTextInputDialogofname(context),
-                              icon: Icon(Icons.edit),
-                            )),
-                      ]),
+                       ]),
                     ),
                   ),
                   Divider(),
@@ -344,14 +337,7 @@ class _profileState extends State<profile> {
                               style: TextStyle(
                                   fontSize: displayWidth(context) * 0.045),
                             )),
-                        Positioned(
-                            right: displayWidth(context) * 0.05,
-                            bottom: displayHeight(context) * 0.01,
-                            child: IconButton(
-                              onPressed: () =>
-                                  _displayTextInputDialogofphoneno(context),
-                              icon: Icon(Icons.edit),
-                            )),
+                        
                       ]),
                     ),
                   ),
@@ -379,14 +365,7 @@ class _profileState extends State<profile> {
                               style: TextStyle(
                                   fontSize: displayWidth(context) * 0.045),
                             )),
-                        Positioned(
-                            right: displayWidth(context) * 0.05,
-                            bottom: displayHeight(context) * 0.01,
-                            child: IconButton(
-                              onPressed: () =>
-                                  _displayTextInputDialogofaddress(context),
-                              icon: Icon(Icons.edit),
-                            )),
+                       
                       ]),
                     ),
                   ),
