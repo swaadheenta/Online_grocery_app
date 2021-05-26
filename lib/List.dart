@@ -54,7 +54,7 @@ class _ShoppinglistState extends State<Shoppinglist> {
                      // color: Colors.blue,
                       borderRadius: BorderRadius.all(Radius.circular(20.0))),
                   height: displayHeight(context) * 0.45,
-                  width: displayWidth(context) * 0.4,
+                  width: displayWidth(context) * 0.375,
                 ),
               ),
         
@@ -69,10 +69,10 @@ class _ShoppinglistState extends State<Shoppinglist> {
                 
                   child: Container(
                     decoration: BoxDecoration(
-                       // color: Colors.yellow,
+                      //  color: Colors.yellow,
                         borderRadius: BorderRadius.all(Radius.circular(20.0))),
                     height: displayHeight(context) * 0.155,
-                    width: displayWidth(context) * 0.4,
+                    width: displayWidth(context) * 0.375,
                   ),
                 )),
             Positioned(
@@ -81,7 +81,7 @@ class _ShoppinglistState extends State<Shoppinglist> {
                 child: Card(
                   elevation: 10.0,
                   child: Container(
-                    height: displayHeight(context) * 0.135,
+                    height: displayHeight(context) * 0.115,
                     width: displayWidth(context) * 0.25,
                     child: Image.network(
                       doc["Image"],
@@ -103,15 +103,72 @@ class _ShoppinglistState extends State<Shoppinglist> {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             bottomRight: Radius.circular(20)),
-                        color: Colors.black45),
+                        color: Colors.black54
+                                    ),
                     height: displayHeight(context) * 0.05,
-                    width: displayWidth(context) * 0.3559,
+                    width: displayWidth(context) * 0.325,
                   ),
-                ))
+                )),
+                Positioned(
+                     top: displayHeight(context) * 0.135,
+                left: displayWidth(context) * 0.045,
+                  child: Text(doc["Productname"],overflow: TextOverflow.clip,)),
+                Positioned(
+                    top: displayHeight(context) * 0.16,
+                left: displayWidth(context) * 0.07,
+                  child: 
+                  Row(children: <Widget>[
+                      doc["Itemcount"] != 0
+                          ? new IconButton(
+                              icon: new Icon(Icons.remove),
+                              color: Colors.white,
+                              onPressed: () => setState(() {
+                              ////  price -= int.parse(doc['Newprice']) *
+                                    doc['Itemcount'];
+                                count = doc["Itemcount"] - 1;
+                               
+                                FirebaseFirestore.instance
+                                    .collection("Users")
+                                    .doc(currentuserid)
+                                    .collection("Products")
+                                    .doc(title)
+                                    .update({"Itemcount": count});
+                              }),
+                            )
+                          : FirebaseFirestore.instance
+                              .collection("Users")
+                              .doc(currentuserid)
+                              .collection("Products")
+                              .doc(title)
+                              .delete(),
+                      new Text(
+                        doc["Itemcount"].toString(),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      new IconButton(
+                        icon: new Icon(Icons.add),
+                                                      color: Colors.white,
+                        onPressed: () => setState(() {
+                         
+                          cnt = doc["Itemcount"] + 1;
+                       
+                          print("newans is$ans");
+                         
+                          FirebaseFirestore.instance
+                              .collection("Users")
+                              .doc(currentuserid)
+                              .collection("Products")
+                              .doc(title)
+                              .update({"Itemcount": cnt});
+                        }),
+                      ),
+                    ]),
+                  
+                )
           ],
         ),
 
-        /*Card(
+       /* Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
@@ -131,7 +188,8 @@ class _ShoppinglistState extends State<Shoppinglist> {
                   
                     backgroundColor: Colors.grey,
                     
-                    leading: new Row(children: <Widget>[
+                    leading: new 
+                    Row(children: <Widget>[
                       doc["Itemcount"] != 0
                           ? new IconButton(
                               icon: new Icon(Icons.remove),
