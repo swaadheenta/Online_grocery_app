@@ -26,7 +26,10 @@ class _CartState extends State<Cart> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Your order has been confirmed"),
+              backgroundColor: Color(0xffb192734),
+              title: Text("Your order has been confirmed",
+              style: TextStyle(color: Colors.white),
+              ),
               content: GestureDetector(
                 onTap: () {
                   Navigator.pushReplacement(context,
@@ -34,14 +37,19 @@ class _CartState extends State<Cart> {
                 
                 },
                 child: Container(
-                  width: displayWidth(context) * 0.3,
+                  width: displayWidth(context) * 0.1,
                   height: displayHeight(context) * 0.06,
-                  color: Colors.blue,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    color: Color(0xffb20d666),
+                  ),
+                    
                   child: Center(
                     child: Text(
                       "Proceed to Payment",
                       style: TextStyle(
-                          color: Colors.white,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                           fontSize: displayWidth(context) * 0.045),
                     ),
                   ),
@@ -140,7 +148,10 @@ class _CartState extends State<Cart> {
     }
 
     return Scaffold(
+      //backgroundColor: Color(0xffb197324),
       appBar: AppBar(
+        // backgroundColor: Color(0xffbc27bb9),
+         backgroundColor: Color(0xffb192734),
         title: Text(
           "Your Basket",
           style: TextStyle(fontSize: displayWidth(context) * 0.045),
@@ -185,21 +196,34 @@ class _CartState extends State<Cart> {
           Positioned(
               top: displayHeight(context) * 0.7,
               left: displayWidth(context) * 0.25,
-              child: Container(
-                  height: displayHeight(context) * 0.055,
-                  width: displayWidth(context) * 0.5,
-                  color: Colors.black54,
-                  child: RaisedButton(
-                      color: Colors.green,
-                      child: Text(
-                        "Confirm Order",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: displayWidth(context) * 0.045),
-                      ),
-                      onPressed: () {
-                        displayinputdialogofconfirm(context);
-                      })))
+              child: GestureDetector(
+                onTap: ()
+                {
+                  displayinputdialogofconfirm(context);
+                },
+                              child: Card(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                       color: Colors.deepOrange,
+                    ),
+                      height: displayHeight(context) * 0.055,
+                      width: displayWidth(context) * 0.5,
+                    //  color: Colors.black54,
+                      
+                         //color: Colors.deepOrange,
+                          child: Center(
+                            child: Text(
+                              "Checkout",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: displayWidth(context) * 0.045),
+                            ),
+                          ),
+                         )),
+              ),
+              )
         ],
       ),
     );

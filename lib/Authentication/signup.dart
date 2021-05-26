@@ -28,6 +28,12 @@ class _signupState extends State<signup> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(children: [
+          Opacity(
+            opacity: 0.0,
+                      child: Divider(
+              height: displayHeight(context)*0.025,
+            ),
+          ),
       Card(
           elevation: 10.0,
           child: Container(
@@ -38,12 +44,12 @@ class _signupState extends State<signup> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "GROCERY ",
+                        "AT YOUR ",
                         style: TextStyle(
                             fontSize: displayWidth(context) * 0.055,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text("STORE",
+                      Text("DOOR",
                           style: TextStyle(
                               fontSize: displayWidth(context) * 0.055,
                               fontWeight: FontWeight.bold,
@@ -152,7 +158,8 @@ class _signupState extends State<signup> {
                                 ? "The Password should be atleast 6 characters long"
                                 : null,
                             decoration: InputDecoration(
-                                suffixIcon: Icon(Icons.remove_red_eye)),
+                               // suffixIcon: Icon(Icons.remove_red_eye)
+                               ),
                             obscureText: true,
                             onChanged: (val) {
                               setState(() {
@@ -282,9 +289,12 @@ class _signupState extends State<signup> {
                         }
                       },
                       child: Container(
-                        width: displayWidth(context) * 0.8,
+                        width: displayWidth(context) * 0.6,
                         height: displayHeight(context) * 0.07,
-                        color: Colors.blue[800],
+                         decoration: BoxDecoration(
+                           color: Color(0xffb24a0ed),
+                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                     
                         child: Center(
                             child: Text(
                           "Register",

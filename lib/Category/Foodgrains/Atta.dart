@@ -266,6 +266,7 @@ class _AttaState extends State<Atta> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Atta, Flours & Sooji",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

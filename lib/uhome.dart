@@ -7,7 +7,6 @@ import 'package:Online_grocery_app/All%20Categories/f&v.dart';
 import 'package:Online_grocery_app/All%20Categories/household.dart';
 import 'package:Online_grocery_app/All%20Categories/masala.dart';
 import 'package:Online_grocery_app/All%20Categories/sn&C.dart';
-import 'package:Online_grocery_app/Authentication/Login.dart';
 import 'package:Online_grocery_app/Authentication/firstscreen.dart';
 import 'package:Online_grocery_app/Cart.dart';
 import 'package:Online_grocery_app/Category/BabyCare/Food.dart';
@@ -45,11 +44,17 @@ class _ushomeState extends State<ushome> {
       ),
     );*/
     return Scaffold(
+      
+      // backgroundColor: Color(0xffb192734),
+   //  backgroundColor: Color(0xffb24a0ed),
+       //backgroundColor: Color(0xffb3f729b),
         appBar: AppBar(
+          backgroundColor: Color(0xffb192734),
           title: Text(
             "Hi there",
             style: TextStyle(
                 fontFamily: "Breeserif",
+                color: Colors.white,
                 fontSize: displayWidth(context) * 0.04),
           ),
           actions: [
@@ -134,6 +139,7 @@ class _ushomeState extends State<ushome> {
                 "Shop by Category",
                 style: TextStyle(
                   fontFamily: "Langar",
+                  color: Colors.black,
                   fontSize: displayWidth(context) * 0.065,
                   //letterSpacing: displayWidth(context)*0.001
                   wordSpacing: displayWidth(context) * 0.025,
@@ -181,6 +187,7 @@ class _ushomeState extends State<ushome> {
                                   const EdgeInsets.only(left: 5.0, right: 2.0),
                               child: Text(
                                 "Health Drinks & Beverages",
+                                style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ]),
@@ -217,6 +224,7 @@ class _ushomeState extends State<ushome> {
                                   const EdgeInsets.only(left: 5.0, right: 2.0),
                               child: Text(
                                 "Kitchen Appliances",
+                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ]),
@@ -253,6 +261,7 @@ class _ushomeState extends State<ushome> {
                                   const EdgeInsets.only(left: 5.0, right: 2.0),
                               child: Text(
                                 "Foodgrains , Oils & Masala",
+                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ]),
@@ -291,6 +300,7 @@ class _ushomeState extends State<ushome> {
                                   const EdgeInsets.only(left: 5.0, right: 2.0),
                               child: Text(
                                 "Cleaning  and Household",
+                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ]),
@@ -327,6 +337,7 @@ class _ushomeState extends State<ushome> {
                                   const EdgeInsets.only(left: 5.0, right: 2.0),
                               child: Text(
                                 "Snacks and Confectionery",
+                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ]),
@@ -361,6 +372,7 @@ class _ushomeState extends State<ushome> {
                                   const EdgeInsets.only(left: 5.0, right: 2.0),
                               child: Text(
                                 "Bakery & Dairy",
+                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ]),
@@ -397,6 +409,7 @@ class _ushomeState extends State<ushome> {
                                   const EdgeInsets.only(left: 5.0, right: 2.0),
                               child: Text(
                                 "Fruits and Vegetables",
+                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ]),
@@ -431,6 +444,7 @@ class _ushomeState extends State<ushome> {
                                   const EdgeInsets.only(left: 5.0, right: 2.0),
                               child: Text(
                                 "Beauty and Hygiene",
+                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ]),
@@ -465,6 +479,7 @@ class _ushomeState extends State<ushome> {
                                   const EdgeInsets.only(left: 5.0, right: 2.0),
                               child: Text(
                                 "Baby care",
+                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ]),

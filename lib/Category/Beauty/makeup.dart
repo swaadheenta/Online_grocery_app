@@ -266,6 +266,7 @@ class _makeupState extends State<makeup> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Makeup",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

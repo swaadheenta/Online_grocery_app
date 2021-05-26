@@ -309,6 +309,7 @@ class _drinksState extends State<drinks> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Health Drinks & Beverages",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

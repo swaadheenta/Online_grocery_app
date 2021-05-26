@@ -38,53 +38,53 @@ class _HomepageState extends State<Homepage> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.home,
-                    color: _selectedindex == 0 ? Colors.blue : Colors.grey),
+                    color: _selectedindex == 0 ? Color(0xffb192734) : Colors.grey),
                
 
                 backgroundColor: Colors.white,
                 title: Text(
                   "Home",
                   style: TextStyle(
-                      color: _selectedindex == 0 ? Colors.blue : Colors.grey),
+                      color: _selectedindex == 0 ? Color(0xffb192734) : Colors.grey),
                 )),
             BottomNavigationBarItem(
                 icon: Icon(Icons.category,
-                    color: _selectedindex == 1 ? Colors.blue : Colors.grey),
+                    color: _selectedindex == 1 ? Color(0xffb192734) : Colors.grey),
              
                 title: Text(
                   "Categories",
                   style: TextStyle(
-                      color: _selectedindex == 1 ? Colors.blue : Colors.grey),
+                      color: _selectedindex == 1 ? Color(0xffb192734) : Colors.grey),
                 ),
                 backgroundColor: Colors.white),
            BottomNavigationBarItem(
                 icon: Icon(Icons.list_alt,
-                    color: _selectedindex == 2 ? Colors.blue : Colors.grey),
+                    color: _selectedindex == 2 ? Color(0xffb192734) : Colors.grey),
               
                 title: Text(
                   "List",
                   style: TextStyle(
-                      color: _selectedindex == 2 ? Colors.blue : Colors.grey),
+                      color: _selectedindex == 2 ? Color(0xffb192734) : Colors.grey),
                 ),
                 backgroundColor: Colors.white),
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_basket,
-                    color: _selectedindex == 3 ? Colors.blue : Colors.grey),
+                    color: _selectedindex == 3 ? Color(0xffb192734) : Colors.grey),
                 
                 title: Text(
                   "Cart",
                   style: TextStyle(
-                      color: _selectedindex == 3 ? Colors.blue : Colors.grey),
+                      color: _selectedindex == 3 ? Color(0xffb192734) : Colors.grey),
                 ),
                 backgroundColor: Colors.white),
                   BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle,
-                    color: _selectedindex == 4 ? Colors.blue : Colors.grey),
+                    color: _selectedindex == 4 ? Color(0xffb192734) : Colors.grey),
               
                 title: Text(
                   "Profile",
                   style: TextStyle(
-                      color: _selectedindex == 4 ? Colors.blue : Colors.grey),
+                      color: _selectedindex == 4 ? Color(0xffb192734) : Colors.grey),
                 ),
                 backgroundColor: Colors.white)
           ],

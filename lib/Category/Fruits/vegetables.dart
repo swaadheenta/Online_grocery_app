@@ -269,6 +269,7 @@ class _vegetablesState extends State<vegetables> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Fresh Vegetables",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

@@ -69,7 +69,9 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffb273443),
         appBar: AppBar(
+          backgroundColor: Color(0xffb273443),
           title: Text("Categories",style: TextStyle(fontSize: displayWidth(context)*0.045),),
           /*leading: IconButton(
             onPressed:()

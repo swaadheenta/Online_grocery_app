@@ -286,6 +286,7 @@ class _dairyState extends State<dairy> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Bakery & Dairy",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

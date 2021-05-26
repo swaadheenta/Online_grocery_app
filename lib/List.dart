@@ -243,8 +243,10 @@ class _ShoppinglistState extends State<Shoppinglist> {
 
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: Color(0xffb192734),
         title: Text(
           "Shopping List",
+          
           style: TextStyle(fontSize: displayWidth(context) * 0.045),
         ),
         centerTitle: true,

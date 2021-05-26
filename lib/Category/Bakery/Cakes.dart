@@ -262,6 +262,7 @@ class _CakesState extends State<Cakes> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Cakes & Pastries",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

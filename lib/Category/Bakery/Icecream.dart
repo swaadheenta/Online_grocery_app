@@ -258,6 +258,7 @@ class _IcecreamState extends State<Icecream> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Icecreams",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

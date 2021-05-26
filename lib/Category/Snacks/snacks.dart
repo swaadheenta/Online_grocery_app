@@ -264,6 +264,7 @@ class _snacksState extends State<snacks> {
     ;
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Snacks & Namkeen",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

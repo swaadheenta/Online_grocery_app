@@ -260,6 +260,7 @@ class _saucesState extends State<sauces> {
 
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Color(0xffb192734),
         title: Text(
           "Spreads, Sauces & Ketchups",
           style: TextStyle(fontSize: displayWidth(context) * 0.045),

@@ -260,6 +260,7 @@ class _fruitsState extends State<fruits> {
     ;
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Fresh Fruits",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

@@ -261,6 +261,7 @@ class _BreadState extends State<Bread> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Breads",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

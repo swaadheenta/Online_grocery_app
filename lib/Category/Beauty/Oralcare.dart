@@ -266,6 +266,7 @@ class _oralState extends State<oral> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Oral Care",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

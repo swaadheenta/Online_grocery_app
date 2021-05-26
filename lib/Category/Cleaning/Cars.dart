@@ -261,6 +261,7 @@ class _CarState extends State<Car> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Car & Shoe Care",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

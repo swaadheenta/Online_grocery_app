@@ -274,6 +274,7 @@ class _fnvState extends State<fnv> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Fruits & Vegetables",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

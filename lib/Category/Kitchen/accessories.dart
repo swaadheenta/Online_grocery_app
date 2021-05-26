@@ -262,6 +262,7 @@ class _accessoriesState extends State<accessories> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Kitchen Accessories",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

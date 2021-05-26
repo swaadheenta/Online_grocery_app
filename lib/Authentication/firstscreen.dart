@@ -1,4 +1,4 @@
-import 'package:Online_grocery_app/Authentication/Register.dart';
+
 import 'package:Online_grocery_app/Authentication/auth.dart';
 import 'package:Online_grocery_app/Authentication/signup.dart';
 import 'package:Online_grocery_app/Helpers/Devicesize.dart';
@@ -24,25 +24,35 @@ class _firstState extends State<first> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(children: [
+        body: ListView(
+          children: [
+        Opacity(
+          opacity: 0.0,
+                  child: Divider(
+            height: displayHeight(context)*0.025,
+          ),
+        ),
       Card(
           elevation: 10.0,
           child: Container(
+         //   color:  Color(0xffb192734),
               height: displayHeight(context) * 0.4,
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("GROCERY ",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold),),
-                      Text("STORE",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold,color: Colors.orange)),
+                      Text("AT YOUR ",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold),),
+                      Text("DOOR",style: TextStyle(fontSize: displayWidth(context)*0.055,fontWeight: FontWeight.bold,color: Colors.orange)),
                     ],
                   ),
+                 
+                  
                   Container(
                       height: displayHeight(context) * 0.3,
                       width: displayWidth(context),
                       // width: displayWidth(context) * 0.6,
-                      child: Image(image: AssetImage("images/i1.png"))),
+                      child: Image(image: AssetImage("images/i1.jpg"))),
                   Divider(
                     height: displayHeight(context) * 0.02,
                   ),
@@ -151,7 +161,8 @@ class _firstState extends State<first> {
                                 ? "The Password should be atleast 6 characters long"
                                 : null,
                             decoration: InputDecoration(
-                                suffixIcon: Icon(Icons.remove_red_eye)),
+                                //suffixIcon: Icon(Icons.remove_red_eye)
+                                ),
                             obscureText: true,
                             onChanged: (val) {
                               setState(() {
@@ -187,9 +198,12 @@ class _firstState extends State<first> {
                       }},
                     
                                         child: Container(
-                       width: displayWidth(context)*0.8,
+                       width: displayWidth(context)*0.6,
                        height: displayHeight(context)*0.07,
-                       color: Colors.blue[800],
+                       decoration: BoxDecoration(
+                           color: Color(0xffb24a0ed),
+                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                     
                        child: Center(child: Text("Login" ,style: TextStyle(
                                 fontFamily: "Breeserif",
                                 fontSize: displayWidth(context) * 0.045,color: Colors.white),)),

@@ -266,6 +266,7 @@ class _skinState extends State<skin> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Skin Care",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

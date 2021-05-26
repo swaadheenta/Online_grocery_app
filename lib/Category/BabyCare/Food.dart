@@ -257,6 +257,7 @@ class _foodState extends State<food> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Baby Food",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

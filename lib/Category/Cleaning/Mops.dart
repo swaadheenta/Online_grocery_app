@@ -261,6 +261,7 @@ class _MopsState extends State<Mops> {
     ;
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Mops, Brushes & Scrubs",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

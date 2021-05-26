@@ -131,6 +131,7 @@ class _editaddState extends State<editadd> {
         body: Stack(alignment: Alignment.center, children: [
           Positioned(
             child: Container(
+                
               height: displayHeight(context),
               width: displayWidth(context),
             ),
@@ -138,7 +139,7 @@ class _editaddState extends State<editadd> {
           Positioned(
             top: 0.0,
             child: Container(
-              color: Colors.blue,
+               color: Color(0xffbc27bb9),
               height: displayHeight(context) * 0.3,
               width: displayWidth(context),
             ),

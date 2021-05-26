@@ -265,6 +265,7 @@ class _babyState extends State<baby> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Baby Care",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

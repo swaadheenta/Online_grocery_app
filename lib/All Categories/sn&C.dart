@@ -301,6 +301,7 @@ class _confectioneryState extends State<confectionery> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Snacks & Confectionery",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

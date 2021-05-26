@@ -262,6 +262,7 @@ class _SaltState extends State<Salt> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Salt, Sugar & Jaggery",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

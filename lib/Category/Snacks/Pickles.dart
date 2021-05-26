@@ -256,6 +256,7 @@ class _picklesState extends State<pickles> {
     ;
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Color(0xffb192734),
         title: Text(
           "Pickles & Chutneys",
           style: TextStyle(fontSize: displayWidth(context) * 0.045),

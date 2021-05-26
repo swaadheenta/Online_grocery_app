@@ -261,6 +261,7 @@ class _FreshnersState extends State<Freshners> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Freshners & Repellents",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

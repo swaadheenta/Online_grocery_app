@@ -256,6 +256,7 @@ class _biscuitsState extends State<biscuits> {
 
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Color(0xffb192734),
         title: Text(
           "Chocloates & Biscuits",
           style: TextStyle(fontSize: displayWidth(context) * 0.045),

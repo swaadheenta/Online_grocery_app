@@ -39,6 +39,7 @@ class _PaymentState extends State<Payment> {
         context: context,
         builder: (BuildContext context) {
           return Container(
+            //color: Color(0xffb192734),
             /*decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
                 Color(0xffbDE6262),
@@ -55,7 +56,7 @@ class _PaymentState extends State<Payment> {
                 Text(
                   "Thank You For Shopping !!",
                   style: TextStyle(
-                      color: Colors.black,
+                     // color: Colors.white,
                      // fontWeight: FontWeight.w500,
                       fontFamily: "BreeSerif",
                       fontSize: displayWidth(context) * 0.045),
@@ -82,7 +83,7 @@ class _PaymentState extends State<Payment> {
                           height: displayHeight(context) * 0.045,
                           width: displayWidth(context) * 0.35,
                           decoration: BoxDecoration(
-                           color: Colors.blue,
+                           color: Color(0xffbc27bb9),
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                           
                           child: Center(child: Text("Continue Shopping",style: TextStyle(color: Colors.white),)),
@@ -119,9 +120,13 @@ class _PaymentState extends State<Payment> {
   Widget build(BuildContext context) {
     getprice();
     return Scaffold(
+    
       appBar: AppBar(
-        title: Text("Choose your mode of payment"),
-        backgroundColor: Colors.blue,
+        
+        title: Text("Choose your mode of payment",
+        
+        ),
+        backgroundColor: Color(0xffb192734),
       ),
       body: ListView(
         children: [
@@ -231,23 +236,55 @@ class _PaymentState extends State<Payment> {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => editadd()));
                       },
-                      child: Card(
+                      child: 
+                      Card(
                         elevation: 10.0,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                             color: Colors.red,
+                            ),
+                          
                           height: displayHeight(context) * 0.045,
                           width: displayWidth(context) * 0.35,
                           child: Center(child: Text("Edit Details", style: TextStyle(
                             fontSize: displayWidth(context) * 0.045,
-                            //color: Colors.white
+                            color: Colors.white,
                             ),)),
                         ),
                       ),
                     ),
+                    
                 ],
               ),
             ),
+          
+                  
           ),
+         
+         SizedBox(
+           height: displayHeight(context)*0.05,
+         ),
+              Row(
+                       children: [
+                          SizedBox(
+          width: displayWidth(context)*0.25,
+         ),
+                         Icon(Icons.delivery_dining,size: displayWidth(context)*0.1,),
+                           SizedBox(
+          width: displayWidth(context)*0.02,
+         ),
+                         Center(
+                           child: Text("Our delivery is free !!!", style: TextStyle(
+                                    fontSize: displayWidth(context) * 0.045,
+                                    //color: Colors.white
+                           )),
+                         ),
+                       ],
+                     )
+                   
+           
         ],
       ),
     );

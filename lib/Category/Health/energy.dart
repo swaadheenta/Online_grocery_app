@@ -264,7 +264,9 @@ class _EnergyState extends State<Energy> {
     ;
 
     return Scaffold(
+
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Energy & Soft Drinks",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

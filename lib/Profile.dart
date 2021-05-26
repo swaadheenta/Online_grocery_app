@@ -256,7 +256,7 @@ class _profileState extends State<profile> {
         Positioned(
           top: 0.0,
           child: Container(
-            color: Colors.blue,
+            color:   Color(0xffb192734),
             height: displayHeight(context) * 0.35,
             width: displayWidth(context),
           ),

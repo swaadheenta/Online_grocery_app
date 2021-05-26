@@ -285,6 +285,7 @@ class _householdState extends State<household> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Cleaning & Household",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

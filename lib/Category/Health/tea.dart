@@ -260,6 +260,7 @@ class _TeaState extends State<Tea> {
 
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Color(0xffb192734),
         title: Text(
           "Tea",
           style: TextStyle(fontSize: displayWidth(context) * 0.045),

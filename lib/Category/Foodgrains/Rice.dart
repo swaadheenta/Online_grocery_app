@@ -262,6 +262,7 @@ class _RiceState extends State<Rice> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Rice & Rice Products",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

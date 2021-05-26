@@ -269,6 +269,7 @@ class _appliancesState extends State<appliances> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Kitchen Appliances",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

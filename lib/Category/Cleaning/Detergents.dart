@@ -260,6 +260,7 @@ class _DetergentsState extends State<Detergents> {
     ;
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Detergents & Dishwash",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

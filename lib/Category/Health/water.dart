@@ -257,6 +257,7 @@ class _WaterState extends State<Water> {
 
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Color(0xffb192734),
         title: Text(
           "Water",
           style: TextStyle(fontSize: displayWidth(context) * 0.045),

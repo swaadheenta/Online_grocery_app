@@ -297,6 +297,7 @@ class _bnhState extends State<bnh> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Beauty & Hygiene",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

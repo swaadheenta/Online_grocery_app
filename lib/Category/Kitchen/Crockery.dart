@@ -261,6 +261,7 @@ class _crockeryState extends State<crockery> {
     ;
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Crockery & Cutlery",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

@@ -262,6 +262,7 @@ class _DalState extends State<Dal> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Dals & Pulses",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),

@@ -262,6 +262,7 @@ class _hairState extends State<hair> {
 
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Color(0xffb192734),
           title: Text(
             "Hair Care",
             style: TextStyle(fontSize: displayWidth(context) * 0.045),
