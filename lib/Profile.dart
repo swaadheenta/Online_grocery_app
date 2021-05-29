@@ -14,7 +14,7 @@ class _profileState extends State<profile> {
   String name = "";
   // String email = "";
   String phoneno = "";
-  String gender = "";
+ 
   String address = "";
   String delivery = "";
   //String weight = "";
@@ -30,7 +30,6 @@ class _profileState extends State<profile> {
      
       phoneno = ds["phoneno"];
     
-      gender = ds["gender"];
       address = ds["address"];
       if (ds["pending"] == true)
         delivery = "Not yet delivered";
@@ -66,14 +65,7 @@ class _profileState extends State<profile> {
         .update({"address": address});
   }
 
-  Future addgendertofirebase() async {
-    var docname = FirebaseAuth.instance.currentUser.uid;
-    await FirebaseFirestore.instance
-        .collection("Orders")
-        .doc(docname)
-        .update({"gender": gender});
-  }
-
+  
   Future<void> _displayTextInputDialogofname(BuildContext context) async {
     String codeDialog;
     String valueText;
@@ -188,44 +180,7 @@ class _profileState extends State<profile> {
         });
   }
 
-  Future<void> _displayTextInputDialogofgender(BuildContext context) async {
-    String codeDialog;
-    String valueText;
-
-    TextEditingController _textFieldController = TextEditingController();
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Enter your gender'),
-            content: TextField(
-              onChanged: (value) {
-                setState(() {
-                  valueText = value;
-                });
-              },
-              controller: _textFieldController,
-              //decoration: InputDecoration(hintText: "Text Field in Dialog"),
-            ),
-            actions: <Widget>[
-              GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      // codeDialog = valueText;
-                      gender = valueText;
-                    });
-                    Navigator.pop(context);
-                    addgendertofirebase();
-                  },
-                  child: Text(
-                    "Submit",
-                    style: TextStyle(color: Colors.blue),
-                  )),
-            ],
-          );
-        });
-  }
-
+  
   Future<String> getdeliverystatus() async {
     var docname = FirebaseAuth.instance.currentUser.uid;
     DocumentSnapshot ds = await FirebaseFirestore.instance
@@ -233,7 +188,7 @@ class _profileState extends State<profile> {
         .doc(docname)
         .get();
 
-    bool ans = ds.data()["pending"];
+    bool ans = ds["pending"];
     if (ans == true) {
       return "Not yet delivered";
     } else
