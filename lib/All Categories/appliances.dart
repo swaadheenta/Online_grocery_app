@@ -69,7 +69,7 @@ class _appliancesState extends State<appliances> {
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
-                    fontSize: displayWidth(context) * 0.0375),
+                    fontSize: displayWidth(context) * 0.03745),
               ),
             ),
           ));
