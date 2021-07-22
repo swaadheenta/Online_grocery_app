@@ -62,7 +62,7 @@ class _bathState extends State<bath> {
                         ? Colors.redAccent
                         : Colors.black,
                     fontFamily: "BreeSerif",
-                    fontSize: displayWidth(context) * 0.040),
+                    fontSize: displayWidth(context) * 0.042),
               ),
             ),
           ));
