@@ -50,7 +50,7 @@ class _CartState extends State<Cart> {
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                          fontSize: displayWidth(context) * 0.046),
+                          fontSize: displayWidth(context) * 0.045),
                     ),
                   ),
                 ),
